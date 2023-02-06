@@ -1,0 +1,71 @@
+###==CREDIT PRODUCT===
+
+### getAll
+GET http://localhost:8080/credit-product
+
+### getById
+GET http://localhost:8080/credit-product/1
+
+### create
+POST http://localhost:8080/credit-product
+Content-Type: application/json
+
+{
+  "creditOrder": null,
+  "productName": "Стартовый",
+  "minSum": 1000.00,
+  "maxSum": 1000000.00,
+  "currencyCode": "RUB",
+  "minInterestRate": 0.05,
+  "maxInterestRate": 0.30,
+  "needGuarantees": false,
+  "deliveryInCash": false,
+  "earlyRepayment": true,
+  "minPeriodMonths": 6,
+  "maxPeriodMonths": 36,
+  "productIsActive": true,
+  "productDetails": "Стандартный кредит",
+  "calculationMode": "differentiated",
+  "gracePeriodMonths": 0,
+  "needIncomeDetails": true
+}
+
+### update
+PUT http://localhost:8080/credit-product
+Content-Type: application/json
+
+{
+  "id": 1,
+  "creditOrder": null,
+  "productName": "Стартовый-NEW",
+  "minSum": 5000.00,
+  "maxSum": 5000000.00,
+  "currencyCode": "RUB",
+  "minInterestRate": 0.05,
+  "maxInterestRate": 0.30,
+  "needGuarantees": false,
+  "deliveryInCash": false,
+  "earlyRepayment": true,
+  "minPeriodMonths": 6,
+  "maxPeriodMonths": 36,
+  "productIsActive": true,
+  "productDetails": "Стандартный кредит",
+  "calculationMode": "differentiated",
+  "gracePeriodMonths": 0,
+  "needIncomeDetails": true
+}
+
+### removeById
+DELETE http://localhost:8080/credit-product/2
+
+
+###==CREDIT ACCOUNT===
+
+### getAll
+GET http://localhost:8080/credit-account
+
+
+###==CREDIT ORDER===
+
+### getAll
+GET http://localhost:8080/credit-order
