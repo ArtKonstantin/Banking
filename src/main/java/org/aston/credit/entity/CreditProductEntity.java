@@ -23,7 +23,7 @@ public class CreditProductEntity {
 
     @JsonIgnore
     @OneToMany(mappedBy = "creditProduct")
-    private List<CreditOrderEntity> creditOrder;
+    private List<CreditOrderEntity> creditOrders;
 
     @Column(name = "product_name", nullable = false)
     private String productName;
@@ -32,6 +32,7 @@ public class CreditProductEntity {
     private BigDecimal minSum;
 
     @Column(name = "max_sum", nullable = false)
+
     private BigDecimal maxSum;
 
     @Column(name = "currency_code", nullable = false)

@@ -69,3 +69,8 @@ GET http://localhost:8080/credit-account
 
 ### getAll
 GET http://localhost:8080/credit-order
+
+###==CREDIT CARD===
+
+### getAll
+GET http://localhost:8080/credit-card
