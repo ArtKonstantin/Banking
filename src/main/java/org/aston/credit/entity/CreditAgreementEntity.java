@@ -1,5 +1,6 @@
 package org.aston.credit.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class CreditAgreementEntity {
     private long id;
 
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "credit_id", referencedColumnName = "id", nullable = false)
     private CreditEntity credit;
 

@@ -63,7 +63,7 @@ CREATE TABLE credit_agreement
     id                        BIGSERIAL PRIMARY KEY,
     credit_id                 BIGINT  NOT NULL REFERENCES credit,
     agreement_date            DATE    NOT NULL,
-    termination_date          DATE    NOT NULL,
+    termination_date          DATE,
     responsible_specialist_id BIGINT,
     is_active                 BOOLEAN NOT NULL
 );

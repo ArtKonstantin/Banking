@@ -1,5 +1,6 @@
 package org.aston.credit.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class CreditAccountEntity {
     @Column (name = "account_number")
     private String accountNumber;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "creditAccount")
     private CreditEntity credit;
 

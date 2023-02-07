@@ -74,3 +74,23 @@ GET http://localhost:8080/credit-order
 
 ### getAll
 GET http://localhost:8080/credit-card
+
+###==CREDIT AGREEMENT===
+
+### getAll
+GET http://localhost:8080/credit-agreement
+
+###==CREDIT===
+
+### getAll
+GET http://localhost:8080/credit
+
+###==OPERATION===
+
+### getAll
+GET http://localhost:8080/operation
+
+###==PAYMENT-SCHEDULE===
+
+### getAll
+GET http://localhost:8080/payment-schedule
