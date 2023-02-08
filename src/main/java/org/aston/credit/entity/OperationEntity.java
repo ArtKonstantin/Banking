@@ -27,7 +27,8 @@ public class OperationEntity {
     private CreditAccountEntity creditAccount;
 
     @Column(name = "type", nullable = false)
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private OperationTypeEnum type;
 
     @Column(name = "sum", nullable = false)
     private BigDecimal sum;

@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "creditOrder": null,
-  "productName": "Стартовый",
+  "productName": "Стартовый-NEW",
   "minSum": 1000.00,
   "maxSum": 1000000.00,
   "currencyCode": "RUB",

@@ -66,7 +66,8 @@ public class CreditProductEntity {
     private String productDetails;
 
     @Column(name = "calculation_mode", nullable = false)
-    private String calculationMode;
+    @Enumerated(EnumType.STRING)
+    private CalculationModeEnum calculationMode;
 
     @Column(name = "grace_period_months", nullable = false)
     private int gracePeriodMonths;

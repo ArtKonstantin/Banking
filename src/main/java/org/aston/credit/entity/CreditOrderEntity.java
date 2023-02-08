@@ -34,7 +34,8 @@ public class CreditOrderEntity {
     private CreditProductEntity creditProduct;
 
     @Column(name = "status", nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatusEnum status;
 
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;

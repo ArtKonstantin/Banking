@@ -27,7 +27,8 @@ public class CreditEntity {
     private CreditOrderEntity creditOrder;
 
     @Column(name = "type", nullable = false)
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private CreditTypeEnum type;
 
     @Column(name = "credit_limit", nullable = false)
     private BigDecimal creditLimit;
@@ -45,7 +46,8 @@ public class CreditEntity {
     private int gracePeriodMonths;
 
     @Column(name = "credit_status", nullable = false)
-    private String creditStatus;
+    @Enumerated(EnumType.STRING)
+    private CreditStatusEnum creditStatus;
 
     @OneToOne
     @JoinColumn(name = "account_number", referencedColumnName = "account_number", nullable = false)

@@ -1,23 +1,19 @@
 package org.aston.credit.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.service.CreditProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/credit-product")
 public class CreditProductController {
 
     public final CreditProductService creditProductService;
-
-    @Autowired
-    public CreditProductController(CreditProductService creditProductService) {
-        this.creditProductService = creditProductService;
-    }
 
     @GetMapping
     public List<CreditProductEntity> getAll() {

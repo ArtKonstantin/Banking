@@ -8,5 +8,5 @@ services:
       - POSTGRES_PASSWORD=pass
     ports:
       - '5432:5432'
-    volumes:
-      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+#    volumes:
+#      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro

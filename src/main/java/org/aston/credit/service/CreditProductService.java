@@ -1,21 +1,17 @@
 package org.aston.credit.service;
 
+import lombok.RequiredArgsConstructor;
 import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.repository.CreditProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CreditProductService {
     private final CreditProductRepository creditProductRepository;
-
-    @Autowired
-    public CreditProductService(CreditProductRepository creditProductRepository) {
-        this.creditProductRepository = creditProductRepository;
-    }
 
     public List<CreditProductEntity> getAll() {
         return creditProductRepository.findAll();
