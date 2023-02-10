@@ -1,6 +1,7 @@
 package org.aston.credit.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.aston.credit.dto.CreditProductResponceDTO;
 import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.service.CreditProductService;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class CreditProductController {
     public final CreditProductService creditProductService;
 
     @GetMapping
-    public List<CreditProductEntity> getAll() {
+    public List<CreditProductResponceDTO> getAll() {
         return creditProductService.getAll();
     }
 
