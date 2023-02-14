@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest
 class CreditProductServiceTest {
+    public static final long ID_TEST = 1;
     @Autowired
     private CreditProductService creditProductService;
 
@@ -31,9 +32,8 @@ class CreditProductServiceTest {
 
     @Test
     void getById() {
-        long id = 1;
-        creditProductService.getById(id);
-        Mockito.verify(creditProductRepository, Mockito.times(1)).findById(id);
+        creditProductService.getById(ID_TEST);
+        Mockito.verify(creditProductRepository, Mockito.times(1)).findById(ID_TEST);
     }
 
     @Test
@@ -45,8 +45,7 @@ class CreditProductServiceTest {
 
     @Test
     void removeById() {
-        long id = 1;
-        creditProductService.removeById(id);
-        Mockito.verify(creditProductRepository, Mockito.times(1)).deleteById(id);
+        creditProductService.removeById(ID_TEST);
+        Mockito.verify(creditProductRepository, Mockito.times(1)).deleteById(ID_TEST);
     }
 }

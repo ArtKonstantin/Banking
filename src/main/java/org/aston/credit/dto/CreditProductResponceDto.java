@@ -9,10 +9,8 @@ import org.aston.credit.entity.CreditOrderEntity;
 import java.math.BigDecimal;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-public class CreditProductResponceDTO {
+public class CreditProductResponceDto {
     private long id;
     private List<CreditOrderEntity> creditOrders;
     private String productName;

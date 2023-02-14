@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class CreditOrderServiceTest {
     @Autowired
@@ -21,6 +19,5 @@ class CreditOrderServiceTest {
     void getAll() {
         creditOrderService.getAll();
         Mockito.verify(creditOrderRepository, Mockito.times(1)).findAll();
-
     }
 }
