@@ -1,18 +1,14 @@
 package org.aston.credit.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.aston.credit.entity.CalculationModeEnum;
-import org.aston.credit.entity.CreditOrderEntity;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
-public class CreditProductResponceDto {
+public class CreditProductResponseDto {
     private long id;
-    private List<CreditOrderEntity> creditOrders;
+//    private List<CreditOrderEntity> creditOrders;
     private String productName;
     private BigDecimal minSum;
     private BigDecimal maxSum;

@@ -1,7 +1,7 @@
 package org.aston.credit.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.aston.credit.dto.CreditProductResponceDto;
+import org.aston.credit.dto.CreditProductResponseDto;
 import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.service.CreditProductService;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,12 +23,12 @@ public class CreditProductController {
     public final CreditProductService creditProductService;
 
     @GetMapping
-    public List getAll() {
+    public List<CreditProductResponseDto> getAll() {
         return creditProductService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<CreditProductEntity> getById(@PathVariable long id) {
+    public CreditProductResponseDto getById(@PathVariable long id) {
         return creditProductService.getById(id);
     }
 

@@ -70,6 +70,21 @@ GET http://localhost:8080/credit-account
 ### getAll
 GET http://localhost:8080/credit-order
 
+### create
+POST http://localhost:8080/credit-order
+Content-Type: application/json
+clientId: a5c78e17-aa2f-4fb9-9563-ed782cdf9cd1
+
+{
+  "productId": 1,
+  "amountRequested": 10000.00,
+  "periodMonths": 12,
+  "creationDate": "2023-01-01",
+  "monthlyIncome": 5000.00,
+  "monthlyExpenditure": 3000.00,
+  "employerIdentificationNumber": "123-45-6789"
+}
+
 ###==CREDIT CARD===
 
 ### getAll

@@ -1,17 +1,13 @@
 package org.aston.credit.mapper;
 
-import lombok.RequiredArgsConstructor;
-import org.aston.credit.dto.CreditProductResponceDto;
+import org.aston.credit.dto.CreditProductResponseDto;
 import org.aston.credit.entity.CreditProductEntity;
-import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-@RequiredArgsConstructor
-public class CreditProductMapper {
-    private final ModelMapper modelMapper;
+import java.util.List;
 
-    public CreditProductResponceDto mapperToDto(CreditProductEntity entity){
-        return modelMapper.map(entity, CreditProductResponceDto.class);
-    }
+@Mapper(componentModel = "spring")
+public interface CreditProductMapper {
+    CreditProductResponseDto creditProductToCreditProductDto(CreditProductEntity creditProduct);
+    List<CreditProductResponseDto> creditProductsToCreditProductDto(List<CreditProductEntity> creditProducts);
 }
