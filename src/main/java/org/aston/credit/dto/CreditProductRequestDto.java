@@ -6,7 +6,7 @@ import org.aston.credit.entity.CalculationModeEnum;
 import java.math.BigDecimal;
 
 @Data
-public class CreditProductResponseDto {
+public class CreditProductRequestDto {
     private long id;
     private String productName;
     private BigDecimal minSum;

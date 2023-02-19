@@ -1,9 +1,7 @@
 package org.aston.credit.service;
 
 import lombok.RequiredArgsConstructor;
-import org.aston.credit.dto.CreditProductResponseDto;
 import org.aston.credit.entity.CreditProductEntity;
-import org.aston.credit.mapper.CreditProductMapper;
 import org.aston.credit.repository.CreditProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,23 +11,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CreditProductService {
     private final CreditProductRepository creditProductRepository;
-    private final CreditProductMapper creditProductMapper;
 
-    public List<CreditProductResponseDto> getAll() {
-        List<CreditProductEntity> creditProducts = creditProductRepository.findAll();
-        return creditProductMapper.creditProductsToCreditProductDto(creditProducts);
+    public List<CreditProductEntity> getAll() {
+        return creditProductRepository.findAll();
     }
 
-    public CreditProductResponseDto getById(long id) {
-        CreditProductEntity creditProduct = creditProductRepository.getReferenceById(id);
-        return creditProductMapper.creditProductToCreditProductDto(creditProduct);
+    public CreditProductEntity getById(long id) {
+        return creditProductRepository.getReferenceById(id);
     }
 
-    public void create(CreditProductEntity creditProduct) {
-        creditProductRepository.save(creditProduct);
-    }
-
-    public void update(CreditProductEntity creditProduct) {
+    public void save(CreditProductEntity creditProduct) {
         creditProductRepository.save(creditProduct);
     }
 

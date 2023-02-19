@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "creditOrder": null,
-  "productName": "Стартовый-NEW",
+  "productName": "Стартовый-НОВЫЙ",
   "minSum": 1000.00,
   "maxSum": 1000000.00,
   "currencyCode": "RUB",
@@ -35,9 +35,9 @@ PUT http://localhost:8080/credit-product
 Content-Type: application/json
 
 {
-  "id": 1,
+  "id": 5,
   "creditOrder": null,
-  "productName": "Стартовый-NEW",
+  "productName": "Стартовый",
   "minSum": 5000.00,
   "maxSum": 5000000.00,
   "currencyCode": "RUB",
@@ -56,7 +56,7 @@ Content-Type: application/json
 }
 
 ### removeById
-DELETE http://localhost:8080/credit-product/2
+DELETE http://localhost:8080/credit-product/3
 
 
 ###==CREDIT ACCOUNT===
@@ -73,17 +73,21 @@ GET http://localhost:8080/credit-order
 ### create
 POST http://localhost:8080/credit-order
 Content-Type: application/json
-clientId: a5c78e17-aa2f-4fb9-9563-ed782cdf9cd1
+clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 {
   "productId": 1,
-  "amountRequested": 10000.00,
+  "amountRequested": 90000.00,
   "periodMonths": 12,
   "creationDate": "2023-01-01",
   "monthlyIncome": 5000.00,
   "monthlyExpenditure": 3000.00,
   "employerIdentificationNumber": "123-45-6789"
 }
+
+### getOrdersByClienId
+GET http://localhost:8080/credit-order/getOrders
+clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 ###==CREDIT CARD===
 

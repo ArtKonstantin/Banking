@@ -1,17 +1,18 @@
 package org.aston.credit.dto;
 
 import lombok.Data;
+import org.aston.credit.entity.OrderStatusEnum;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 
 @Data
-public class NewCreditOrderRequestDto {
+public class CreditOrderResponseDto {
+    private long applicationId;
     private long productId;
+    private String productName;
+    private OrderStatusEnum status;
     private BigDecimal amountRequested;
     private int periodMonths;
     private Date creationDate;
-    private BigDecimal monthlyIncome;
-    private BigDecimal monthlyExpenditure;
-    private String employerIdentificationNumber;
 }

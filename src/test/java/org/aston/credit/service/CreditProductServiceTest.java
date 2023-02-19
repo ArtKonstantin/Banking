@@ -20,7 +20,7 @@ class CreditProductServiceTest {
     @Test
     void create() {
         final CreditProductEntity creditProduct = new CreditProductEntity();
-        creditProductService.create(creditProduct);
+        creditProductService.save(creditProduct);
         Mockito.verify(creditProductRepository, Mockito.times(1)).save(creditProduct);
     }
 
@@ -34,13 +34,6 @@ class CreditProductServiceTest {
     void getById() {
         creditProductService.getById(ID_TEST);
         Mockito.verify(creditProductRepository, Mockito.times(1)).findById(ID_TEST);
-    }
-
-    @Test
-    void update() {
-        final CreditProductEntity creditProduct = new CreditProductEntity();
-        creditProductService.update(creditProduct);
-        Mockito.verify(creditProductRepository, Mockito.times(1)).save(creditProduct);
     }
 
     @Test
