@@ -40,7 +40,7 @@ public class CreditProductController {
             final CreditProductEntity creditProduct = creditProductService.getById(id);
             final CreditProductResponseDto creditProductDto = creditProductMapper.toDto(creditProduct);
             return new ResponseEntity<>(creditProductDto, HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (Exception EntityNotFoundException) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -62,7 +62,7 @@ public class CreditProductController {
         try {
             creditProductService.removeById(id);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (Exception EntityNotFoundException) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

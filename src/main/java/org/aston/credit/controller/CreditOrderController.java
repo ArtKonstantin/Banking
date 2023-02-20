@@ -30,7 +30,7 @@ public class CreditOrderController {
         return creditOrdersDto;
     }
 
-    @GetMapping("/getOrders")
+    @GetMapping("/get-list")
     public List<CreditOrderResponseDto> getOrdersByClientId(@RequestHeader UUID clientId) {
         return creditOrderService.getCreditOrdersByClientId(clientId);
     }

@@ -1,11 +1,11 @@
 package org.aston.credit.dto;
 
-import lombok.Data;
+import lombok.Value;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 
-@Data
+@Value
 public class CreditOrderRequestDto {
     private long productId;
     private BigDecimal amountRequested;
