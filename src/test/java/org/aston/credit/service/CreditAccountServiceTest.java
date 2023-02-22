@@ -2,17 +2,18 @@ package org.aston.credit.service;
 
 import org.aston.credit.repository.CreditAccountRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class CreditAccountServiceTest {
-    @Autowired
+    @InjectMocks
     private CreditAccountService creditAccountService;
 
-    @MockBean
+    @Mock
     private CreditAccountRepository creditAccountRepository;
 
     @Test
