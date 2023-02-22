@@ -1,10 +1,12 @@
 package org.aston.credit.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.aston.credit.entity.CalculationModeEnum;
 
 import java.math.BigDecimal;
 
+@AllArgsConstructor
 @Data
 public class CreditProductResponseDto {
     private long id;

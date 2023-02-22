@@ -30,11 +30,13 @@ public class CreditOrderController {
         return creditOrdersDto;
     }
 
+    // TODO: UUID клиента передается в HEADER?
     @GetMapping("/get-list")
     public List<CreditOrderResponseDto> getOrdersByClientId(@RequestHeader UUID clientId) {
         return creditOrderService.getCreditOrdersByClientId(clientId);
     }
 
+    // TODO: UUID клиента передается в HEADER?
     @PostMapping
     public void create(@RequestHeader UUID clientId, @RequestBody CreditOrderRequestDto creditOrderRequestDto){
         final CreditOrderEntity orderEntity = creditOrderMapper.toEntity(creditOrderRequestDto);
