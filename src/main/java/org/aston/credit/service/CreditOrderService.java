@@ -23,12 +23,32 @@ public class CreditOrderService {
 
     public void create(UUID clientId, CreditOrderEntity creditOrder) {
         creditOrder.setClientId(clientId);
-        creditOrder.setStatus(OrderStatusEnum.pending);
+        creditOrder.setStatus(OrderStatusEnum.PENDING);
         creditOrderRepository.save(creditOrder);
     }
 
     public List<CreditOrderResponseDto> getCreditOrdersByClientId(UUID clientId) {
         List<CreditOrderEntity> creditOrders = creditOrderRepository.findAllByClientId(clientId);
         return creditOrderMapper.toDtoList(creditOrders);
+    }
+
+    public void reject(UUID clientId, CreditOrderEntity order) {
+        final CreditOrderEntity creditOrder = creditOrderRepository.getReferenceById(order.getId());
+        if(creditOrder.getClientId().equals(clientId)) {
+            if(creditOrder.getStatus().equals(order.getStatus())) {
+                creditOrder.setStatus(OrderStatusEnum.REJECT_BY_CLIENT);
+                creditOrderRepository.save(creditOrder);
+            }
+        }
+    }
+
+    public void approved(UUID clientId, CreditOrderEntity order) {
+        final CreditOrderEntity creditOrder = creditOrderRepository.getReferenceById(order.getId());
+        if(creditOrder.getClientId().equals(clientId)) {
+            if(creditOrder.getStatus().equals(order.getStatus())) {
+                creditOrder.setStatus(OrderStatusEnum.APPROVED_BY_CLIENT);
+                creditOrderRepository.save(creditOrder);
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 package org.aston.credit.mapper;
 
+import org.aston.credit.dto.CreditOrderRejectDto;
 import org.aston.credit.dto.CreditOrderRequestDto;
 import org.aston.credit.dto.CreditOrderResponseDto;
 import org.aston.credit.entity.CreditOrderEntity;
@@ -23,6 +24,8 @@ public interface CreditOrderMapper {
     @Mapping(target = "creditProduct.id", source = "productId")
     @Mapping(target = "averageMonthlyExpenditure", source = "monthlyExpenditure")
     CreditOrderEntity toEntity(CreditOrderRequestDto creditOrder);
+
+    CreditOrderEntity toStatus(CreditOrderRejectDto creditOrderReject);
 
     List<CreditOrderResponseDto> toDtoList(List<CreditOrderEntity> creditOrders);
 }

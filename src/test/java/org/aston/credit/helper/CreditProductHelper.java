@@ -23,7 +23,7 @@ public class CreditProductHelper {
         creditProduct.setMaxPeriodMonths(36);
         creditProduct.setProductIsActive(true);
         creditProduct.setProductDetails("Стандартный кредит");
-        creditProduct.setCalculationMode(CalculationModeEnum.differentiated);
+        creditProduct.setCalculationMode(CalculationModeEnum.DIFFERENTIATED);
         creditProduct.setGracePeriodMonths(0);
         creditProduct.setNeedIncomeDetails(true);
         return creditProduct;
@@ -44,7 +44,7 @@ public class CreditProductHelper {
         int maxPeriodMonths = 36;
         boolean productIsActive = true;
         String productDetails = "Стандартный кредит";
-        CalculationModeEnum calculationMode = CalculationModeEnum.differentiated;
+        CalculationModeEnum calculationMode = CalculationModeEnum.DIFFERENTIATED;
         int gracePeriodMonths = 0;
         boolean needIncomeDetails = true;
         return new CreditProductResponseDto(id, productName, minSum, maxSum, currencyCode, minInterestRate,

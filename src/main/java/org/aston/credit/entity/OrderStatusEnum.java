@@ -1,5 +1,5 @@
 package org.aston.credit.entity;
 
 public enum OrderStatusEnum {
-    pending, approved, rejected, individual_conditions
+    PENDING, APPROVED_BY_BANK, APPROVED_BY_CLIENT, REJECT_BY_CLIENT, INDIVIDUAL_CONDITIONS
 }

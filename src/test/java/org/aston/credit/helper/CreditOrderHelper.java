@@ -17,7 +17,7 @@ public class CreditOrderHelper {
         creditOrder.setId(1);
         creditOrder.setClientId(UUID.fromString("0799f8b8-729d-4818-b1ba-5e64f88f6d03"));
         creditOrder.setCreditProduct(getCreditProduct());
-        creditOrder.setStatus(OrderStatusEnum.pending);
+        creditOrder.setStatus(OrderStatusEnum.PENDING);
         creditOrder.setAmount(BigDecimal.valueOf(100000.00));
         creditOrder.setPeriodMonths(12);
         creditOrder.setCreationDate(Date.valueOf("2023-01-01"));
@@ -36,7 +36,7 @@ public class CreditOrderHelper {
         long applicationId = 1;
         long productId = 1;
         String productName = "Стартовый";
-        OrderStatusEnum status = OrderStatusEnum.pending;
+        OrderStatusEnum status = OrderStatusEnum.PENDING;
         BigDecimal amountRequested = BigDecimal.valueOf(100000.00);
         int periodMonths = 12;
         Date creationDate = Date.valueOf("2023-01-01");
