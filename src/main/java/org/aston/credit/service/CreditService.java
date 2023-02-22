@@ -6,6 +6,7 @@ import org.aston.credit.repository.CreditRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -14,5 +15,15 @@ public class CreditService {
 
     public List<CreditEntity> getAll() {
         return creditRepository.findAll();
+    }
+
+    public CreditEntity schedule(UUID clientId, long creditId) {
+        final CreditEntity credit = creditRepository.getReferenceById(creditId);
+        if(clientId.equals(credit.getCreditOrder().getClientId())) {
+            return credit;
+        }
+
+        //тут нужно Exception
+        else return null;
     }
 }

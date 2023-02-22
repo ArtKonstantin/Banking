@@ -64,7 +64,6 @@ DELETE http://localhost:8080/credit-product/3
 ### getAll
 GET http://localhost:8080/credit-account
 
-
 ###==CREDIT ORDER===
 
 ### getAll
@@ -89,6 +88,26 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 GET http://localhost:8080/credit-order/get-list
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
+### reject
+PUT http://localhost:8080/credit-order/reject
+Content-Type: application/json
+clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
+{
+  "id": 2,
+  "status": "PENDING"
+}
+
+### approved
+PUT http://localhost:8080/credit-order/approved
+Content-Type: application/json
+clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
+{
+  "id": 1,
+  "status": "APPROVED_BY_BANK"
+}
+
 ###==CREDIT CARD===
 
 ### getAll
@@ -103,6 +122,10 @@ GET http://localhost:8080/credit-agreement
 
 ### getAll
 GET http://localhost:8080/credit
+
+### schedule
+GET http://localhost:8080/credit/1/schedule
+clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 ###==OPERATION===
 
