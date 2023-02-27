@@ -2,6 +2,7 @@ package org.aston.credit.service;
 
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.entity.CreditEntity;
+import org.aston.credit.exception.ForbiddenException;
 import org.aston.credit.repository.CreditRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +20,11 @@ public class CreditService {
 
     public CreditEntity schedule(UUID clientId, long creditId) {
         final CreditEntity credit = creditRepository.getReferenceById(creditId);
-        if(clientId.equals(credit.getCreditOrder().getClientId())) {
-            return credit;
+
+        if(!clientId.equals(credit.getCreditOrder().getClientId())) {
+            throw new ForbiddenException();
         }
 
-        //тут нужно Exception
-        else return null;
+        return credit;
     }
 }
