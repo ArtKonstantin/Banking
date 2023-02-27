@@ -76,7 +76,7 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 {
   "productId": 1,
-  "amountRequested": 90000.00,
+  "amountRequested": 100000.00,
   "periodMonths": 12,
   "creationDate": "2023-01-01",
   "monthlyIncome": 5000.00,
@@ -86,7 +86,7 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 ### getOrdersByClienId
 GET http://localhost:8080/credit-order/get-list
-clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
+clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d0
 
 ### reject
 PUT http://localhost:8080/credit-order/reject
@@ -94,7 +94,7 @@ Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 {
-  "id": 2,
+  "id": 1,
   "status": "PENDING"
 }
 
