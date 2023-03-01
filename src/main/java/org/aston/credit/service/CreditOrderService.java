@@ -66,21 +66,6 @@ public class CreditOrderService {
         return creditOrderMapper.toDtoList(creditOrders);
     }
 
-    public void reject(UUID clientId, CreditOrderEntity order) {
-        final CreditOrderEntity creditOrder = creditOrderRepository.getReferenceById(order.getId());
-
-        if(!creditOrder.getClientId().equals(clientId)) {
-            throw new ForbiddenException();
-        }
-
-        if(!creditOrder.getStatus().equals(order.getStatus())) {
-            throw new BadRequestException();
-        }
-
-        creditOrder.setStatus(OrderStatusEnum.REJECT_BY_CLIENT);
-        creditOrderRepository.save(creditOrder);
-    }
-
     public void approved(UUID clientId, CreditOrderEntity order) {
         final CreditOrderEntity creditOrder = creditOrderRepository.getReferenceById(order.getId());
 
@@ -88,11 +73,21 @@ public class CreditOrderService {
             throw new ForbiddenException();
         }
 
-        if(!creditOrder.getStatus().equals(order.getStatus())) {
-            throw new BadRequestException();
+        if(order.getStatus().equals(OrderStatusEnum.REJECT_BY_CLIENT)) {
+            if(!(creditOrder.getStatus().equals(OrderStatusEnum.PENDING)
+                    ||creditOrder.getStatus().equals(OrderStatusEnum.APPROVED_BY_BANK)))
+                throw new BadRequestException();
+
+            creditOrder.setStatus(OrderStatusEnum.REJECT_BY_CLIENT);
+            creditOrderRepository.save(creditOrder);
         }
 
-        creditOrder.setStatus(OrderStatusEnum.APPROVED_BY_CLIENT);
-        creditOrderRepository.save(creditOrder);
+        if(order.getStatus().equals(OrderStatusEnum.APPROVED_BY_CLIENT)) {
+            if(!creditOrder.getStatus().equals(OrderStatusEnum.APPROVED_BY_BANK))
+                throw new BadRequestException();
+
+            creditOrder.setStatus(OrderStatusEnum.APPROVED_BY_CLIENT);
+            creditOrderRepository.save(creditOrder);
+        }
     }
 }
