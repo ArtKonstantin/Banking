@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/credit")
+@RequestMapping("/api/v1/credits")
 public class CreditController {
     private final CreditService creditService;
     private final CreditMapper creditMapper;
@@ -26,6 +26,7 @@ public class CreditController {
         return creditService.getAll();
     }
 
+    // TODO-4: CR.3 Отправка графика платежей по кредиту
     @GetMapping("/{creditId}/schedule")
     public ScheduleResponseDto schedule(@RequestHeader UUID clientId, @PathVariable long creditId) {
         CreditEntity credit = creditService.schedule(clientId, creditId);
