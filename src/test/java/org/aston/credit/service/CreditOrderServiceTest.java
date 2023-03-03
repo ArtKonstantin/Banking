@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
@@ -29,12 +28,6 @@ class CreditOrderServiceTest {
 
     @Mock
     private CreditOrderRepository creditOrderRepository;
-
-    @Test
-    void getAll() {
-        creditOrderService.getAll();
-        Mockito.verify(creditOrderRepository, Mockito.times(1)).findAll();
-    }
 
     @Test
     void getCreditOrdersByClientId() {

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -20,11 +19,6 @@ import java.util.UUID;
 public class CreditController {
     private final CreditService creditService;
     private final CreditMapper creditMapper;
-
-    @GetMapping
-    public List<CreditEntity> getAll() {
-        return creditService.getAll();
-    }
 
     @GetMapping("/{creditId}/schedule")
     public ScheduleResponseDto schedule(@RequestHeader UUID clientId, @PathVariable long creditId) {

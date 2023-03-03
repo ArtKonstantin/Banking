@@ -25,13 +25,6 @@ public class CreditOrderController {
     private final CreditOrderService creditOrderService;
     private final CreditOrderMapper creditOrderMapper;
 
-    @GetMapping("/get-all")
-    public List<CreditOrderResponseDto> getAll() {
-        final List<CreditOrderEntity> creditOrders = creditOrderService.getAll();
-        final List<CreditOrderResponseDto> creditOrdersDto = creditOrderMapper.toDtoList(creditOrders);
-        return creditOrdersDto;
-    }
-
     // TODO-0: UUID клиента передается в HEADER?
     @GetMapping
     public List<CreditOrderResponseDto> getOrdersByClientId(@RequestHeader UUID clientId) {
