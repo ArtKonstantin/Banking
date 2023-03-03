@@ -26,7 +26,6 @@ public class CreditController {
         return creditService.getAll();
     }
 
-    // TODO-4: CR.3 Отправка графика платежей по кредиту
     @GetMapping("/{creditId}/schedule")
     public ScheduleResponseDto schedule(@RequestHeader UUID clientId, @PathVariable long creditId) {
         CreditEntity credit = creditService.schedule(clientId, creditId);

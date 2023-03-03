@@ -1,7 +1,7 @@
 package org.aston.credit.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.aston.credit.dto.CreditOrderRejectDto;
+import org.aston.credit.dto.CreditOrderApprovedDto;
 import org.aston.credit.dto.CreditOrderRequestDto;
 import org.aston.credit.dto.CreditOrderResponseDto;
 import org.aston.credit.entity.CreditOrderEntity;
@@ -10,7 +10,6 @@ import org.aston.credit.service.CreditOrderService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,22 +33,21 @@ public class CreditOrderController {
     }
 
     // TODO-0: UUID клиента передается в HEADER?
-    // TODO-2: OC.2 Получение данных о кредитных заявках
     @GetMapping
     public List<CreditOrderResponseDto> getOrdersByClientId(@RequestHeader UUID clientId) {
-        return creditOrderService.getCreditOrdersByClientId(clientId);
+        final List<CreditOrderEntity> creditOrders = creditOrderService.getCreditOrdersByClientId(clientId);
+        final List<CreditOrderResponseDto> creditOrdersDto = creditOrderMapper.toDtoList(creditOrders);
+        return creditOrdersDto;
     }
 
-    // TODO-1: OC.1 Создание заявки на кредит
     @PostMapping
-    public void create(@RequestHeader UUID clientId, @RequestBody CreditOrderRequestDto creditOrderRequestDto){
+    public void create(@RequestHeader UUID clientId, @RequestBody CreditOrderRequestDto creditOrderRequestDto) {
         final CreditOrderEntity orderEntity = creditOrderMapper.toEntity(creditOrderRequestDto);
         creditOrderService.create(clientId, orderEntity);
     }
 
-    // TODO-3: CS-1 Отзыв кредитной заявки, CS-2 Подтверждение кредитной заявки
     @PatchMapping
-    public void approved(@RequestHeader UUID clientId, @RequestBody CreditOrderRejectDto creditOrder) {
+    public void approved(@RequestHeader UUID clientId, @RequestBody CreditOrderApprovedDto creditOrder) {
         final CreditOrderEntity orderEntity = creditOrderMapper.toStatus(creditOrder);
         creditOrderService.approved(clientId, orderEntity);
     }

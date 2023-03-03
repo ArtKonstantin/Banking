@@ -30,26 +30,24 @@ public class CreditProductHelper {
     }
 
     public static CreditProductResponseDto getCreditProductDto() {
-        long id = 1;
-        String productName = "Стартовый";
-        BigDecimal minSum = BigDecimal.valueOf(1000.00);
-        BigDecimal maxSum = BigDecimal.valueOf(1000000.00);
-        String currencyCode = "RUB";
-        BigDecimal minInterestRate = BigDecimal.valueOf(0.35);
-        BigDecimal maxInterestRate = BigDecimal.valueOf(0.30);
-        boolean needGuarantees = false;
-        boolean deliveryInCash = false;
-        boolean earlyRepayment = true;
-        int minPeriodMonths = 6;
-        int maxPeriodMonths = 36;
-        boolean productIsActive = true;
-        String productDetails = "Стандартный кредит";
-        CalculationModeEnum calculationMode = CalculationModeEnum.DIFFERENTIATED;
-        int gracePeriodMonths = 0;
-        boolean needIncomeDetails = true;
-        return new CreditProductResponseDto(id, productName, minSum, maxSum, currencyCode, minInterestRate,
-                maxInterestRate, needGuarantees, deliveryInCash, earlyRepayment, minPeriodMonths,
-                maxPeriodMonths, productIsActive, productDetails, calculationMode, gracePeriodMonths,
-                needIncomeDetails);
+        return new CreditProductResponseDto(
+                1,
+                "Стартовый",
+                BigDecimal.valueOf(1000.00),
+                BigDecimal.valueOf(1000000.00),
+                "RUB",
+                BigDecimal.valueOf(0.35),
+                BigDecimal.valueOf(0.30),
+                false,
+                false,
+                true,
+                6,
+                36,
+                true,
+                "Стандартный кредит",
+                CalculationModeEnum.DIFFERENTIATED,
+                0,
+                true
+        );
     }
 }

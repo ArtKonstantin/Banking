@@ -10,22 +10,24 @@ public class CreditProductMapperTest {
     @Test
     void toDto() {
         CreditProductResponseDto creditProductDto = new CreditProductMapperImpl().toDto(CreditProductHelper.getCreditProduct());
-        assertEquals(CreditProductHelper.getCreditProductDto().getId(), creditProductDto.getId());
-        assertEquals(CreditProductHelper.getCreditProductDto().getProductName(), creditProductDto.getProductName());
-        assertEquals(CreditProductHelper.getCreditProductDto().getMinSum(), creditProductDto.getMinSum());
-        assertEquals(CreditProductHelper.getCreditProductDto().getMaxSum(), creditProductDto.getMaxSum());
-        assertEquals(CreditProductHelper.getCreditProductDto().getCurrencyCode(), creditProductDto.getCurrencyCode());
-        assertEquals(CreditProductHelper.getCreditProductDto().getMinInterestRate(), creditProductDto.getMinInterestRate());
-        assertEquals(CreditProductHelper.getCreditProductDto().getMaxInterestRate(), creditProductDto.getMaxInterestRate());
-        assertEquals(CreditProductHelper.getCreditProductDto().isNeedGuarantees(), creditProductDto.isNeedGuarantees());
-        assertEquals(CreditProductHelper.getCreditProductDto().isDeliveryInCash(), creditProductDto.isDeliveryInCash());
-        assertEquals(CreditProductHelper.getCreditProductDto().isEarlyRepayment(), creditProductDto.isEarlyRepayment());
-        assertEquals(CreditProductHelper.getCreditProductDto().getMinPeriodMonths(), creditProductDto.getMinPeriodMonths());
-        assertEquals(CreditProductHelper.getCreditProductDto().getMaxPeriodMonths(), creditProductDto.getMaxPeriodMonths());
-        assertEquals(CreditProductHelper.getCreditProductDto().isProductIsActive(), creditProductDto.isProductIsActive());
-        assertEquals(CreditProductHelper.getCreditProductDto().getProductDetails(), creditProductDto.getProductDetails());
-        assertEquals(CreditProductHelper.getCreditProductDto().getCalculationMode(), creditProductDto.getCalculationMode());
-        assertEquals(CreditProductHelper.getCreditProductDto().getGracePeriodMonths(), creditProductDto.getGracePeriodMonths());
-        assertEquals(CreditProductHelper.getCreditProductDto().isNeedIncomeDetails(), creditProductDto.isNeedIncomeDetails());
+        final CreditProductResponseDto creditProduct = CreditProductHelper.getCreditProductDto();
+
+        assertEquals(creditProduct.getId(), creditProductDto.getId());
+        assertEquals(creditProduct.getProductName(), creditProductDto.getProductName());
+        assertEquals(creditProduct.getMinSum(), creditProductDto.getMinSum());
+        assertEquals(creditProduct.getMaxSum(), creditProductDto.getMaxSum());
+        assertEquals(creditProduct.getCurrencyCode(), creditProductDto.getCurrencyCode());
+        assertEquals(creditProduct.getMinInterestRate(), creditProductDto.getMinInterestRate());
+        assertEquals(creditProduct.getMaxInterestRate(), creditProductDto.getMaxInterestRate());
+        assertEquals(creditProduct.isNeedGuarantees(), creditProductDto.isNeedGuarantees());
+        assertEquals(creditProduct.isDeliveryInCash(), creditProductDto.isDeliveryInCash());
+        assertEquals(creditProduct.isEarlyRepayment(), creditProductDto.isEarlyRepayment());
+        assertEquals(creditProduct.getMinPeriodMonths(), creditProductDto.getMinPeriodMonths());
+        assertEquals(creditProduct.getMaxPeriodMonths(), creditProductDto.getMaxPeriodMonths());
+        assertEquals(creditProduct.isProductIsActive(), creditProductDto.isProductIsActive());
+        assertEquals(creditProduct.getProductDetails(), creditProductDto.getProductDetails());
+        assertEquals(creditProduct.getCalculationMode(), creditProductDto.getCalculationMode());
+        assertEquals(creditProduct.getGracePeriodMonths(), creditProductDto.getGracePeriodMonths());
+        assertEquals(creditProduct.isNeedIncomeDetails(), creditProductDto.isNeedIncomeDetails());
     }
 }
