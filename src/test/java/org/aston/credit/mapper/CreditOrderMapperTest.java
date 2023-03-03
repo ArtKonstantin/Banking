@@ -11,23 +11,28 @@ class CreditOrderMapperTest {
     @Test
     void toDto() {
         CreditOrderResponseDto creditOrderDto = new CreditOrderMapperImpl().toDto(CreditOrderHelper.getCreditOrder());
-        assertEquals(CreditOrderHelper.getCreditOrderDto().getApplicationId(), creditOrderDto.getProductId());
-        assertEquals(CreditOrderHelper.getCreditOrderDto().getAmountRequested(), creditOrderDto.getAmountRequested());
-        assertEquals(CreditOrderHelper.getCreditOrderDto().getProductId(), creditOrderDto.getProductId());
-        assertEquals(CreditOrderHelper.getCreditOrderDto().getProductName(), creditOrderDto.getProductName());
-        assertEquals(CreditOrderHelper.getCreditOrderDto().getStatus(), creditOrderDto.getStatus());
-        assertEquals(CreditOrderHelper.getCreditOrderDto().getPeriodMonths(), creditOrderDto.getPeriodMonths());
-        assertEquals(CreditOrderHelper.getCreditOrderDto().getCreationDate(), creditOrderDto.getCreationDate());
+        final CreditOrderResponseDto creditOrder = CreditOrderHelper.getCreditOrderDto();
+
+        assertEquals(creditOrder.getApplicationId(), creditOrderDto.getProductId());
+        assertEquals(creditOrder.getAmountRequested(), creditOrderDto.getAmountRequested());
+        assertEquals(creditOrder.getProductId(), creditOrderDto.getProductId());
+        assertEquals(creditOrder.getProductName(), creditOrderDto.getProductName());
+        assertEquals(creditOrder.getStatus(), creditOrderDto.getStatus());
+        assertEquals(creditOrder.getPeriodMonths(), creditOrderDto.getPeriodMonths());
+        assertEquals(creditOrder.getCreationDate(), creditOrderDto.getCreationDate());
     }
+
     @Test
     void toEntity() {
         CreditOrderEntity creditOrder = new CreditOrderMapperImpl().toEntity(CreditOrderHelper.getCreateCreditOrderDto());
+        final CreditOrderEntity creditOrderEntity = CreditOrderHelper.getCreditOrder();
+
         assertEquals(CreditOrderHelper.getCreditProduct().getId(), creditOrder.getCreditProduct().getId());
-        assertEquals(CreditOrderHelper.getCreditOrder().getAmount(), creditOrder.getAmount());
-        assertEquals(CreditOrderHelper.getCreditOrder().getPeriodMonths(), creditOrder.getPeriodMonths());
-        assertEquals(CreditOrderHelper.getCreditOrder().getCreationDate(), creditOrder.getCreationDate());
-        assertEquals(CreditOrderHelper.getCreditOrder().getAverageMonthlyIncome(), creditOrder.getAverageMonthlyIncome());
-        assertEquals(CreditOrderHelper.getCreditOrder().getAverageMonthlyExpenditure(), creditOrder.getAverageMonthlyExpenditure());
-        assertEquals(CreditOrderHelper.getCreditOrder().getEmployerIdentificationNumber(), creditOrder.getEmployerIdentificationNumber());
+        assertEquals(creditOrderEntity.getAmount(), creditOrder.getAmount());
+        assertEquals(creditOrderEntity.getPeriodMonths(), creditOrder.getPeriodMonths());
+        assertEquals(creditOrderEntity.getCreationDate(), creditOrder.getCreationDate());
+        assertEquals(creditOrderEntity.getAverageMonthlyIncome(), creditOrder.getAverageMonthlyIncome());
+        assertEquals(creditOrderEntity.getAverageMonthlyExpenditure(), creditOrder.getAverageMonthlyExpenditure());
+        assertEquals(creditOrderEntity.getEmployerIdentificationNumber(), creditOrder.getEmployerIdentificationNumber());
     }
 }

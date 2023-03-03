@@ -11,6 +11,8 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CreditProductMapper {
     CreditProductResponseDto toDto(CreditProductEntity creditProduct);
+
     CreditProductEntity toEntity(CreditProductRequestDto creditProduct);
+
     List<CreditProductResponseDto> toDtoList(List<CreditProductEntity> creditProducts);
 }

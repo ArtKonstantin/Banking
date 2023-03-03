@@ -75,7 +75,7 @@ Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 {
-  "productId": 1,
+  "productId": 2,
   "amountRequested": 100000.00,
   "periodMonths": 12,
   "creationDate": "2023-01-01",
@@ -104,14 +104,23 @@ Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 {
-  "id": 2,
+  "id": 1,
   "status": "APPROVED_BY_CLIENT"
 }
 
 ###==CREDIT CARD===
 
 ### getAll
-GET http://localhost:8080/credit-card
+GET http://localhost:8080/api/v1/credit-cards
+
+###block
+PATCH http://localhost:8080/api/v1/credit-cards
+Content-Type: application/json
+
+{
+  "cardNumber": "1234567891234567",
+  "cardStatus": "BLOCKED"
+}
 
 ###==CREDIT AGREEMENT===
 

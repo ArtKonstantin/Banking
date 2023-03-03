@@ -21,7 +21,7 @@ public class CreditService {
     public CreditEntity schedule(UUID clientId, long creditId) {
         final CreditEntity credit = creditRepository.getReferenceById(creditId);
 
-        if(!clientId.equals(credit.getCreditOrder().getClientId())) {
+        if (!clientId.equals(credit.getCreditOrder().getClientId())) {
             throw new ForbiddenException();
         }
 
