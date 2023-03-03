@@ -25,10 +25,6 @@ public class CreditOrderService {
     private final CreditOrderRepository creditOrderRepository;
     private final CreditProductRepository creditProductRepository;
 
-    public List<CreditOrderEntity> getAll() {
-        return creditOrderRepository.findAll();
-    }
-
     public List<CreditOrderEntity> getCreditOrdersByClientId(UUID clientId) {
         List<CreditOrderEntity> creditOrders = creditOrderRepository.findAllByClientId(clientId);
 
