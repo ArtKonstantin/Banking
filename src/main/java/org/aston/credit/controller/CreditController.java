@@ -1,6 +1,7 @@
 package org.aston.credit.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.aston.credit.dto.AgreementResponceDto;
 import org.aston.credit.dto.ScheduleResponseDto;
 import org.aston.credit.entity.CreditEntity;
 import org.aston.credit.mapper.CreditMapper;
@@ -25,5 +26,12 @@ public class CreditController {
         CreditEntity credit = creditService.schedule(clientId, creditId);
         ScheduleResponseDto schedule = creditMapper.toDto(credit);
         return schedule;
+    }
+
+    @GetMapping("/{agreementId}/details")
+    public AgreementResponceDto agreement(@PathVariable long agreementId) {
+        CreditEntity credit = creditService.agreement(agreementId);
+        AgreementResponceDto agreement = creditMapper.agreementToDto(credit);
+        return agreement;
     }
 }

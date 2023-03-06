@@ -5,7 +5,7 @@ import lombok.Data;
 import org.aston.credit.entity.OrderStatusEnum;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor

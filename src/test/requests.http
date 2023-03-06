@@ -50,8 +50,29 @@ Content-Type: application/json
   "cardStatus": "BLOCKED"
 }
 
+###pin
+POST http://localhost:8080/api/v1/credit-cards/code
+Content-Type: application/json
+
+{
+  "cardNumber": "1234567891234567",
+  "newPin": "4321"
+}
+
+###limit
+PATCH http://localhost:8080/api/v1/credit-cards/limit
+Content-Type: application/json
+
+{
+  "cardNumber": "1234567891234567",
+  "transactionLimit": 100
+}
+
 ###==CREDIT===
 
 ### schedule
 GET http://localhost:8080/api/v1/credits/1/schedule
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
+### agreement
+GET http://localhost:8080/api/v1/credits/1/details

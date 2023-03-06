@@ -3,7 +3,7 @@ package org.aston.credit.dto;
 import lombok.Value;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 @Value
 public class CreditOrderRequestDto {

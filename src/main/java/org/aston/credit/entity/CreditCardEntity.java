@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "credit_card")
@@ -53,4 +53,7 @@ public class CreditCardEntity {
 
     @Column(name = "delivery_point", nullable = false)
     private String deliveryPoint;
+
+    @Column(name = "pin", nullable = false)
+    private String pin;
 }

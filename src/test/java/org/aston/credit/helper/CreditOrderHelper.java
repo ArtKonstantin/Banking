@@ -7,7 +7,7 @@ import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.entity.OrderStatusEnum;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 import java.util.UUID;
 
 public class CreditOrderHelper {
