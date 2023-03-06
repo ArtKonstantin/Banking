@@ -16,9 +16,9 @@ VALUES ('0799f8b8-729d-4818-b1ba-5e64f88f6d03', 1, 'APPROVED_BY_BANK', 900000.00
         '123456789012');
 
 INSERT INTO credit_card(card_number, account_number, holder_name, expiration_date, payment_system, card_balance,
-                        card_status, transaction_limit, delivery_point)
+                        card_status, transaction_limit, delivery_point, pin)
 VALUES ('1234567891234567', '10000000000000000001', 'TEST TESTOVICH', '10.01.2025', 'VISA', 100000, 'ACTIVE', 10000,
-        'Kazan Sovetskiy');
+        'Kazan Sovetskiy', '1234');
 
 INSERT INTO credit(order_id, type, credit_limit, currency_code, interest_rate, personal_guarantees, grace_period_months,
                    credit_status, account_number)
