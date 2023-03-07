@@ -15,13 +15,14 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
+import static org.aston.credit.entity.OrderStatusEnum.APPROVED_BY_BANK;
+import static org.aston.credit.entity.OrderStatusEnum.APPROVED_BY_CLIENT;
+import static org.aston.credit.entity.OrderStatusEnum.PENDING;
+import static org.aston.credit.entity.OrderStatusEnum.REJECT_BY_CLIENT;
+
 @Service
 @RequiredArgsConstructor
 public class CreditOrderService {
-    public static final OrderStatusEnum REJECT_BY_CLIENT = OrderStatusEnum.REJECT_BY_CLIENT;
-    public static final OrderStatusEnum PENDING = OrderStatusEnum.PENDING;
-    public static final OrderStatusEnum APPROVED_BY_BANK = OrderStatusEnum.APPROVED_BY_BANK;
-    public static final OrderStatusEnum APPROVED_BY_CLIENT = OrderStatusEnum.APPROVED_BY_CLIENT;
     private final CreditOrderRepository creditOrderRepository;
     private final CreditProductRepository creditProductRepository;
 

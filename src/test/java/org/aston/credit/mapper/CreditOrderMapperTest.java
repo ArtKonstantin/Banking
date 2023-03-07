@@ -8,9 +8,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CreditOrderMapperTest {
+    final CreditOrderMapperImpl creditOrderMapper = new CreditOrderMapperImpl();
+
     @Test
     void toDto() {
-        CreditOrderResponseDto creditOrderDto = new CreditOrderMapperImpl().toDto(CreditOrderHelper.getCreditOrder());
+        CreditOrderResponseDto creditOrderDto = creditOrderMapper.toDto(CreditOrderHelper.getCreditOrder());
         final CreditOrderResponseDto creditOrder = CreditOrderHelper.getCreditOrderDto();
 
         assertEquals(creditOrder.getApplicationId(), creditOrderDto.getProductId());
@@ -24,7 +26,7 @@ class CreditOrderMapperTest {
 
     @Test
     void toEntity() {
-        CreditOrderEntity creditOrder = new CreditOrderMapperImpl().toEntity(CreditOrderHelper.getCreateCreditOrderDto());
+        CreditOrderEntity creditOrder = creditOrderMapper.toEntity(CreditOrderHelper.getCreateCreditOrderDto());
         final CreditOrderEntity creditOrderEntity = CreditOrderHelper.getCreditOrder();
 
         assertEquals(CreditOrderHelper.getCreditProduct().getId(), creditOrder.getCreditProduct().getId());

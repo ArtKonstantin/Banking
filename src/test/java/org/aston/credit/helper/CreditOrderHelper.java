@@ -7,11 +7,13 @@ import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.entity.OrderStatusEnum;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.UUID;
 
 public class CreditOrderHelper {
     public static final long ID_TEST = 1;
+    public static Calendar calendar = new GregorianCalendar(2023, 1, 1);
     public static final UUID CLIENT_ID = UUID.fromString("0799f8b8-729d-4818-b1ba-5e64f88f6d03");
 
     public static CreditOrderEntity getCreditOrder() {
@@ -22,7 +24,7 @@ public class CreditOrderHelper {
         creditOrder.setStatus(OrderStatusEnum.APPROVED_BY_BANK);
         creditOrder.setAmount(BigDecimal.valueOf(100000.00));
         creditOrder.setPeriodMonths(12);
-        creditOrder.setCreationDate(Date.valueOf("2023-01-01"));
+        creditOrder.setCreationDate(calendar.getTime());
         creditOrder.setAverageMonthlyIncome(BigDecimal.valueOf(10000.00));
         creditOrder.setAverageMonthlyExpenditure(BigDecimal.valueOf(5000.00));
         creditOrder.setEmployerIdentificationNumber("123-45-6789");
@@ -33,7 +35,7 @@ public class CreditOrderHelper {
         CreditOrderEntity creditOrder = new CreditOrderEntity();
         creditOrder.setAmount(BigDecimal.valueOf(100000.00));
         creditOrder.setPeriodMonths(12);
-        creditOrder.setCreationDate(Date.valueOf("2023-01-01"));
+        creditOrder.setCreationDate(calendar.getTime());
         creditOrder.setAverageMonthlyIncome(BigDecimal.valueOf(10000.00));
         creditOrder.setAverageMonthlyExpenditure(BigDecimal.valueOf(5000.00));
         creditOrder.setEmployerIdentificationNumber("123-45-6789");
@@ -55,26 +57,26 @@ public class CreditOrderHelper {
     }
 
     public static CreditOrderResponseDto getCreditOrderDto() {
-        return new CreditOrderResponseDto(
-                1,
-                1,
-                "Стартовый",
-                OrderStatusEnum.APPROVED_BY_BANK,
-                BigDecimal.valueOf(100000.00),
-                12,
-                Date.valueOf("2023-01-01")
-        );
+        return CreditOrderResponseDto.builder().
+                applicationId(1).
+                productId(1).
+                productName("Стартовый").
+                status(OrderStatusEnum.APPROVED_BY_BANK).
+                amountRequested(BigDecimal.valueOf(100000.00)).
+                periodMonths(12).
+                creationDate(calendar.getTime()).
+                build();
     }
 
     public static CreditOrderRequestDto getCreateCreditOrderDto() {
-        return new CreditOrderRequestDto(
-                1,
-                BigDecimal.valueOf(100000.00),
-                12,
-                Date.valueOf("2023-01-01"),
-                BigDecimal.valueOf(10000.00),
-                BigDecimal.valueOf(5000.00),
-                "123-45-6789"
-        );
+        return CreditOrderRequestDto.builder().
+                productId(1).
+                amountRequested(BigDecimal.valueOf(100000.00)).
+                periodMonths(12).
+                creationDate(calendar.getTime()).
+                monthlyIncome(BigDecimal.valueOf(10000.00)).
+                monthlyExpenditure(BigDecimal.valueOf(5000.00)).
+                employerIdentificationNumber("123-45-6789").
+                build();
     }
 }
