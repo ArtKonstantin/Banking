@@ -30,9 +30,12 @@ public class CreditOrderController {
         return creditOrdersDto;
     }
 
-    @GetMapping("/get-list")
+    // TODO-0: UUID клиента передается в HEADER?
+    @GetMapping
     public List<CreditOrderResponseDto> getOrdersByClientId(@RequestHeader UUID clientId) {
-        return creditOrderService.getCreditOrdersByClientId(clientId);
+        final List<CreditOrderEntity> creditOrders = creditOrderService.getCreditOrdersByClientId(clientId);
+        final List<CreditOrderResponseDto> creditOrdersDto = creditOrderMapper.toDtoList(creditOrders);
+        return creditOrdersDto;
     }
 
     @PostMapping

@@ -66,4 +66,15 @@ public class CreditProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    /**
+     * A-PROD.1 - Отправка информации об активных кредитных продуктах
+     *
+     * @return Список активных кредитных продуктов банка
+     * */
+    @GetMapping
+    public ResponseEntity<List<CreditProductResponseDto>> getAllActive() {
+        List<CreditProductEntity> products = creditProductService.getAllActive();
+        return ResponseEntity.ok(creditProductMapper.toDtoList(products));
+    }
 }
