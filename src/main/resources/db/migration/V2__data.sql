@@ -28,22 +28,22 @@ INSERT INTO credit_agreement(credit_id, agreement_date, termination_date, respon
 VALUES (1, '10.01.2022', NULL, 123, true);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.02.2022', 146274.27, 10356.16);
+VALUES ('10000000000000000001', '2023-01-02', 146274.27, 10356.16);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.03.2022', 147028.17, 9602.26);
+VALUES ('10000000000000000001', '2023-02-02', 147028.17, 9602.26);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.04.2022', 149150.60, 7479.83);
+VALUES ('10000000000000000001', '2023-03-02', 149150.60, 7479.83);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.05.2022', 150801.41, 5829.02);
+VALUES ('10000000000000000001', '2023-04-02', 150801.41, 5829.02);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.06.2022', 152848.64, 3781.79);
+VALUES ('10000000000000000001', '2023-05-02', 152848.64, 3781.79);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.07.2022', 153896.91, 1960.60);
+VALUES ('10000000000000000001', '2023-06-02', 153896.91, 1960.60);
 
 INSERT INTO operation(account_number, type, sum, details, currency_code)
 VALUES ('10000000000000000001', 'EXPENSE', 10000.00, 'покупка', 'RUB');

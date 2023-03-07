@@ -14,9 +14,12 @@ public class CreditCardHelper {
     }
 
     public static CreditCardRequestDto getCreditCardDto() {
-        return new CreditCardRequestDto(
-                "1234567891234567",
-                CardStatusEnum.BLOCKED
-        );
+
+        return CreditCardRequestDto.builder().
+                cardNumber("1234567891234567").
+                cardStatus(CardStatusEnum.BLOCKED).
+                newPin("1234").
+                transactionLimit("10000").
+                build();
     }
 }

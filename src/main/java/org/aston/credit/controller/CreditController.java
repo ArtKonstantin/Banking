@@ -3,7 +3,9 @@ package org.aston.credit.controller;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.dto.AgreementResponceDto;
 import org.aston.credit.dto.ScheduleResponseDto;
+import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditEntity;
+import org.aston.credit.entity.PaymentScheduleEntity;
 import org.aston.credit.mapper.CreditMapper;
 import org.aston.credit.service.CreditService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +32,10 @@ public class CreditController {
 
     @GetMapping("/{agreementId}/details")
     public AgreementResponceDto agreement(@PathVariable long agreementId) {
-        CreditEntity credit = creditService.agreement(agreementId);
-        AgreementResponceDto agreement = creditMapper.agreementToDto(credit);
+        CreditEntity credit = creditService.credit(agreementId);
+        PaymentScheduleEntity payment = creditService.payment(credit.getCreditAccount().getPaymentSchedule());
+        CreditAccountEntity debt = creditService.debt(credit.getCreditAccount());
+        AgreementResponceDto agreement = creditMapper.agreementToDto(credit, payment, debt);
         return agreement;
     }
 }

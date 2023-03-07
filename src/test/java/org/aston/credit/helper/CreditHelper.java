@@ -53,12 +53,12 @@ public class CreditHelper {
     }
 
     public static ScheduleResponseDto getScheduleDto() {
-        return new ScheduleResponseDto(
-                "10000000000000000001",
-                1,
-                BigDecimal.valueOf(98000.00),
-                BigDecimal.valueOf(39010.00),
-                getPayments()
-        );
+        return ScheduleResponseDto.builder().
+                accountNumber("10000000000000000001").
+                agreementId(1).
+                currentPrincipalAmount(BigDecimal.valueOf(98000.00)).
+                currentInterestAmount(BigDecimal.valueOf(39010.00)).
+                payments(getPayments()).
+                build();
     }
 }
