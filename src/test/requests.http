@@ -71,7 +71,7 @@ Content-Type: application/json
 ###==CREDIT===
 
 ### schedule
-GET http://localhost:8080/api/v1/credits/1/schedule
+GET http://localhost:8080/api/v1/credits/100/schedule
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 ### agreement
