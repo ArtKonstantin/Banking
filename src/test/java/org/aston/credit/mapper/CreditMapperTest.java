@@ -7,9 +7,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreditMapperTest {
+    final CreditMapperImpl creditMapper = new CreditMapperImpl();
+
     @Test
     void toDto() {
-        ScheduleResponseDto schedule = new CreditMapperImpl().toDto(CreditHelper.getCredit());
+        ScheduleResponseDto schedule = creditMapper.toDto(CreditHelper.getCredit());
         final ScheduleResponseDto scheduleDto = CreditHelper.getScheduleDto();
 
         assertEquals(scheduleDto.getAccountNumber(), schedule.getAccountNumber());

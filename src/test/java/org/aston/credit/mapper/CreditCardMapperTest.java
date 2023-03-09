@@ -7,9 +7,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreditCardMapperTest {
+    final CreditCardMapperImpl creditCardMapper = new CreditCardMapperImpl();
+
     @Test
     void toEntity() {
-        CreditCardEntity cardCard = new CreditCardMapperImpl().toEntity(CreditCardHelper.getCreditCardDto());
+        CreditCardEntity cardCard = creditCardMapper.toEntity(CreditCardHelper.getCreditCardDto());
         final CreditCardEntity creditCardEntity = CreditCardHelper.getCreditCard();
 
         assertEquals(creditCardEntity.getCardNumber(), cardCard.getCardNumber());
