@@ -21,7 +21,7 @@ public class CreditOrderService {
 
     public void create(UUID clientId, CreditOrderEntity creditOrder) {
         creditOrder.setClientId(clientId);
-        creditOrder.setStatus(OrderStatusEnum.pending);
+        creditOrder.setStatus(OrderStatusEnum.PENDING);
         creditOrderRepository.save(creditOrder);
     }
 

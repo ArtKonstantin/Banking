@@ -21,18 +21,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/credit-product")
+@RequestMapping("/auth/credit-products")
 public class CreditProductController {
 
     public final CreditProductService creditProductService;
-    private final CreditProductMapper creditProductMapper;
 
-    @GetMapping
-    public List<CreditProductResponseDto> getAll() {
-        final List<CreditProductEntity> creditProducts = creditProductService.getAll();
-        final List<CreditProductResponseDto> creditProductsDto = creditProductMapper.toDtoList(creditProducts);
-        return creditProductsDto;
-    }
+    private final CreditProductMapper creditProductMapper;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable long id) {

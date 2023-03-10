@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/credit")
+@RequestMapping("/api/v1/credits")
 public class CreditController {
     private final CreditService creditService;
 

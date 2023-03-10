@@ -41,4 +41,10 @@ class CreditProductServiceTest {
         creditProductService.removeById(ID_TEST);
         Mockito.verify(creditProductRepository, Mockito.times(1)).deleteById(ID_TEST);
     }
+
+    @Test
+    void getAllActive() {
+        creditProductService.getAllActive();
+        Mockito.verify(creditProductRepository, Mockito.times(1)).findAllByProductIsActiveIsTrue();
+    }
 }
