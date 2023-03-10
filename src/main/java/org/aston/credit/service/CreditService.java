@@ -29,7 +29,7 @@ public class CreditService {
      *
      * @param creditId id крединтного продукта
      * @return CreditEntity с информацией о кредитных продуктах клиента
-     * @throws jakarta.persistence.EntityNotFoundException если клиента с таким id не существует
+     * @throws java.util.NoSuchElementException если клиента с таким id не существует
      */
     public CreditEntity getInformation(Long creditId) {
         return creditRepository.findById(creditId).orElseThrow();

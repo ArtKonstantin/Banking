@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,7 +40,7 @@ class CreditServiceTest {
 
     @Test
     void whenGetInformation_thenThrowException() {
-        Mockito.when(creditRepository.findById(Mockito.anyLong())).thenThrow(EntityNotFoundException.class);
+        Mockito.when(creditRepository.findById(Mockito.anyLong())).thenThrow(NoSuchElementException.class);
         Assertions.assertThrows(EntityNotFoundException.class, () -> creditService.getInformation(1L));
         Mockito.verify(creditRepository, Mockito.times(1)).findById(Mockito.anyLong());
     }
