@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: "local"
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        hbm2ddl:
+          auto: create
+springdoc:
+  swagger-ui:
+    path: credit-swagger
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgresDB:5432/credit
+    username: verification_service_developer
+    password: Mgy4Xn1Wkeul
+server:
+  port: 8080
+---
+spring:
+  config:
+    activate:
+      on-profile: "local"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/credit
+    username: credit_service_developer
+    password: Mgy4Xn1Wkeul
+server:
+  port: 8083
