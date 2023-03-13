@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "credit_card")
@@ -36,7 +36,7 @@ public class CreditCardEntity {
     private String holderName;
 
     @Column(name = "expiration_date", nullable = false)
-    private Date expirationDate;
+    private LocalDate expirationDate;
 
     @Column(name = "payment_system", nullable = false)
     private String paymentSystem;

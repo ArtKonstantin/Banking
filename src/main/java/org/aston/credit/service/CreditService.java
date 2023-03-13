@@ -9,8 +9,8 @@ import org.aston.credit.repository.CreditRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,15 +30,11 @@ public class CreditService {
     }
 
     public CreditEntity credit(long agreementId) {
-        final CreditEntity credit = creditRepository.findByCreditAgreementId(agreementId);
-        return credit;
+        return creditRepository.findByCreditAgreementId(agreementId);
     }
 
     public PaymentScheduleEntity payment(List<PaymentScheduleEntity> schedule) {
-        PaymentScheduleEntity payment;
-        payment = scheduleAfter(schedule).get(0);
-
-        return payment;
+        return scheduleAfter(schedule).get(0);
     }
 
     public CreditAccountEntity debt(CreditAccountEntity creditAccount) {
@@ -47,8 +43,8 @@ public class CreditService {
         List<PaymentScheduleEntity> schedule = scheduleBefore(creditAccount.getPaymentSchedule());
 
         for (PaymentScheduleEntity pay : schedule) {
-                principalDebt = principalDebt.subtract(pay.getPrincipal());
-                interestDebt = interestDebt.subtract(pay.getInterest());
+            principalDebt = principalDebt.subtract(pay.getPrincipal());
+            interestDebt = interestDebt.subtract(pay.getInterest());
         }
 
         creditAccount.setPrincipalDebt(principalDebt);
@@ -59,10 +55,10 @@ public class CreditService {
 
     public List<PaymentScheduleEntity> scheduleAfter(List<PaymentScheduleEntity> paymentSchedule) {
         List<PaymentScheduleEntity> schedule = new ArrayList<>();
-        Date date = new Date();
+        final LocalDate date = LocalDate.now();
 
         for (PaymentScheduleEntity pay : paymentSchedule) {
-            if (pay.getPaymentDate().after(date)) {
+            if (pay.getPaymentDate().isAfter(date)) {
                 schedule.add(pay);
             }
         }
@@ -72,10 +68,10 @@ public class CreditService {
 
     public List<PaymentScheduleEntity> scheduleBefore(List<PaymentScheduleEntity> paymentSchedule) {
         List<PaymentScheduleEntity> schedule = new ArrayList<>();
-        Date date = new Date();
+        final LocalDate date = LocalDate.now();
 
         for (PaymentScheduleEntity pay : paymentSchedule) {
-            if (pay.getPaymentDate().before(date)) {
+            if (pay.getPaymentDate().isBefore(date)) {
                 schedule.add(pay);
             }
         }

@@ -37,7 +37,7 @@ public class CreditCardService {
         creditCardRepository.save(creditCard);
     }
 
-    private CreditCardEntity check(CreditCardEntity creditCardEntity) {
+    public CreditCardEntity check(CreditCardEntity creditCardEntity) {
         final CreditCardEntity creditCard = creditCardRepository.findByCardNumber(creditCardEntity.getCardNumber());
 
         if (creditCard == null) {

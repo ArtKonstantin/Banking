@@ -6,6 +6,7 @@ import lombok.Data;
 import org.aston.credit.entity.OrderStatusEnum;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -18,5 +19,5 @@ public class CreditOrderResponseDto {
     private OrderStatusEnum status;
     private BigDecimal amountRequested;
     private int periodMonths;
-    private Date creationDate;
+    private LocalDate creationDate;
 }
