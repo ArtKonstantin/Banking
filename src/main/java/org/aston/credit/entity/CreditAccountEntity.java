@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -50,10 +50,10 @@ public class CreditAccountEntity {
     private boolean isActive;
 
     @Column(name = "opening_date", nullable = false)
-    private Date openingDate;
+    private LocalDate openingDate;
 
     @Column(name = "closing_date", nullable = false)
-    private Date closingDate;
+    private LocalDate closingDate;
 
     @Column(name = "currency_code", nullable = false)
     private String currencyCode;

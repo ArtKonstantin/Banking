@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -48,7 +48,7 @@ public class CreditOrderEntity {
     private int periodMonths;
 
     @Column(name = "creation_date", nullable = false)
-    private Date creationDate;
+    private LocalDate creationDate;
 
     @Column(name = "average_monthly_income", nullable = false)
     private BigDecimal averageMonthlyIncome;

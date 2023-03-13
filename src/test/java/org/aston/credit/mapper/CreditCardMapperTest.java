@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreditCardMapperTest {
+class CreditCardMapperTest {
     final CreditCardMapperImpl creditCardMapper = new CreditCardMapperImpl();
 
     @Test

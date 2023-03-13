@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "operation")
@@ -43,7 +43,7 @@ public class OperationEntity {
     private BigDecimal sum;
 
     @Column(name = "date", nullable = false)
-    private Instant date;
+    private LocalDate date;
 
     @Column(name = "details")
     private String details;

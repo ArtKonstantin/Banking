@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "payment_schedule")
@@ -34,7 +34,7 @@ public class PaymentScheduleEntity {
     private CreditAccountEntity creditAccount;
 
     @Column(name = "payment_date", nullable = false)
-    private Date paymentDate;
+    private LocalDate paymentDate;
 
     @Column(name = "principal", nullable = false)
     private BigDecimal principal;

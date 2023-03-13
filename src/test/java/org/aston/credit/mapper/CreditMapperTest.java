@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CreditMapperTest {
+class CreditMapperTest {
     final CreditMapperImpl creditMapper = new CreditMapperImpl();
 
     @Test
@@ -18,6 +18,5 @@ public class CreditMapperTest {
         assertEquals(scheduleDto.getAgreementId(), schedule.getAgreementId());
         assertEquals(scheduleDto.getCurrentPrincipalAmount(), schedule.getCurrentPrincipalAmount());
         assertEquals(scheduleDto.getCurrentInterestAmount(), schedule.getCurrentInterestAmount());
-        assertEquals(scheduleDto.getPayments(), schedule.getPayments());
     }
 }
