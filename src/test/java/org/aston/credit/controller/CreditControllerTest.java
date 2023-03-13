@@ -14,7 +14,6 @@ import org.aston.credit.mapper.CreditMapper;
 import org.aston.credit.mapper.CreditOrderMapper;
 import org.aston.credit.service.CreditOrderService;
 import org.aston.credit.service.CreditService;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +54,6 @@ class CreditControllerTest {
     private CreditOrderMapper creditOrderMapper;
 
     @Test
-    @Order(1)
     void whenGetShortInformation_thenReturnOk() throws Exception {
         List<CreditOrderEntity> expected = new ArrayList<>();
         expected.add(new CreditOrderEntity(1L, UUID.randomUUID(), new CreditEntity(), new CreditProductEntity(),
@@ -76,7 +74,6 @@ class CreditControllerTest {
     }
 
     @Test
-    @Order(2)
     void whenGetInformation_thenReturnOk() throws Exception {
         CreditEntity expected = new CreditEntity(1L, new CreditAgreementEntity(), new CreditOrderEntity(),
                 CreditTypeEnum.CONSUMER_CREDIT, BigDecimal.valueOf(900000.00), "RUB",
@@ -97,7 +94,6 @@ class CreditControllerTest {
     }
 
     @Test
-    @Order(3)
     void whenGetShortInformation_thenThrowNotFoundException() throws Exception {
         Mockito.when(creditService.getInformation(Mockito.any()))
                 .thenThrow(NoSuchElementException.class);
@@ -110,7 +106,6 @@ class CreditControllerTest {
     }
 
     @Test
-    @Order(4)
     void whenGetShortInformation_thenThrowInternalServerException() throws Exception {
         Mockito.when(creditService.getInformation(Mockito.any()))
                 .thenThrow(InternalError.class);
@@ -123,7 +118,6 @@ class CreditControllerTest {
     }
 
     @Test
-    @Order(5)
     void whenGetInformation_thenThrowInternalServerException() throws Exception {
         Mockito.when(creditOrderService.getCreditOrdersByClientId(Mockito.any()))
                 .thenThrow(InternalError.class);
@@ -135,7 +129,6 @@ class CreditControllerTest {
     }
 
     @Test
-    @Order(5)
     void whenGetInformation_thenThrowNotFoundException() throws Exception {
         Mockito.when(creditOrderService.getCreditOrdersByClientId(Mockito.any()))
                 .thenThrow(EntityNotFoundException.class);

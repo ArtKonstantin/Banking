@@ -6,7 +6,6 @@ import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.mapper.CreditProductMapper;
 import org.aston.credit.service.CreditProductService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +56,6 @@ class CreditProductControllerTest {
     }
 
     @Test
-    @Order(1)
     void getAllActive() throws Exception {
         Mockito.when(creditProductService.getAllActive())
                 .thenReturn(expected);
