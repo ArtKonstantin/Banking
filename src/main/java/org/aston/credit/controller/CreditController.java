@@ -1,6 +1,12 @@
 package org.aston.credit.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
+import org.aston.credit.Constants;
 import org.aston.credit.dto.CreditInformationResponseDto;
 import org.aston.credit.dto.ShortCreditResponseDto;
 import org.aston.credit.entity.CreditEntity;
@@ -19,6 +25,8 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Контроллер кредитных продуктов клиента",
+        description = "Отвечает за эндпоинты таблицы кредитных продуктов клиента")
 @RequestMapping("/api/v1/credits")
 public class CreditController {
     private final CreditService creditService;
@@ -44,7 +52,13 @@ public class CreditController {
      * @throws jakarta.persistence.EntityNotFoundException если клиента с таким id не существует
      */
     @GetMapping("/information/short")
-    public List<ShortCreditResponseDto> getShortInformation(@RequestParam(name = "clientId") UUID clientId) {
+    @Operation(summary = "CR.1 - Отправка краткой информации о кредитных продуктах клиента.",
+            description = "Возвращает список всех кредитных продуктов клиента")
+    public List<ShortCreditResponseDto> getShortInformation(
+            @RequestParam(name = "clientId") @Parameter(description = Constants.UUID, required = true)
+            @NotBlank(message = Constants.UUID_BLANK)
+            @Pattern(regexp = Constants.UUID_PATTERN, message = Constants.UUID_INVALID)
+            UUID clientId) {
         return creditOrderMapper
                 .toListShortDto(creditOrderService.getCreditOrdersByClientId(clientId));
     }
@@ -63,8 +77,14 @@ public class CreditController {
      * @throws jakarta.persistence.EntityNotFoundException если клиента с таким id не существует
      */
     @GetMapping("/information")
-    public ResponseEntity<CreditInformationResponseDto> getInformation(@RequestParam(name = "creditId") Long creditId,
-                                                                       @RequestParam(name = "clientId") UUID clientId) {
+    public ResponseEntity<CreditInformationResponseDto> getInformation(
+            @RequestParam(name = "creditId") @Parameter(description = Constants.CREDIT_ID, required = true)
+            @NotBlank(message = Constants.CREDIT_ID_BLANK)
+            Long creditId,
+            @RequestParam(name = "clientId") @Parameter(description = Constants.UUID, required = true)
+            @NotBlank(message = Constants.UUID_BLANK)
+            @Pattern(regexp = Constants.UUID_PATTERN, message = Constants.UUID_INVALID)
+            UUID clientId) {
         return ResponseEntity.ok(creditMapper
                 .toInformationDto(creditService.getInformation(creditId)));
     }

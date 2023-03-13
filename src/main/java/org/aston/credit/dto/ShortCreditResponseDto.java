@@ -1,5 +1,6 @@
 package org.aston.credit.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -18,15 +19,21 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class ShortCreditResponseDto {
 
+    @Schema(description = "Идентификатор кредита")
     private Long creditId;
 
+    @Schema(description = "Название кредита")
     private String productName;
 
+    @Schema(description = "Сумма кредита")
     private BigDecimal creditAmount;
 
+    @Schema(description = "Код валюты")
     private String currencyCode;
 
+    @Schema(description = "Срок кредита в месяцах")
     private Integer creditTermMonths;
 
+    @Schema(description = "Срок кредита в годах")
     private BigDecimal creditTermYears;
 }

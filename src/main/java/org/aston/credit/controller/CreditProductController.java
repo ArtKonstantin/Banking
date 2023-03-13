@@ -1,5 +1,7 @@
 package org.aston.credit.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.dto.CreditProductResponseDto;
 import org.aston.credit.entity.CreditProductEntity;
@@ -14,6 +16,8 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Контроллер банковских кредитных продуктов",
+        description = "Отвечает за эндпоинты таблицы кредитных продуктов банка")
 @RequestMapping("/auth/credit-products")
 public class CreditProductController {
 
@@ -26,7 +30,10 @@ public class CreditProductController {
      *
      * @return Список активных кредитных продуктов банка
      */
+
     @GetMapping
+    @Operation(summary = "A-PROD.1 - Отправка информации об активных бакнковских кредитных продуктах.",
+            description = "Возвращает список всех активных кредитных продуктов банка")
     public ResponseEntity<List<CreditProductResponseDto>> getAllActive() {
         List<CreditProductEntity> products = creditProductService.getAllActive();
         return ResponseEntity.ok(creditProductMapper.toDtoList(products));
