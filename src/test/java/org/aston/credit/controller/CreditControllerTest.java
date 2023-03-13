@@ -1,7 +1,7 @@
 package org.aston.credit.controller;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.aston.credit.dto.CreditInformationResponseDTO;
+import org.aston.credit.dto.CreditInformationResponseDto;
 import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditAgreementEntity;
 import org.aston.credit.entity.CreditEntity;
@@ -82,7 +82,7 @@ class CreditControllerTest {
                 CreditTypeEnum.CONSUMER_CREDIT, BigDecimal.valueOf(900000.00), "RUB",
                 BigDecimal.valueOf(0.15), true, 0, CreditStatusEnum.ACTIVE,
                 new CreditAccountEntity());
-        CreditInformationResponseDTO expectedDto = new CreditInformationResponseDTO(1L, "someCredit", "RUB",
+        CreditInformationResponseDto expectedDto = new CreditInformationResponseDto(1L, "someCredit", "RUB",
                 "1000000001", BigDecimal.valueOf(900000.00), BigDecimal.valueOf(0.15), "10.02.2025",
                 Date.valueOf(LocalDate.now()));
         Mockito.when(creditService.getInformation(Mockito.any()))

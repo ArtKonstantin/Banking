@@ -1,6 +1,6 @@
 package org.aston.credit.mapper;
 
-import org.aston.credit.dto.CreditInformationResponseDTO;
+import org.aston.credit.dto.CreditInformationResponseDto;
 import org.aston.credit.entity.CreditEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,7 +18,7 @@ public interface CreditMapper {
      * <i>accountNumber</i>, <i>creditLimit</i>, <i>interestRate</i>, <i>terminationDate</i>
      *
      * @param credit сущность которую необходимо смапить
-     * @return {@link CreditInformationResponseDTO} с информацией о кредитных продуктах клиента
+     * @return {@link CreditInformationResponseDto} с информацией о кредитных продуктах клиента
      */
     @Mapping(target = "creditId", source = "id")
     @Mapping(target = "name", source = "creditOrder.creditProduct.productName")
@@ -29,6 +29,6 @@ public interface CreditMapper {
     @Mapping(target = "terminationDate", source = "creditAgreement.terminationDate")
     @Mapping(target = "paymentDate", expression = "java(credit.getCreditAccount().getPaymentSchedule().stream()" +
             ".findFirst().get().getPaymentDate())")
-    CreditInformationResponseDTO toInformationDto(CreditEntity credit);
+    CreditInformationResponseDto toInformationDto(CreditEntity credit);
 
 }

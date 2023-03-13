@@ -1,7 +1,7 @@
 package org.aston.credit.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.aston.credit.dto.CreditInformationResponseDTO;
+import org.aston.credit.dto.CreditInformationResponseDto;
 import org.aston.credit.dto.ShortCreditResponseDto;
 import org.aston.credit.entity.CreditEntity;
 import org.aston.credit.mapper.CreditMapper;
@@ -59,11 +59,11 @@ public class CreditController {
      *
      * @param creditId id крединтного продукта
      * @param clientId uuid клинета (в документации не описано как он должен учавствовать в этом эндпоинте)
-     * @return {@link CreditInformationResponseDTO} с информацией о кредитных продуктах клиента
+     * @return {@link CreditInformationResponseDto} с информацией о кредитных продуктах клиента
      * @throws jakarta.persistence.EntityNotFoundException если клиента с таким id не существует
      */
     @GetMapping("/information")
-    public ResponseEntity<CreditInformationResponseDTO> getInformation(@RequestParam(name = "creditId") Long creditId,
+    public ResponseEntity<CreditInformationResponseDto> getInformation(@RequestParam(name = "creditId") Long creditId,
                                                                        @RequestParam(name = "clientId") UUID clientId) {
         return ResponseEntity.ok(creditMapper
                 .toInformationDto(creditService.getInformation(creditId)));

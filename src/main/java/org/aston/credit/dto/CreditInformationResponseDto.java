@@ -17,7 +17,7 @@ import java.sql.Date;
  */
 @Data
 @AllArgsConstructor
-public class CreditInformationResponseDTO {
+public class CreditInformationResponseDto {
 
     private Long creditId;
 
