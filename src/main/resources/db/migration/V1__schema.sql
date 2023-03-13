@@ -19,53 +19,64 @@ CREATE TABLE credit_product
     need_income_details BOOLEAN        NOT NULL
 );
 
-CREATE TABLE credit_account
+create table if not exists credit_account
 (
-    account_number VARCHAR(20) PRIMARY KEY,
-    principal_debt NUMERIC(19, 2) NOT NULL,
-    interest_debt  NUMERIC(19, 2) NOT NULL,
-    is_active      BOOLEAN        NOT NULL,
-    opening_date   DATE           NOT NULL,
-    closing_date   DATE,
-    currency_code  VARCHAR(3)     NOT NULL
+    account_number varchar(20)   not null
+        primary key,
+    principal_debt numeric(19, 2) not null,
+    interest_debt  numeric(19, 2) not null,
+    is_active      boolean        not null,
+    opening_date   date           not null,
+    closing_date   date           not null,
+    currency_code  varchar(3)   not null
 );
 
-CREATE TABLE credit_order
+create table if not exists credit_order
 (
-    id                             BIGSERIAL PRIMARY KEY,
-    client_id                      UUID           NOT NULL,
-    product_id                     BIGINT         NOT NULL REFERENCES credit_product,
-    status                         VARCHAR(30)    NOT NULL,
-    amount                         NUMERIC(19, 2) NOT NULL,
-    period_months                  INT            NOT NULL,
-    creation_date                  DATE           NOT NULL,
-    average_monthly_income         NUMERIC(19, 2) NOT NULL,
-    average_monthly_expenditure    NUMERIC(19, 2) NOT NULL,
-    employer_identification_number VARCHAR(12)    NOT NULL
+    id                             bigserial
+        primary key,
+    client_id                      uuid           not null,
+    product_id                     bigint         not null
+        constraint credit_product_product_id_fk
+            references credit_product,
+    status                         varchar(30)   not null,
+    amount                         numeric(19, 2) not null,
+    period_months                  integer        not null,
+    average_monthly_expenditure    numeric(19, 2) not null,
+    creation_date                  date           not null,
+    average_monthly_income         numeric(19, 2) not null,
+    employer_identification_number varchar(12)   not null
+
 );
 
-CREATE TABLE credit
+create table if not exists credit
 (
-    id                  BIGSERIAL PRIMARY KEY,
-    order_id            BIGINT         NOT NULL REFERENCES credit_order,
-    type                VARCHAR(30)    NOT NULL,
-    credit_limit        NUMERIC(19, 2) NOT NULL,
-    currency_code       VARCHAR(3)     NOT NULL,
-    interest_rate       NUMERIC(2, 2)  NOT NULL,
-    personal_guarantees BOOLEAN        NOT NULL,
-    grace_period_months INT            NOT NULL,
-    credit_status       VARCHAR(30)    NOT NULL,
-    account_number      VARCHAR(20)    NOT NULL REFERENCES credit_account
+    id                  bigint         not null
+        primary key
+        constraint credit_order_id_fk
+            references credit_order,
+    type                varchar(30)   not null,
+    credit_limit        numeric(19, 2) not null,
+    currency_code       varchar(3)   not null,
+    interest_rate       numeric(2, 2) not null,
+    personal_guarantees boolean        not null,
+    grace_period_months integer        not null,
+    credit_status       varchar(30)   not null,
+    account_number      varchar(20)   not null
+        constraint credit_account_account_number_fk
+            references credit_account
 );
 
-CREATE TABLE credit_agreement
+create table if not exists credit_agreement
 (
-    id                        BIGSERIAL PRIMARY KEY,
-    credit_id                 BIGINT  NOT NULL REFERENCES credit,
-    agreement_date            DATE    NOT NULL,
-    termination_date          DATE,
-    responsible_specialist_id BIGINT,
-    is_active                 BOOLEAN NOT NULL
+    id                        bigint  not null
+        primary key
+        constraint credit_id_fk
+            references credit,
+    agreement_date            date    not null,
+    termination_date          date    not null,
+    responsible_specialist_id bigint,
+    is_active                 boolean not null
 );
 
 CREATE TABLE payment_schedule
