@@ -19,7 +19,7 @@ spring:
       on-profile: "dev"
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://postgresDB:5432/credit
+    url: jdbc:postgresql://postgresDB:5433/credit
     username: verification_service_developer
     password: Mgy4Xn1Wkeul
 server:
