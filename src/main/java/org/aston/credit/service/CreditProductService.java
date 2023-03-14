@@ -27,4 +27,13 @@ public class CreditProductService {
     public void removeById(long id) {
         creditProductRepository.deleteById(id);
     }
+
+    /**
+     * A-PROD.1 - Отправка информации об активных кредитных продуктах
+     *
+     * @return Список активных кредитных продуктов банка
+     * */
+    public List<CreditProductEntity> getAllActive() {
+        return creditProductRepository.findAllByProductIsActiveIsTrue();
+    }
 }

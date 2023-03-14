@@ -15,3 +15,6 @@ services:
 networks:
   astlink:
     external: true
+
+volumes:
+  data-postgres:
