@@ -23,7 +23,7 @@ public class CreditOrderHelper {
         creditOrder.setClientId(UUID.fromString("0799f8b8-729d-4818-b1ba-5e64f88f6d03"));
         creditOrder.setCreditProduct(getCreditProduct());
         creditOrder.setStatus(OrderStatusEnum.APPROVED_BY_BANK);
-        creditOrder.setAmount(BigDecimal.valueOf(100000.00));
+        creditOrder.setAmount(BigDecimal.valueOf(50000.00));
         creditOrder.setPeriodMonths(12);
         creditOrder.setCreationDate(LocalDate.now());
         creditOrder.setAverageMonthlyIncome(BigDecimal.valueOf(10000.00));
@@ -34,12 +34,13 @@ public class CreditOrderHelper {
 
     public static CreditOrderEntity getCreditCreate() {
         CreditOrderEntity creditOrder = new CreditOrderEntity();
-        creditOrder.setAmount(BigDecimal.valueOf(100000.00));
+        creditOrder.setAmount(BigDecimal.valueOf(50000.00));
         creditOrder.setPeriodMonths(12);
         creditOrder.setCreationDate(LocalDate.now());
         creditOrder.setAverageMonthlyIncome(BigDecimal.valueOf(10000.00));
         creditOrder.setAverageMonthlyExpenditure(BigDecimal.valueOf(5000.00));
         creditOrder.setEmployerIdentificationNumber("123-45-6789");
+        creditOrder.setCreditProduct(getCreditProduct());
         return creditOrder;
     }
 
@@ -54,8 +55,11 @@ public class CreditOrderHelper {
         CreditProductEntity creditProduct = new CreditProductEntity();
         creditProduct.setId(1);
         creditProduct.setProductName("Стартовый");
-        creditProduct.setProductIsActive(false);
+        creditProduct.setProductIsActive(true);
         creditProduct.setMaxSum(BigDecimal.valueOf(90000));
+        creditProduct.setMinSum(BigDecimal.valueOf(10000));
+        creditProduct.setMinPeriodMonths(3);
+        creditProduct.setMinPeriodMonths(24);
         return creditProduct;
     }
 
@@ -65,7 +69,7 @@ public class CreditOrderHelper {
                 productId(1).
                 productName("Стартовый").
                 status(OrderStatusEnum.APPROVED_BY_BANK).
-                amountRequested(BigDecimal.valueOf(100000.00)).
+                amountRequested(BigDecimal.valueOf(50000.00)).
                 periodMonths(12).
                 creationDate(LocalDate.now()).
                 build();
@@ -74,7 +78,7 @@ public class CreditOrderHelper {
     public static CreditOrderRequestDto getCreateCreditOrderDto() {
         return CreditOrderRequestDto.builder().
                 productId(1).
-                amountRequested(BigDecimal.valueOf(100000.00)).
+                amountRequested(BigDecimal.valueOf(50000.00)).
                 periodMonths(12).
                 creationDate(LocalDate.now()).
                 monthlyIncome(BigDecimal.valueOf(10000.00)).
