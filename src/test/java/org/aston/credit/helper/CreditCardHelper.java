@@ -10,6 +10,7 @@ public class CreditCardHelper {
         CreditCardEntity creditCard = new CreditCardEntity();
         creditCard.setCardNumber("1234567891234567");
         creditCard.setCardStatus(CardStatusEnum.BLOCKED);
+        creditCard.setTransactionLimit(10000);
         return creditCard;
     }
 
