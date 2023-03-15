@@ -1,5 +1,6 @@
 package org.aston.credit.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditEntity;
@@ -30,7 +31,13 @@ public class CreditService {
     }
 
     public CreditEntity credit(long agreementId) {
-        return creditRepository.findByCreditAgreementId(agreementId);
+        final CreditEntity credit = creditRepository.findByCreditAgreementId(agreementId);
+
+        if (credit == null) {
+            throw new EntityNotFoundException();
+        }
+
+        return credit;
     }
 
     public PaymentScheduleEntity payment(List<PaymentScheduleEntity> schedule) {

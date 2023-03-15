@@ -1,26 +1,21 @@
 package org.aston.credit.service;
 
-import org.assertj.core.api.ListAssert;
 import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditEntity;
 import org.aston.credit.entity.PaymentScheduleEntity;
 import org.aston.credit.exception.ForbiddenException;
 import org.aston.credit.helper.CreditHelper;
 import org.aston.credit.repository.CreditRepository;
-import org.hibernate.mapping.Array;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.LIST;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
