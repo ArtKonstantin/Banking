@@ -29,8 +29,7 @@ public class CreditOrderController {
     @GetMapping
     public List<CreditOrderResponseDto> getOrdersByClientId(@RequestHeader UUID clientId) {
         final List<CreditOrderEntity> creditOrders = creditOrderService.getCreditOrdersByClientId(clientId);
-        final List<CreditOrderResponseDto> creditOrdersDto = creditOrderMapper.toDtoList(creditOrders);
-        return creditOrdersDto;
+        return creditOrderMapper.toDtoList(creditOrders);
     }
 
     @PostMapping
