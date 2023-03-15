@@ -23,7 +23,7 @@ spring:
     username: verification_service_developer
     password: Mgy4Xn1Wkeul
 server:
-  port: 8080
+  port: 8086
 ---
 spring:
   config:
