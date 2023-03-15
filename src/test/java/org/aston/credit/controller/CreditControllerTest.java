@@ -24,7 +24,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,11 +56,11 @@ class CreditControllerTest {
     void whenGetShortInformation_thenReturnOk() throws Exception {
         List<CreditOrderEntity> expected = new ArrayList<>();
         expected.add(new CreditOrderEntity(1L, UUID.randomUUID(), new CreditEntity(), new CreditProductEntity(),
-                OrderStatusEnum.APPROVED_BY_BANK, BigDecimal.valueOf(90000.00), 6, Date.valueOf(LocalDate.now()),
+                OrderStatusEnum.APPROVED_BY_BANK, BigDecimal.valueOf(90000.00), 6, LocalDate.now(),
                 BigDecimal.valueOf(100000.00), BigDecimal.valueOf(50000.00),
                 "123456789012"));
         expected.add(new CreditOrderEntity(2L, UUID.randomUUID(), new CreditEntity(), new CreditProductEntity(),
-                OrderStatusEnum.APPROVED_BY_BANK, BigDecimal.valueOf(90000.00), 6, Date.valueOf(LocalDate.now().minusDays(15)),
+                OrderStatusEnum.APPROVED_BY_BANK, BigDecimal.valueOf(90000.00), 6, LocalDate.now().minusDays(15),
                 BigDecimal.valueOf(100000.00), BigDecimal.valueOf(50000.00),
                 "123456789012"));
         Mockito.when(creditOrderService.getCreditOrdersByClientId(Mockito.any()))
@@ -81,7 +80,7 @@ class CreditControllerTest {
                 new CreditAccountEntity());
         CreditInformationResponseDto expectedDto = new CreditInformationResponseDto(1L, "someCredit", "RUB",
                 "1000000001", BigDecimal.valueOf(900000.00), BigDecimal.valueOf(0.15), "10.02.2025",
-                Date.valueOf(LocalDate.now()));
+                LocalDate.now());
         Mockito.when(creditService.getInformation(Mockito.any()))
                 .thenReturn(expected);
         Mockito.when(creditMapper.toInformationDto(Mockito.any())).thenReturn(expectedDto);

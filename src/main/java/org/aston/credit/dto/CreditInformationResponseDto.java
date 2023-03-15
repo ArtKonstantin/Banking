@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * ДТО с полной информацией о кредитном продукте клиента.
@@ -42,5 +42,5 @@ public class CreditInformationResponseDto {
     private String terminationDate;
 
     @Schema(description = "Ближайшая дата платежа")
-    private Date paymentDate;
+    private LocalDate paymentDate;
 }
