@@ -1,83 +1,13 @@
-###==CREDIT PRODUCT===
-
-### getAll
-GET http://localhost:8080/credit-product
-
-### getById
-GET http://localhost:8080/credit-product/1
-
-### create
-POST http://localhost:8080/credit-product
-Content-Type: application/json
-
-{
-  "creditOrder": null,
-  "productName": "Стартовый-НОВЫЙ",
-  "minSum": 1000.00,
-  "maxSum": 1000000.00,
-  "currencyCode": "RUB",
-  "minInterestRate": 0.05,
-  "maxInterestRate": 0.30,
-  "needGuarantees": false,
-  "deliveryInCash": false,
-  "earlyRepayment": true,
-  "minPeriodMonths": 6,
-  "maxPeriodMonths": 36,
-  "productIsActive": true,
-  "productDetails": "Стандартный кредит",
-  "calculationMode": "differentiated",
-  "gracePeriodMonths": 0,
-  "needIncomeDetails": true
-}
-
-### update
-PUT http://localhost:8080/credit-product
-Content-Type: application/json
-
-{
-  "id": 5,
-  "creditOrder": null,
-  "productName": "Стартовый",
-  "minSum": 5000.00,
-  "maxSum": 5000000.00,
-  "currencyCode": "RUB",
-  "minInterestRate": 0.05,
-  "maxInterestRate": 0.30,
-  "needGuarantees": false,
-  "deliveryInCash": false,
-  "earlyRepayment": true,
-  "minPeriodMonths": 6,
-  "maxPeriodMonths": 36,
-  "productIsActive": true,
-  "productDetails": "Стандартный кредит",
-  "calculationMode": "differentiated",
-  "gracePeriodMonths": 0,
-  "needIncomeDetails": true
-}
-
-### removeById
-DELETE http://localhost:8080/credit-product/3
-
-
-###==CREDIT ACCOUNT===
-
-### getAll
-GET http://localhost:8080/credit-account
-
-
 ###==CREDIT ORDER===
 
-### getAll
-GET http://localhost:8080/credit-order
-
 ### create
-POST http://localhost:8080/credit-order
+POST http://localhost:8080/api/v1/loan-applications
 Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 {
-  "productId": 1,
-  "amountRequested": 90000.00,
+  "productId": 2,
+  "amountRequested": 100000.00,
   "periodMonths": 12,
   "creationDate": "2023-01-01",
   "monthlyIncome": 5000.00,
@@ -86,30 +16,63 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 }
 
 ### getOrdersByClienId
-GET http://localhost:8080/credit-order/get-list
+GET http://localhost:8080/api/v1/loan-applications
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
+### reject
+PATCH http://localhost:8080/api/v1/loan-applications
+Content-Type: application/json
+clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
+{
+  "id": 1,
+  "status": "REJECT_BY_CLIENT"
+}
+
+### approved
+PATCH http://localhost:8080/api/v1/loan-applications
+Content-Type: application/json
+clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
+{
+  "id": 2,
+  "status": "APPROVED_BY_CLIENT"
+}
 
 ###==CREDIT CARD===
 
-### getAll
-GET http://localhost:8080/credit-card
+###block
+PATCH http://localhost:8080/api/v1/credit-cards
+Content-Type: application/json
 
-###==CREDIT AGREEMENT===
+{
+  "cardNumber": "1234567891230067",
+  "cardStatus": "BLOCKED"
+}
 
-### getAll
-GET http://localhost:8080/credit-agreement
+###pin
+POST http://localhost:8080/api/v1/credit-cards/code
+Content-Type: application/json
+
+{
+  "cardNumber": "1234567800234567",
+  "newPin": "4321"
+}
+
+###limit
+PATCH http://localhost:8080/api/v1/credit-cards/limit
+Content-Type: application/json
+
+{
+  "cardNumber": "1234007891234567",
+  "transactionLimit": 100
+}
 
 ###==CREDIT===
 
-### getAll
-GET http://localhost:8080/credit
+### schedule
+GET http://localhost:8080/api/v1/credits/1/schedule
+clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d00
 
-###==OPERATION===
-
-### getAll
-GET http://localhost:8080/operation
-
-###==PAYMENT-SCHEDULE===
-
-### getAll
-GET http://localhost:8080/payment-schedule
+### agreement
+GET http://localhost:8080/api/v1/credits/100/details

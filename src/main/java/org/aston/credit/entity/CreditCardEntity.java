@@ -3,6 +3,8 @@ package org.aston.credit.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -12,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "credit_card")
@@ -34,7 +36,7 @@ public class CreditCardEntity {
     private String holderName;
 
     @Column(name = "expiration_date", nullable = false)
-    private Date expirationDate;
+    private LocalDate expirationDate;
 
     @Column(name = "payment_system", nullable = false)
     private String paymentSystem;
@@ -43,11 +45,15 @@ public class CreditCardEntity {
     private int cardBalance;
 
     @Column(name = "card_status", nullable = false)
-    private String cardStatus;
+    @Enumerated(EnumType.STRING)
+    private CardStatusEnum cardStatus;
 
     @Column(name = "transaction_limit", nullable = false)
     private int transactionLimit;
 
     @Column(name = "delivery_point", nullable = false)
     private String deliveryPoint;
+
+    @Column(name = "pin", nullable = false)
+    private String pin;
 }

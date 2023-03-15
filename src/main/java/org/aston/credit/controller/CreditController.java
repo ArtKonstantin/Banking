@@ -7,15 +7,21 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.Constants;
+import org.aston.credit.dto.AgreementResponceDto;
 import org.aston.credit.dto.CreditInformationResponseDto;
+import org.aston.credit.dto.ScheduleResponseDto;
 import org.aston.credit.dto.ShortCreditResponseDto;
+import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditEntity;
+import org.aston.credit.entity.PaymentScheduleEntity;
 import org.aston.credit.mapper.CreditMapper;
 import org.aston.credit.mapper.CreditOrderMapper;
 import org.aston.credit.service.CreditOrderService;
 import org.aston.credit.service.CreditService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,16 +36,24 @@ import java.util.UUID;
 @RequestMapping("/api/v1/credits")
 public class CreditController {
     private final CreditService creditService;
-
     private final CreditMapper creditMapper;
-
     private final CreditOrderService creditOrderService;
-
     private final CreditOrderMapper creditOrderMapper;
 
-    @GetMapping
-    public List<CreditEntity> getAll() {
-        return creditService.getAll();
+    @GetMapping("/{creditId}/schedule")
+    public ScheduleResponseDto schedule(@RequestHeader UUID clientId, @PathVariable long creditId) {
+        CreditEntity credit = creditService.schedule(clientId, creditId);
+        ScheduleResponseDto schedule = creditMapper.toDto(credit);
+        return schedule;
+    }
+
+    @GetMapping("/{agreementId}/details")
+    public AgreementResponceDto agreement(@PathVariable long agreementId) {
+        CreditEntity credit = creditService.credit(agreementId);
+        PaymentScheduleEntity payment = creditService.payment(credit.getCreditAccount().getPaymentSchedule());
+        CreditAccountEntity debt = creditService.debt(credit.getCreditAccount());
+        AgreementResponceDto agreement = creditMapper.agreementToDto(credit, payment, debt);
+        return agreement;
     }
 
     /**

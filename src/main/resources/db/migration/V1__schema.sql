@@ -21,14 +21,14 @@ CREATE TABLE credit_product
 
 create table if not exists credit_account
 (
-    account_number varchar(20)   not null
+    account_number varchar(20)    not null
         primary key,
     principal_debt numeric(19, 2) not null,
     interest_debt  numeric(19, 2) not null,
     is_active      boolean        not null,
     opening_date   date           not null,
     closing_date   date           not null,
-    currency_code  varchar(3)   not null
+    currency_code  varchar(3)     not null
 );
 
 create table if not exists credit_order
@@ -39,13 +39,13 @@ create table if not exists credit_order
     product_id                     bigint         not null
         constraint credit_product_product_id_fk
             references credit_product,
-    status                         varchar(30)   not null,
+    status                         varchar(30)    not null,
     amount                         numeric(19, 2) not null,
     period_months                  integer        not null,
     average_monthly_expenditure    numeric(19, 2) not null,
     creation_date                  date           not null,
     average_monthly_income         numeric(19, 2) not null,
-    employer_identification_number varchar(12)   not null
+    employer_identification_number varchar(12)    not null
 
 );
 
@@ -55,14 +55,14 @@ create table if not exists credit
         primary key
         constraint credit_order_id_fk
             references credit_order,
-    type                varchar(30)   not null,
+    type                varchar(30)    not null,
     credit_limit        numeric(19, 2) not null,
-    currency_code       varchar(3)   not null,
-    interest_rate       numeric(2, 2) not null,
+    currency_code       varchar(3)     not null,
+    interest_rate       numeric(2, 2)  not null,
     personal_guarantees boolean        not null,
     grace_period_months integer        not null,
-    credit_status       varchar(30)   not null,
-    account_number      varchar(20)   not null
+    credit_status       varchar(30)    not null,
+    account_number      varchar(20)    not null
         constraint credit_account_account_number_fk
             references credit_account
 );
@@ -98,7 +98,8 @@ CREATE TABLE credit_card
     card_balance      INT         NOT NULL,
     card_status       VARCHAR(50) NOT NULL,
     transaction_limit INT         NOT NULL,
-    delivery_point    VARCHAR(50) NOT NULL
+    delivery_point    VARCHAR(50) NOT NULL,
+    pin               VARCHAR(4)  NOT NULL
 );
 
 CREATE TABLE operation

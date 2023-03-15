@@ -16,9 +16,9 @@ VALUES ('0799f8b8-729d-4818-b1ba-5e64f88f6d03', 4, 'APPROVED_BY_BANK', 900000.00
         '123456789012');
 
 INSERT INTO credit_card(card_number, account_number, holder_name, expiration_date, payment_system, card_balance,
-                        card_status, transaction_limit, delivery_point)
-VALUES ('1234567891234567', '10000000000000000001', 'TEST TESTOVICH', '10.01.2025', 'VISA', 100000, 'OK', 10000,
-        'Kazan Sovetskiy');
+                        card_status, transaction_limit, delivery_point, pin)
+VALUES ('1234567891234567', '10000000000000000001', 'TEST TESTOVICH', '10.01.2025', 'VISA', 100000, 'ACTIVE', 10000,
+        'Kazan Sovetskiy', '1234');
 
 INSERT INTO credit(id, type, credit_limit, currency_code, interest_rate, personal_guarantees, grace_period_months,
                    credit_status, account_number)
@@ -28,22 +28,22 @@ INSERT INTO credit_agreement(id, agreement_date, termination_date, responsible_s
 VALUES (5, '10.01.2022', '10.01.2025', 123, true);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.02.2022', 146274.27, 10356.16);
+VALUES ('10000000000000000001', '2023-01-02', 146274.27, 10356.16);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.03.2022', 147028.17, 9602.26);
+VALUES ('10000000000000000001', '2023-02-02', 147028.17, 9602.26);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.04.2022', 149150.60, 7479.83);
+VALUES ('10000000000000000001', '2023-03-02', 149150.60, 7479.83);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.05.2022', 150801.41, 5829.02);
+VALUES ('10000000000000000001', '2023-04-02', 150801.41, 5829.02);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.06.2022', 152848.64, 3781.79);
+VALUES ('10000000000000000001', '2023-05-02', 152848.64, 3781.79);
 
 INSERT INTO payment_schedule(account_number, payment_date, principal, interest)
-VALUES ('10000000000000000001', '10.07.2022', 153896.91, 1960.60);
+VALUES ('10000000000000000001', '2023-06-02', 153896.91, 1960.60);
 
 INSERT INTO operation(account_number, type, sum, details, currency_code)
 VALUES ('10000000000000000001', 'EXPENSE', 10000.00, 'покупка', 'RUB');

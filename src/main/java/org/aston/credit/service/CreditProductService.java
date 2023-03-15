@@ -32,7 +32,7 @@ public class CreditProductService {
      * A-PROD.1 - Отправка информации об активных кредитных продуктах
      *
      * @return Список активных кредитных продуктов банка
-     * */
+     */
     public List<CreditProductEntity> getAllActive() {
         return creditProductRepository.findAllByProductIsActiveIsTrue();
     }

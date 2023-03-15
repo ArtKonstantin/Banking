@@ -14,7 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "credit_agreement")
@@ -32,10 +32,10 @@ public class CreditAgreementEntity {
     private CreditEntity credit;
 
     @Column(name = "agreement_date", nullable = false)
-    private Date agreementDate;
+    private LocalDate agreementDate;
 
     @Column(name = "termination_date", nullable = false)
-    private Date terminationDate;
+    private LocalDate terminationDate;
 
     @Column(name = "responsible_specialist_id")
     private long responsibleSpecialistId;

@@ -11,9 +11,9 @@ import java.math.BigDecimal;
  * <p>
  * Используется в эндпоинте: CR.1.
  *
+ * @author Gleb Buriak
  * @see org.aston.credit.controller.CreditController
  * @see org.aston.credit.service.CreditOrderService
- * @author Gleb Buriak
  */
 @Data
 @AllArgsConstructor
