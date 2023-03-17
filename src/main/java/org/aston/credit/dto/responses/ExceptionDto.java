@@ -1,4 +1,4 @@
-package org.aston.credit.dto;
+package org.aston.credit.dto.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

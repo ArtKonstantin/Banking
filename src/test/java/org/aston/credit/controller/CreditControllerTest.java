@@ -1,15 +1,15 @@
 package org.aston.credit.controller;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.aston.credit.dto.CreditInformationResponseDto;
+import org.aston.credit.dto.responses.CreditInformationResponseDto;
 import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditAgreementEntity;
 import org.aston.credit.entity.CreditEntity;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.CreditProductEntity;
-import org.aston.credit.entity.CreditStatusEnum;
-import org.aston.credit.entity.CreditTypeEnum;
-import org.aston.credit.entity.OrderStatusEnum;
+import org.aston.credit.entity.enums.CreditStatusEnum;
+import org.aston.credit.entity.enums.CreditTypeEnum;
+import org.aston.credit.entity.enums.OrderStatusEnum;
 import org.aston.credit.mapper.CreditMapper;
 import org.aston.credit.mapper.CreditOrderMapper;
 import org.aston.credit.service.CreditOrderService;

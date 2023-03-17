@@ -1,6 +1,6 @@
 package org.aston.credit.mapper;
 
-import org.aston.credit.dto.ScheduleResponseDto;
+import org.aston.credit.dto.responses.ScheduleResponseDto;
 import org.aston.credit.helper.CreditHelper;
 import org.junit.jupiter.api.Test;
 

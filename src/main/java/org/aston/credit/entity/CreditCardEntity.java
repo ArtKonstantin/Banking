@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.aston.credit.entity.enums.CardStatusEnum;
 
 import java.time.LocalDate;
 

@@ -1,6 +1,6 @@
 package org.aston.credit.controller;
 
-import org.aston.credit.entity.CalculationModeEnum;
+import org.aston.credit.entity.enums.CalculationModeEnum;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.mapper.CreditProductMapper;
