@@ -24,7 +24,7 @@ public class ExceptionControllerAdvice {
     @ResponseBody
     @ExceptionHandler(BadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ExceptionDto catchBarRequestException(BadRequestException e) {
+    public ExceptionDto catchBadRequestException(BadRequestException e) {
         e.printStackTrace();
         return new ExceptionDto(e.getMessage());
     }
