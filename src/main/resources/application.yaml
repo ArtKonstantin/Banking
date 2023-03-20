@@ -1,6 +1,8 @@
 spring:
   profiles:
-    active: "dev"
+    active: "local"
+  application:
+    name: "credit-service"
   jpa:
     properties:
       hibernate:
@@ -10,6 +12,10 @@ spring:
 springdoc:
   swagger-ui:
     path: credit-swagger
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.17.1.64:8761/eureka
 ---
 spring:
   config:
