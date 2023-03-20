@@ -1,4 +1,4 @@
-package org.aston.credit.dto;
+package org.aston.credit.dto.responses;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

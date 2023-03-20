@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.aston.credit.entity.enums.OrderStatusEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

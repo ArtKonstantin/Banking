@@ -1,8 +1,8 @@
 package org.aston.credit.mapper;
 
-import org.aston.credit.dto.AgreementResponceDto;
-import org.aston.credit.dto.CreditInformationResponseDto;
-import org.aston.credit.dto.ScheduleResponseDto;
+import org.aston.credit.dto.responses.AgreementResponceDto;
+import org.aston.credit.dto.responses.CreditInformationResponseDto;
+import org.aston.credit.dto.responses.ScheduleResponseDto;
 import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditEntity;
 import org.aston.credit.entity.PaymentScheduleEntity;

@@ -1,9 +1,9 @@
-package org.aston.credit.dto;
+package org.aston.credit.dto.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import org.aston.credit.entity.OrderStatusEnum;
+import org.aston.credit.entity.enums.OrderStatusEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
