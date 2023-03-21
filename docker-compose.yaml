@@ -10,6 +10,9 @@ services:
       - "8086:8086"
     networks:
       - astlink
+    environment:
+      eureka.instance.hostname: eureka-service-develop
+      eureka.client.serviceUrl.defaultZone: http://eureka-service-develop:8761/eureka
 
 
 networks:

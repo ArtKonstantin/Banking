@@ -15,7 +15,7 @@ springdoc:
 eureka:
   client:
     service-url:
-      defaultZone: http://172.17.1.64:8761/eureka
+      defaultZone:  http://eureka-service-develop:8761/eureka
 ---
 spring:
   config:
