@@ -1,20 +1,51 @@
 version: '3.6'
 
 services:
-
-  credit-service:
-    image: '$AND_DOCKER_REGISTRY_NAME/$PROJECT-$APP:$CI_COMMIT_BRANCH'
-    container_name: $APP-$CI_COMMIT_BRANCH
-    restart: always
+  #db - это для теста только у меня локально. убрать перед заливкой на сервер!
+  db:
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_DB=credit
+      - POSTGRES_USER=credit_service_developer
+      - POSTGRES_PASSWORD=Mgy4Xn1Wkeul
     ports:
-      - "8086:8080"
-    networks:
-      - astlink
+      - '5433:5432'
 
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - '2181:2181'
 
-networks:
-  astlink:
-    external: true
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - '29092:29092'
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-volumes:
-  data-postgres:
+#
+#  credit-service:
+#    image: '$AND_DOCKER_REGISTRY_NAME/$PROJECT-$APP:$CI_COMMIT_BRANCH'
+#    container_name: $APP-$CI_COMMIT_BRANCH
+#    restart: always
+#    ports:
+#      - "8086:8080"
+#    networks:
+#      - astlink
+#
+#
+#networks:
+#  astlink:
+#    external: true
+#
+#volumes:
+#  data-postgres:
