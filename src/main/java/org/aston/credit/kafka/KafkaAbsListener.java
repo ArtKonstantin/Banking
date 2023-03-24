@@ -1,16 +1,18 @@
 package org.aston.credit.kafka;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aston.credit.dto.KafkaCreditCardDto;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @EnableKafka
-@Component
+@Service
+@Slf4j
 public class KafkaAbsListener {
 
-    @KafkaListener(topics = "credit_to_master_update_status_card")
+    @KafkaListener(topics = "${spring.kafka.topics.tp2}")
     public void msgListener(KafkaCreditCardDto msg) {
-        System.out.println(msg);
+        log.info(String.valueOf(msg));
     }
 }

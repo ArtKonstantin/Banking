@@ -47,7 +47,7 @@ Content-Type: application/json
 
 {
   "cardNumber": "1234567891234567",
-  "cardStatus": "ACTIVE"
+  "cardStatus": "BLOCKED"
 }
 
 ###pin

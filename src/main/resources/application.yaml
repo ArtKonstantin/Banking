@@ -34,11 +34,12 @@ spring:
     password: Mgy4Xn1Wkeul
     #далее прописано для kafka
   kafka:
-    bootstrap-servers: localhost:29092
-    template:
-      default-topic: credit
+    bootstrap-servers: localhost:9092
     consumer:
       group-id: CreditGroupId
       auto-offset-reset: latest
+    topics:
+      tp1: master_to_credit_update_status_card
+      tp2: credit_to_master_update_status_card
 server:
   port: 8083

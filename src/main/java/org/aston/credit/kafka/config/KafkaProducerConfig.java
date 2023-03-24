@@ -3,6 +3,7 @@ package org.aston.credit.kafka.config;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.aston.credit.dto.KafkaCreditCardDto;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -16,12 +17,11 @@ import java.util.Map;
 @Configuration
 public class KafkaProducerConfig {
 
-    private String kafkaServer = "localhost:29092";
-
     @Bean
     public Map<String, Object> producerConfigs() {
         Map<String, Object> props = new HashMap<>();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServer);
+        final KafkaProperties kafkaProperties = new KafkaProperties();
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers().get(0));
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return props;
@@ -34,7 +34,6 @@ public class KafkaProducerConfig {
 
     @Bean
     public KafkaTemplate<String, KafkaCreditCardDto> kafkaTemplate() {
-        final KafkaTemplate<String, KafkaCreditCardDto> template = new KafkaTemplate<>(producerFactory());
-        return template;
+        return new KafkaTemplate<>(producerFactory());
     }
 }
