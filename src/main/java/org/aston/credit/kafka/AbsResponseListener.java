@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @EnableKafka
-public class CreditListener {
+public class AbsResponseListener {
 
     private final CreditCardService creditCardService;
     private final CreditCardMapper creditCardMapper;

@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @EnableKafka
 @Service
 @Slf4j
-public class KafkaAbsListener {
+public class CreditCardEventListener {
 
     @KafkaListener(topics = "${spring.kafka.topics.tp2}")
     public void msgListener(KafkaCreditCardDto msg) {
-        log.info(String.valueOf(msg));
+        log.info("Got event from Credit service: {}", msg);
     }
 }

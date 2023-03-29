@@ -1,4 +1,4 @@
-package org.aston.credit.kafka;
+package org.aston.credit.service;
 
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.dto.KafkaCreditCardDto;
