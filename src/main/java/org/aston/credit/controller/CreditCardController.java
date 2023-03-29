@@ -5,7 +5,6 @@ import org.aston.credit.dto.CreditCardRequestDto;
 import org.aston.credit.entity.CreditCardEntity;
 import org.aston.credit.mapper.CreditCardMapper;
 import org.aston.credit.service.CreditCardService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

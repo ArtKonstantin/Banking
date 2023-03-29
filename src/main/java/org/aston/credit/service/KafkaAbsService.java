@@ -14,3 +14,4 @@ public class KafkaAbsService {
         kafkaTemplate.send(topic, kafkaCreditCardDto);
     }
 }
+§

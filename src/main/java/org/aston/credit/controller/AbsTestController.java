@@ -18,6 +18,7 @@ public class AbsTestController {
 
     /**
      * Имитация отправки запроса на блокировку кредитной карты со стороны АБС
+     *
      * @param kafkaCreditCardDto
      */
     @PatchMapping("/block")
