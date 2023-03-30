@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.aston.credit.entity.CardStatusEnum;
+import org.aston.credit.entity.enums.CardStatusEnum;
 
 @Data
 @Builder
