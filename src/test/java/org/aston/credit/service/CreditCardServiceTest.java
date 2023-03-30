@@ -1,8 +1,8 @@
 package org.aston.credit.service;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.aston.credit.entity.CardStatusEnum;
 import org.aston.credit.entity.CreditCardEntity;
+import org.aston.credit.entity.enums.CardStatusEnum;
 import org.aston.credit.exception.BadRequestException;
 import org.aston.credit.helper.CreditCardHelper;
 import org.aston.credit.repository.CreditCardRepository;

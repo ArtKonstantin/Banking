@@ -4,7 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.CreditProductEntity;
-import org.aston.credit.entity.OrderStatusEnum;
+import org.aston.credit.entity.enums.OrderStatusEnum;
 import org.aston.credit.exception.BadRequestException;
 import org.aston.credit.exception.ForbiddenException;
 import org.aston.credit.repository.CreditOrderRepository;
@@ -15,10 +15,10 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
-import static org.aston.credit.entity.OrderStatusEnum.APPROVED_BY_BANK;
-import static org.aston.credit.entity.OrderStatusEnum.APPROVED_BY_CLIENT;
-import static org.aston.credit.entity.OrderStatusEnum.PENDING;
-import static org.aston.credit.entity.OrderStatusEnum.REJECT_BY_CLIENT;
+import static org.aston.credit.entity.enums.OrderStatusEnum.APPROVED_BY_BANK;
+import static org.aston.credit.entity.enums.OrderStatusEnum.APPROVED_BY_CLIENT;
+import static org.aston.credit.entity.enums.OrderStatusEnum.PENDING;
+import static org.aston.credit.entity.enums.OrderStatusEnum.REJECT_BY_CLIENT;
 
 @Service
 @RequiredArgsConstructor

@@ -3,7 +3,7 @@ package org.aston.credit.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.aston.credit.dto.CreditProductResponseDto;
+import org.aston.credit.dto.responses.CreditProductResponseDto;
 import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.mapper.CreditProductMapper;
 import org.aston.credit.service.CreditProductService;

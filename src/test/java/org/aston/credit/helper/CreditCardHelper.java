@@ -1,8 +1,10 @@
 package org.aston.credit.helper;
 
-import org.aston.credit.dto.CreditCardRequestDto;
-import org.aston.credit.entity.CardStatusEnum;
+import org.aston.credit.dto.requests.ChangeCardLimitRequestDto;
+import org.aston.credit.dto.requests.ChangeCardStatusRequestDto;
+import org.aston.credit.dto.requests.ChangePinCardRequestDto;
 import org.aston.credit.entity.CreditCardEntity;
+import org.aston.credit.entity.enums.CardStatusEnum;
 
 public class CreditCardHelper {
 
@@ -14,13 +16,27 @@ public class CreditCardHelper {
         return creditCard;
     }
 
-    public static CreditCardRequestDto getCreditCardDto() {
+    public static ChangePinCardRequestDto getCreditCardPinDto() {
 
-        return CreditCardRequestDto.builder().
+        return ChangePinCardRequestDto.builder().
+                cardNumber("1234567891234567").
+                newPin("1234").
+                build();
+    }
+
+    public static ChangeCardLimitRequestDto getCreditCardLimitDto() {
+
+        return ChangeCardLimitRequestDto.builder().
+                cardNumber("1234567891234567").
+                transactionLimit("10000").
+                build();
+    }
+
+    public static ChangeCardStatusRequestDto getCreditCardStatusDto() {
+
+        return ChangeCardStatusRequestDto.builder().
                 cardNumber("1234567891234567").
                 cardStatus(CardStatusEnum.BLOCKED).
-                newPin("1234").
-                transactionLimit("10000").
                 build();
     }
 }

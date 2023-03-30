@@ -13,4 +13,14 @@ public class Constants {
     public static final String CREDIT_ID = "id кредита";
 
     public static final String CREDIT_ID_BLANK = "id кредита не может быть пустым";
+
+    public static final String AGREEMENT_ID = "id кредитного договора";
+
+    public static final String AGREEMENT_ID_BLANK = "id кредитного договора не может быть пустым";
+
+    public static final String AGREEMENT_ID_INVALID = "id кредитного договора не соответствует паттерну";
+
+    public static final String CREDIT_CARD_INVALID = "номер кредитной карты не соответствует паттерну";
+
+    public static final String CREDIT_CARD_BLANK = "номер кредитной карты не может быть пустым";
 }

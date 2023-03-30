@@ -1,10 +1,10 @@
 package org.aston.credit.helper;
 
-import org.aston.credit.dto.CreditOrderRequestDto;
-import org.aston.credit.dto.CreditOrderResponseDto;
+import org.aston.credit.dto.requests.CreditOrderRequestDto;
+import org.aston.credit.dto.responses.CreditOrderResponseDto;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.CreditProductEntity;
-import org.aston.credit.entity.OrderStatusEnum;
+import org.aston.credit.entity.enums.OrderStatusEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -64,26 +64,14 @@ public class CreditOrderHelper {
     }
 
     public static CreditOrderResponseDto getCreditOrderDto() {
-        return CreditOrderResponseDto.builder().
-                applicationId(1).
-                productId(1).
-                productName("Стартовый").
-                status(OrderStatusEnum.APPROVED_BY_BANK).
-                amountRequested(BigDecimal.valueOf(50000.00)).
-                periodMonths(12).
-                creationDate(LocalDate.now()).
-                build();
+        return CreditOrderResponseDto.builder().applicationId(1).productId(1).productName("Стартовый")
+                .status(OrderStatusEnum.APPROVED_BY_BANK).amountRequested(BigDecimal.valueOf(50000.00))
+                .periodMonths(12).creationDate(LocalDate.now()).build();
     }
 
     public static CreditOrderRequestDto getCreateCreditOrderDto() {
-        return CreditOrderRequestDto.builder().
-                productId(1).
-                amountRequested(BigDecimal.valueOf(50000.00)).
-                periodMonths(12).
-                creationDate(LocalDate.now()).
-                monthlyIncome(BigDecimal.valueOf(10000.00)).
-                monthlyExpenditure(BigDecimal.valueOf(5000.00)).
-                employerIdentificationNumber("123-45-6789").
-                build();
+        return CreditOrderRequestDto.builder().productId(1L).amountRequested(BigDecimal.valueOf(50000.00))
+                .periodMonths(12).creationDate(LocalDate.now()).monthlyIncome(BigDecimal.valueOf(10000.00))
+                .monthlyExpenditure(BigDecimal.valueOf(5000.00)).employerIdentificationNumber("123-45-6789").build();
     }
 }

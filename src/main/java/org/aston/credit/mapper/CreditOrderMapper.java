@@ -1,9 +1,9 @@
 package org.aston.credit.mapper;
 
-import org.aston.credit.dto.CreditOrderApprovedDto;
-import org.aston.credit.dto.CreditOrderRequestDto;
-import org.aston.credit.dto.CreditOrderResponseDto;
-import org.aston.credit.dto.ShortCreditResponseDto;
+import org.aston.credit.dto.requests.CreditOrderApprovedRequestDto;
+import org.aston.credit.dto.requests.CreditOrderRequestDto;
+import org.aston.credit.dto.responses.CreditOrderResponseDto;
+import org.aston.credit.dto.responses.ShortCreditResponseDto;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -26,7 +26,7 @@ public interface CreditOrderMapper {
     @Mapping(target = "averageMonthlyExpenditure", source = "monthlyExpenditure")
     CreditOrderEntity toEntity(CreditOrderRequestDto creditOrder);
 
-    CreditOrderEntity toStatus(CreditOrderApprovedDto creditOrderApproved);
+    CreditOrderEntity toStatus(CreditOrderApprovedRequestDto creditOrderApproved);
 
     List<CreditOrderResponseDto> toDtoList(List<CreditOrderEntity> creditOrders);
 
