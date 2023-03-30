@@ -4,9 +4,9 @@ import org.aston.credit.dto.responses.ScheduleResponseDto;
 import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditAgreementEntity;
 import org.aston.credit.entity.CreditEntity;
+import org.aston.credit.entity.PaymentScheduleEntity;
 import org.aston.credit.entity.enums.CreditStatusEnum;
 import org.aston.credit.entity.enums.CreditTypeEnum;
-import org.aston.credit.entity.PaymentScheduleEntity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

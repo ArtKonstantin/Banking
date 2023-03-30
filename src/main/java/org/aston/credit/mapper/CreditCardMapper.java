@@ -1,5 +1,6 @@
 package org.aston.credit.mapper;
 
+import org.aston.credit.dto.KafkaCreditCardDto;
 import org.aston.credit.dto.requests.ChangeCardLimitRequestDto;
 import org.aston.credit.dto.requests.ChangeCardStatusRequestDto;
 import org.aston.credit.dto.requests.ChangePinCardRequestDto;
@@ -18,4 +19,7 @@ public interface CreditCardMapper {
 
     CreditCardEntity newLimitToEntity (ChangeCardLimitRequestDto creditCard);
 
+    CreditCardEntity toEntityByKafka(KafkaCreditCardDto creditCard);
+
+    KafkaCreditCardDto toKafkaDto(CreditCardEntity creditCard);
 }

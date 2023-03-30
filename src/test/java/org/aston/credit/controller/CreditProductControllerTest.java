@@ -1,8 +1,8 @@
 package org.aston.credit.controller;
 
-import org.aston.credit.entity.enums.CalculationModeEnum;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.CreditProductEntity;
+import org.aston.credit.entity.enums.CalculationModeEnum;
 import org.aston.credit.mapper.CreditProductMapper;
 import org.aston.credit.service.CreditProductService;
 import org.junit.jupiter.api.BeforeEach;

@@ -42,11 +42,11 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 ###==CREDIT CARD===
 
 ###block
-PATCH http://localhost:8080/api/v1/credit-cards
+PATCH http://localhost:8083/api/v1/credit-cards
 Content-Type: application/json
 
 {
-  "cardNumber": "1234567891230067",
+  "cardNumber": "1234567891234567",
   "cardStatus": "BLOCKED"
 }
 

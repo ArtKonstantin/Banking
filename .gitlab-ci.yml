@@ -35,7 +35,7 @@ cleanup:
   tags:
     - shell-dev
   script:
-     - docker system prune -f --filter "label!=keep"
+    - docker system prune -f --filter "label!=keep"
   when: always
   only:
     - develop

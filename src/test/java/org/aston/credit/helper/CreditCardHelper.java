@@ -3,8 +3,8 @@ package org.aston.credit.helper;
 import org.aston.credit.dto.requests.ChangeCardLimitRequestDto;
 import org.aston.credit.dto.requests.ChangeCardStatusRequestDto;
 import org.aston.credit.dto.requests.ChangePinCardRequestDto;
-import org.aston.credit.entity.enums.CardStatusEnum;
 import org.aston.credit.entity.CreditCardEntity;
+import org.aston.credit.entity.enums.CardStatusEnum;
 
 public class CreditCardHelper {
 
