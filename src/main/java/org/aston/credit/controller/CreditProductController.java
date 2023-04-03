@@ -9,6 +9,7 @@ import org.aston.credit.mapper.CreditProductMapper;
 import org.aston.credit.service.CreditProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,5 +38,13 @@ public class CreditProductController {
     public ResponseEntity<List<CreditProductResponseDto>> getAllActive() {
         List<CreditProductEntity> products = creditProductService.getAllActive();
         return ResponseEntity.ok(creditProductMapper.toDtoList(products));
+    }
+
+    @GetMapping("/{creditProductId}")
+    @Operation(summary = "02 - Просмотр активного кредитного продукта",
+            description = "Получение подробной информации о кредитном продукте (по id кредитного продукта)")
+    public CreditProductResponseDto getById(@PathVariable final long creditProductId) {
+        CreditProductEntity product = creditProductService.getById(creditProductId);
+        return creditProductMapper.toDto(product);
     }
 }
