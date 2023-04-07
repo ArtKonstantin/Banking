@@ -7,11 +7,14 @@ import lombok.RequiredArgsConstructor;
 import org.aston.credit.dto.requests.ChangeCardLimitRequestDto;
 import org.aston.credit.dto.requests.ChangeCardStatusRequestDto;
 import org.aston.credit.dto.requests.ChangePinCardRequestDto;
+import org.aston.credit.dto.responses.CreditCardResponseDto;
 import org.aston.credit.entity.CreditCardEntity;
 import org.aston.credit.mapper.CreditCardMapper;
 import org.aston.credit.service.CreditCardService;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,4 +56,11 @@ public class CreditCardController {
         creditCardService.limit(creditCardEntity);
     }
 
+    @GetMapping("/{cardId}")
+    @Operation(summary = "10 - Отправка информации по кредитной карте.",
+            description = "В данном эндпоинте небходимо отправить информацию о карте, для последующего отображения")
+    public CreditCardResponseDto getById(@PathVariable final String cardId) {
+        CreditCardEntity creditCard = creditCardService.getById(cardId);
+        return creditCardMapper.toDto(creditCard);
+    }
 }

@@ -47,15 +47,15 @@ Content-Type: application/json
 
 {
   "cardNumber": "1234567891234567",
-  "cardStatus": "BLOCKED"
+  "cardStatus": "ACTIVE"
 }
 
 ###pin
-POST http://localhost:8080/api/v1/credit-cards/code
+POST http://localhost:8083/api/v1/credit-cards/code
 Content-Type: application/json
 
 {
-  "cardNumber": "1234567800234567",
+  "cardNumber": "1234567891234567",
   "newPin": "4321"
 }
 
@@ -67,6 +67,9 @@ Content-Type: application/json
   "cardNumber": "1234007891234567",
   "transactionLimit": 100
 }
+
+###getById
+GET http://localhost:8083/api/v1/credit-cards/1234567891234567
 
 ###==CREDIT===
 

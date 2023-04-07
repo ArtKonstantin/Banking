@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class KafkaAbsService {
-    private final KafkaTemplate<String, KafkaCreditCardDto> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
     public void send(String topic, KafkaCreditCardDto kafkaCreditCardDto) {
         kafkaTemplate.send(topic, kafkaCreditCardDto);

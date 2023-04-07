@@ -99,7 +99,8 @@ CREATE TABLE credit_card
     card_status       VARCHAR(50) NOT NULL,
     transaction_limit INT         NOT NULL,
     delivery_point    VARCHAR(50) NOT NULL,
-    pin               VARCHAR(4)  NOT NULL
+    pin               VARCHAR(4)  NOT NULL,
+    credit_limit      NUMERIC(19, 4)  NOT NULL
 );
 
 CREATE TABLE operation

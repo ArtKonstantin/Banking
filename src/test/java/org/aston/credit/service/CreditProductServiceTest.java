@@ -33,7 +33,7 @@ class CreditProductServiceTest {
     @Test
     void getById() {
         creditProductService.getById(ID_TEST);
-        Mockito.verify(creditProductRepository, Mockito.times(1)).findById(ID_TEST);
+        Mockito.verify(creditProductRepository, Mockito.times(1)).getReferenceById(ID_TEST);
     }
 
     @Test

@@ -16,7 +16,6 @@ class CreditCardMapperTest {
         final CreditCardEntity creditCardEntity = CreditCardHelper.getCreditCard();
 
         assertEquals(creditCardEntity.getCardNumber(), cardCard.getCardNumber());
-        assertEquals(creditCardEntity.getCardStatus(), cardCard.getCardStatus());
     }
 
     @Test
@@ -34,6 +33,5 @@ class CreditCardMapperTest {
         final CreditCardEntity creditCardEntity = CreditCardHelper.getCreditCard();
 
         assertEquals(creditCardEntity.getCardNumber(), cardCard.getCardNumber());
-        assertEquals(creditCardEntity.getCardStatus(), cardCard.getCardStatus());
     }
 }

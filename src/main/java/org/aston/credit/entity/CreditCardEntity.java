@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.aston.credit.entity.enums.CardStatusEnum;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -57,4 +58,7 @@ public class CreditCardEntity {
 
     @Column(name = "pin", nullable = false)
     private String pin;
+
+    @Column(name = "credit_limit", nullable = false)
+    private BigDecimal limit;
 }
