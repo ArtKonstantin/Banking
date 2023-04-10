@@ -36,7 +36,7 @@ public class CreditCardController {
                     "в приложении в случае, если карта имеет статус ACTIVE, тогда необходимо изменить её статус на " +
                     "BLOCKED, либо осуществить разблокировку, если статус карты - BLOCKED, с изменением её статуса на ACTIVE")
     public void block(@Valid @RequestBody ChangeCardStatusRequestDto creditCardDto) {
-        final CreditCardEntity creditCardEntity = creditCardMapper.newStatusToEntity(creditCardDto);
+        final CreditCardEntity creditCardEntity = creditCardMapper.newStatusDtoToEntity(creditCardDto);
         creditCardService.block(creditCardEntity);
     }
 
@@ -44,7 +44,7 @@ public class CreditCardController {
     @Operation(summary = "CC.4 - Изменение PIN-кода кредитной карты.",
             description = "В данном эндпоинте необходимо обновить PIN-код кредитной карты")
     public void pin(@Valid @RequestBody ChangePinCardRequestDto creditCardDto) {
-        final CreditCardEntity creditCardEntity = creditCardMapper.newPinToEntity(creditCardDto);
+        final CreditCardEntity creditCardEntity = creditCardMapper.newPinDtoToEntity(creditCardDto);
         creditCardService.pin(creditCardEntity);
     }
 
@@ -52,15 +52,15 @@ public class CreditCardController {
     @Operation(summary = "CC.5 - Установление лимита кредитной карты.",
             description = "В данном эндпоинте необходимо установить новый лимит кредитной карты")
     public void limit(@Valid @RequestBody ChangeCardLimitRequestDto creditCardDto) {
-        final CreditCardEntity creditCardEntity = creditCardMapper.newLimitToEntity(creditCardDto);
+        final CreditCardEntity creditCardEntity = creditCardMapper.newLimitDtoToEntity(creditCardDto);
         creditCardService.limit(creditCardEntity);
     }
 
     @GetMapping("/{cardId}")
     @Operation(summary = "10 - Отправка информации по кредитной карте.",
-            description = "В данном эндпоинте небходимо отправить информацию о карте, для последующего отображения")
+            description = "В данном эндпоинте необходимо отправить информацию о карте, для последующего отображения")
     public CreditCardResponseDto getById(@PathVariable final String cardId) {
         CreditCardEntity creditCard = creditCardService.getById(cardId);
-        return creditCardMapper.toDto(creditCard);
+        return creditCardMapper.creditCardToDto(creditCard);
     }
 }

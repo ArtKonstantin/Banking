@@ -17,10 +17,11 @@ import org.springframework.stereotype.Service;
 public class CreditCardService {
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final CreditCardRepository creditCardRepository;
+    private final CreditOrderService creditOrderService;
     private final CreditCardMapper creditCardMapper;
-    @Value("${spring.kafka.topics.tp2}")
+    @Value("${spring.kafka.topics.update-status-in}")
     private String topic;
-    @Value("${spring.kafka.topics.tp3}")
+    @Value("${spring.kafka.topics.update-pin}")
     private String topicPin;
 
     public void block(CreditCardEntity creditCardEntity) {
@@ -33,7 +34,7 @@ public class CreditCardService {
         creditCard.setCardStatus(creditCardEntity.getCardStatus());
         creditCardRepository.save(creditCard);
 
-        final KafkaCreditCardDto kafkaCreditCardDto = creditCardMapper.toKafkaDto(creditCard);
+        final KafkaCreditCardDto kafkaCreditCardDto = creditCardMapper.toKafkaCreditCardDto(creditCard);
         kafkaTemplate.send(topic, kafkaCreditCardDto);
     }
 

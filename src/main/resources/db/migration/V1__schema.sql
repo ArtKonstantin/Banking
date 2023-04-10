@@ -35,7 +35,7 @@ create table if not exists credit_order
 (
     id                             bigserial
         primary key,
-    client_id                      uuid           not null,
+    client_id                      UUID           not null,
     product_id                     bigint         not null
         constraint credit_product_product_id_fk
             references credit_product,
@@ -51,7 +51,7 @@ create table if not exists credit_order
 
 create table if not exists credit
 (
-    id                  bigint         not null
+    id                  bigint
         primary key
         constraint credit_order_id_fk
             references credit_order,
@@ -91,16 +91,16 @@ CREATE TABLE payment_schedule
 CREATE TABLE credit_card
 (
     card_number       VARCHAR(16) PRIMARY KEY,
-    account_number    VARCHAR(20) NOT NULL REFERENCES credit_account,
-    holder_name       VARCHAR(50) NOT NULL,
-    expiration_date   DATE        NOT NULL,
-    payment_system    VARCHAR(20) NOT NULL,
-    card_balance      INT         NOT NULL,
-    card_status       VARCHAR(50) NOT NULL,
-    transaction_limit INT         NOT NULL,
-    delivery_point    VARCHAR(50) NOT NULL,
-    pin               VARCHAR(4)  NOT NULL,
-    credit_limit      NUMERIC(19, 4)  NOT NULL
+    account_number    VARCHAR(20)    NOT NULL REFERENCES credit_account,
+    holder_name       VARCHAR(50)    NOT NULL,
+    expiration_date   DATE           NOT NULL,
+    payment_system    VARCHAR(20)    NOT NULL,
+    card_balance      INT            NOT NULL,
+    card_status       VARCHAR(50)    NOT NULL,
+    transaction_limit INT            NOT NULL,
+    delivery_point    VARCHAR(50)    NOT NULL,
+    pin               VARCHAR(4)     NOT NULL,
+    credit_limit      NUMERIC(19, 4) NOT NULL
 );
 
 CREATE TABLE operation

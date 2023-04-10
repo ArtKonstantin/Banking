@@ -1,6 +1,5 @@
 package org.aston.credit.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditEntity;
 import org.aston.credit.entity.PaymentScheduleEntity;

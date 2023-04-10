@@ -1,12 +1,16 @@
-###==CREDIT ORDER===
+### 01- Маппинг Отправки активных кредитных продуктов
+GET http://localhost:8083/credit-products
 
-### create
-POST http://localhost:8080/api/v1/loan-applications
+### 02 - Маппинг Просмотра активного кредитного продукта
+GET http://localhost:8083/credit-products/1
+
+### 03 - Маппинг Создания заявки на кредит
+POST http://localhost:8083/loan-applications
 Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 {
-  "productId": 2,
+  "productId": 1,
   "amountRequested": 100000.00,
   "periodMonths": 12,
   "creationDate": "2023-01-01",
@@ -15,12 +19,13 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
   "employerIdentificationNumber": "123-45-6789"
 }
 
-### getOrdersByClienId
-GET http://localhost:8080/api/v1/loan-applications
+### 04 - Маппинг Получения данных о кредитных заявках
+GET http://localhost:8083/loan-applications
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
-### reject
-PATCH http://localhost:8080/api/v1/loan-applications
+
+### 05 - Маппинг Отзыва кредитной заявки
+PATCH http://localhost:8083/loan-applications
 Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
@@ -29,13 +34,13 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
   "status": "REJECT_BY_CLIENT"
 }
 
-### approved
-PATCH http://localhost:8080/api/v1/loan-applications
+### 06 - Маппинг Подтверждения кредитной заявки
+PATCH http://localhost:8083/loan-applications
 Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 {
-  "id": 2,
+  "id": 1,
   "status": "APPROVED_BY_CLIENT"
 }
 
@@ -71,7 +76,13 @@ Content-Type: application/json
 ###getById
 GET http://localhost:8083/api/v1/credit-cards/1234567891234567
 
+###getAll
+GET http://localhost:8083/api/v1/credit-cards?clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
 ###==CREDIT===
+
+###getAll
+GET http://localhost:8083/api/v1/credits?clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 ### schedule
 GET http://localhost:8083/api/v1/credits/1/schedule
@@ -80,7 +91,3 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 ### agreement
 GET http://localhost:8083/api/v1/credits/1/details
 
-###==CREDIT_PRODUCT===
-
-### getById
-GET http://localhost:8083/auth/credit-products/2

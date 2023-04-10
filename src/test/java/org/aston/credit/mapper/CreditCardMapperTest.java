@@ -12,7 +12,7 @@ class CreditCardMapperTest {
 
     @Test
     void newPinToEntity() {
-        CreditCardEntity cardCard = creditCardMapper.newPinToEntity(CreditCardHelper.getCreditCardPinDto());
+        CreditCardEntity cardCard = creditCardMapper.newPinDtoToEntity(CreditCardHelper.getCreditCardPinDto());
         final CreditCardEntity creditCardEntity = CreditCardHelper.getCreditCard();
 
         assertEquals(creditCardEntity.getCardNumber(), cardCard.getCardNumber());
@@ -20,7 +20,7 @@ class CreditCardMapperTest {
 
     @Test
     void newStatusToEntity() {
-        CreditCardEntity cardCard = creditCardMapper.newStatusToEntity(CreditCardHelper.getCreditCardStatusDto());
+        CreditCardEntity cardCard = creditCardMapper.newStatusDtoToEntity(CreditCardHelper.getCreditCardStatusDto());
         final CreditCardEntity creditCardEntity = CreditCardHelper.getCreditCard();
 
         assertEquals(creditCardEntity.getCardNumber(), cardCard.getCardNumber());
@@ -29,7 +29,7 @@ class CreditCardMapperTest {
 
     @Test
     void newLimitToEntity() {
-        CreditCardEntity cardCard = creditCardMapper.newLimitToEntity(CreditCardHelper.getCreditCardLimitDto());
+        CreditCardEntity cardCard = creditCardMapper.newLimitDtoToEntity(CreditCardHelper.getCreditCardLimitDto());
         final CreditCardEntity creditCardEntity = CreditCardHelper.getCreditCard();
 
         assertEquals(creditCardEntity.getCardNumber(), cardCard.getCardNumber());

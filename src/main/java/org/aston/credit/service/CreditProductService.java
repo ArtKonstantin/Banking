@@ -12,28 +12,17 @@ import java.util.List;
 public class CreditProductService {
     private final CreditProductRepository creditProductRepository;
 
-    public List<CreditProductEntity> getAll() {
-        return creditProductRepository.findAll();
+    /**
+     * 01- Маппинг Отправки активных кредитных продуктов
+     *
+     * @return Список активных кредитных продуктов банка
+     */
+
+    public List<CreditProductEntity> getAllActive() {
+        return creditProductRepository.findAllByProductIsActiveIsTrue();
     }
 
     public CreditProductEntity getById(long id) {
         return creditProductRepository.getReferenceById(id);
-    }
-
-    public void save(CreditProductEntity creditProduct) {
-        creditProductRepository.save(creditProduct);
-    }
-
-    public void removeById(long id) {
-        creditProductRepository.deleteById(id);
-    }
-
-    /**
-     * A-PROD.1 - Отправка информации об активных кредитных продуктах
-     *
-     * @return Список активных кредитных продуктов банка
-     */
-    public List<CreditProductEntity> getAllActive() {
-        return creditProductRepository.findAllByProductIsActiveIsTrue();
     }
 }

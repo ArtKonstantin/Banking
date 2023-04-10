@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 @EnableKafka
 @Service
 @Slf4j
-public class CreditCardEventListener {
+public class CreditServiceEventListener {
 
-    @KafkaListener(topics = "${spring.kafka.topics.tp2}")
+    @KafkaListener(topics = "${spring.kafka.topics.update-status-in}")
     public void msgListener(KafkaCreditCardDto msg) {
         log.info("Got event from Credit service: {}", msg);
     }
 
-    @KafkaListener(topics = "${spring.kafka.topics.tp3}")
+    @KafkaListener(topics = "${spring.kafka.topics.update-pin}")
     public void msgPinListener(KafkaPinCodeDto msg) {
         log.info("Got event from Credit service: {}", msg);
     }
