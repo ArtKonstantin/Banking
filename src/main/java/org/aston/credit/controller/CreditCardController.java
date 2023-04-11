@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "Контроллер кредитных карт",
-        description = "Отвечает за эндпоинты CC.3 - CC.5")
+        description = "Отвечает за эндпоинты кредитных карт клиента")
 @Validated
-@RequestMapping("/api/v1/credit-cards")
+@RequestMapping("/api/v1/credit/credit-cards")
 public class CreditCardController {
     private final CreditCardService creditCardService;
     private final CreditCardMapper creditCardMapper;
@@ -57,7 +57,7 @@ public class CreditCardController {
     }
 
     @GetMapping("/{cardId}")
-    @Operation(summary = "10 - Отправка информации по кредитной карте.",
+    @Operation(summary = "10 - Отправка информации по кредитной карте",
             description = "В данном эндпоинте необходимо отправить информацию о карте, для последующего отображения")
     public CreditCardResponseDto getById(@PathVariable final String cardId) {
         CreditCardEntity creditCard = creditCardService.getById(cardId);

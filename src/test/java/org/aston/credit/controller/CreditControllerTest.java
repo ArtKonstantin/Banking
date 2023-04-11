@@ -55,11 +55,11 @@ class CreditControllerTest {
     @Test
     void whenGetShortInformation_thenReturnOk() throws Exception {
         List<CreditOrderEntity> expected = new ArrayList<>();
-        expected.add(new CreditOrderEntity(1L, UUID.randomUUID(), new CreditProductEntity(),
+        expected.add(new CreditOrderEntity(1L, UUID.randomUUID(), new CreditEntity(), new CreditProductEntity(),
                 OrderStatusEnum.APPROVED_BY_BANK, BigDecimal.valueOf(90000.00), 6, LocalDate.now(),
                 BigDecimal.valueOf(100000.00), BigDecimal.valueOf(50000.00),
                 "123456789012"));
-        expected.add(new CreditOrderEntity(2L, UUID.randomUUID(), new CreditProductEntity(),
+        expected.add(new CreditOrderEntity(2L, UUID.randomUUID(), new CreditEntity(), new CreditProductEntity(),
                 OrderStatusEnum.APPROVED_BY_BANK, BigDecimal.valueOf(90000.00), 6, LocalDate.now().minusDays(15),
                 BigDecimal.valueOf(100000.00), BigDecimal.valueOf(50000.00),
                 "123456789012"));

@@ -26,9 +26,9 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "Контроллер заявок на кредиты",
-        description = "Отвечает за эндпоинты 01 - 04")
+        description = "Отвечает за эндпоинты кредитных заявок клиента")
 @Validated
-@RequestMapping("/loan-applications")
+@RequestMapping("/api/v1/credit/loan-applications")
 public class CreditOrderController {
     private final CreditOrderService creditOrderService;
     private final CreditOrderMapper creditOrderMapper;
@@ -41,10 +41,6 @@ public class CreditOrderController {
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId,
             @RequestBody CreditOrderRequestDto creditOrderRequestDto)
-//            (@RequestHeader(name = "clientId") @Parameter(description = Constants.UUID, required = true)
-//                       @NotBlank(message = Constants.UUID_BLANK)
-//                       @Pattern(regexp = Constants.UUID_PATTERN, message = Constants.UUID_INVALID) UUID clientId,
-//                       @Valid @RequestBody CreditOrderRequestDto creditOrderRequestDto)
     {
         final CreditOrderEntity orderEntity = creditOrderMapper.toEntity(creditOrderRequestDto);
         creditOrderService.create(clientId, orderEntity);
@@ -56,9 +52,6 @@ public class CreditOrderController {
     public List<CreditOrderResponseDto> getOrdersByClientId(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId)
-//            (@RequestHeader(name = "clientId") @Parameter(description = Constants.UUID, required = true)
-//            @NotBlank(message = Constants.UUID_BLANK)
-//            @Pattern(regexp = Constants.UUID_PATTERN, message = Constants.UUID_INVALID) UUID clientId)
     {
         final List<CreditOrderEntity> creditOrders = creditOrderService.getCreditOrdersByClientId(clientId);
         return creditOrderMapper.toDtoList(creditOrders);
@@ -72,10 +65,6 @@ public class CreditOrderController {
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId,
             @RequestBody CreditOrderApprovedRequestDto creditOrder)
-//            (@RequestHeader(name = "clientId") @Parameter(description = Constants.UUID, required = true)
-//                         @NotBlank(message = Constants.UUID_BLANK)
-//                         @Pattern(regexp = Constants.UUID_PATTERN, message = Constants.UUID_INVALID) UUID clientId,
-//                         @Valid @RequestBody CreditOrderApprovedRequestDto creditOrder)
     {
         final CreditOrderEntity orderEntity = creditOrderMapper.toStatus(creditOrder);
         creditOrderService.approved(clientId, orderEntity);

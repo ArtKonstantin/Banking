@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Tag(name = "Контроллер банковских кредитных продуктов",
         description = "Отвечает за эндпоинты таблицы кредитных продуктов банка")
-@RequestMapping("/credit-products")
+@RequestMapping("/api/v1/credit/credit-products")
 public class CreditProductController {
     public final CreditProductService creditProductService;
     private final CreditProductMapper creditProductMapper;
