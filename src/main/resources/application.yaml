@@ -33,8 +33,9 @@ spring:
       group-id: CreditGroupId
       auto-offset-reset: latest
     topics:
-      tp1: master_to_credit_update_status_card
-      tp2: credit_to_master_update_status_card
+      update-status-from: master_to_credit_update_status_card
+      update-status-in: credit_to_master_update_status_card
+      update-pin: credit_to_master_update_pin
 server:
   port: 8086
 ---
@@ -54,7 +55,8 @@ spring:
       group-id: CreditGroupId
       auto-offset-reset: latest
     topics:
-      tp1: master_to_credit_update_status_card
-      tp2: credit_to_master_update_status_card
+      update-status-from: master_to_credit_update_status_card
+      update-status-in: credit_to_master_update_status_card
+      update-pin: credit_to_master_update_pin
 server:
   port: 8083

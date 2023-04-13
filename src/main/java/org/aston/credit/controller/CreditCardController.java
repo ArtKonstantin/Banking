@@ -7,11 +7,14 @@ import lombok.RequiredArgsConstructor;
 import org.aston.credit.dto.requests.ChangeCardLimitRequestDto;
 import org.aston.credit.dto.requests.ChangeCardStatusRequestDto;
 import org.aston.credit.dto.requests.ChangePinCardRequestDto;
+import org.aston.credit.dto.responses.CreditCardResponseDto;
 import org.aston.credit.entity.CreditCardEntity;
 import org.aston.credit.mapper.CreditCardMapper;
 import org.aston.credit.service.CreditCardService;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "Контроллер кредитных карт",
-        description = "Отвечает за эндпоинты CC.3 - CC.5")
+        description = "Отвечает за эндпоинты кредитных карт клиента")
 @Validated
-@RequestMapping("/api/v1/credit-cards")
+@RequestMapping("/api/v1/credit/credit-cards")
 public class CreditCardController {
     private final CreditCardService creditCardService;
     private final CreditCardMapper creditCardMapper;
@@ -33,7 +36,7 @@ public class CreditCardController {
                     "в приложении в случае, если карта имеет статус ACTIVE, тогда необходимо изменить её статус на " +
                     "BLOCKED, либо осуществить разблокировку, если статус карты - BLOCKED, с изменением её статуса на ACTIVE")
     public void block(@Valid @RequestBody ChangeCardStatusRequestDto creditCardDto) {
-        final CreditCardEntity creditCardEntity = creditCardMapper.newStatusToEntity(creditCardDto);
+        final CreditCardEntity creditCardEntity = creditCardMapper.newStatusDtoToEntity(creditCardDto);
         creditCardService.block(creditCardEntity);
     }
 
@@ -41,7 +44,7 @@ public class CreditCardController {
     @Operation(summary = "CC.4 - Изменение PIN-кода кредитной карты.",
             description = "В данном эндпоинте необходимо обновить PIN-код кредитной карты")
     public void pin(@Valid @RequestBody ChangePinCardRequestDto creditCardDto) {
-        final CreditCardEntity creditCardEntity = creditCardMapper.newPinToEntity(creditCardDto);
+        final CreditCardEntity creditCardEntity = creditCardMapper.newPinDtoToEntity(creditCardDto);
         creditCardService.pin(creditCardEntity);
     }
 
@@ -49,8 +52,15 @@ public class CreditCardController {
     @Operation(summary = "CC.5 - Установление лимита кредитной карты.",
             description = "В данном эндпоинте необходимо установить новый лимит кредитной карты")
     public void limit(@Valid @RequestBody ChangeCardLimitRequestDto creditCardDto) {
-        final CreditCardEntity creditCardEntity = creditCardMapper.newLimitToEntity(creditCardDto);
+        final CreditCardEntity creditCardEntity = creditCardMapper.newLimitDtoToEntity(creditCardDto);
         creditCardService.limit(creditCardEntity);
     }
 
+    @GetMapping("/{cardId}")
+    @Operation(summary = "10 - Отправка информации по кредитной карте",
+            description = "В данном эндпоинте необходимо отправить информацию о карте, для последующего отображения")
+    public CreditCardResponseDto getById(@PathVariable final String cardId) {
+        CreditCardEntity creditCard = creditCardService.getById(cardId);
+        return creditCardMapper.creditCardToDto(creditCard);
+    }
 }

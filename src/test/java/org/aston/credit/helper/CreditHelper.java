@@ -23,12 +23,12 @@ public class CreditHelper {
         List<PaymentScheduleEntity> payments = new ArrayList<>();
         payments.add(new PaymentScheduleEntity(1,
                 null,
-                LocalDate.of(2023, 3, 1),
+                LocalDate.of(2023, 4, 1),
                 BigDecimal.valueOf(146274.27),
                 BigDecimal.valueOf(10356.16)));
-        payments.add(new PaymentScheduleEntity(1,
+        payments.add(new PaymentScheduleEntity(2,
                 null,
-                LocalDate.of(2023, 4, 1),
+                LocalDate.of(2023, 5, 1),
                 BigDecimal.valueOf(147028.17),
                 BigDecimal.valueOf(9602.26)));
 

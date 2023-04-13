@@ -17,9 +17,9 @@ public class AbsResponseListener {
     private final CreditCardService creditCardService;
     private final CreditCardMapper creditCardMapper;
 
-    @KafkaListener(topics = "${spring.kafka.topics.tp1}")
+    @KafkaListener(topics = "${spring.kafka.topics.update-status-from}")
     public void msgListener(KafkaCreditCardDto msg) {
-        final CreditCardEntity creditCardEntity = creditCardMapper.toEntityByKafka(msg);
+        final CreditCardEntity creditCardEntity = creditCardMapper.toCreditCardByKafka(msg);
         creditCardService.blockFromAbs(creditCardEntity);
     }
 }

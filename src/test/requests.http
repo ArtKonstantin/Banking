@@ -1,12 +1,16 @@
-###==CREDIT ORDER===
+### 01- Маппинг Отправки активных кредитных продуктов
+GET http://localhost:8083/api/v1/credit/credit-products
 
-### create
-POST http://localhost:8080/api/v1/loan-applications
+### 02 - Маппинг Просмотра активного кредитного продукта
+GET http://localhost:8083/api/v1/credit/credit-products/1
+
+### 03 - Маппинг Создания заявки на кредит
+POST http://localhost:8083/api/v1/credit/loan-applications
 Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 {
-  "productId": 2,
+  "productId": 1,
   "amountRequested": 100000.00,
   "periodMonths": 12,
   "creationDate": "2023-01-01",
@@ -15,12 +19,12 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
   "employerIdentificationNumber": "123-45-6789"
 }
 
-### getOrdersByClienId
-GET http://localhost:8080/api/v1/loan-applications
+### 04 - Маппинг Получения данных о кредитных заявках
+GET http://localhost:8083/api/v1/credit/loan-applications
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
-### reject
-PATCH http://localhost:8080/api/v1/loan-applications
+### 05 - Маппинг Отзыва кредитной заявки
+PATCH http://localhost:8083/api/v1/credit/loan-applications
 Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
@@ -29,15 +33,41 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
   "status": "REJECT_BY_CLIENT"
 }
 
-### approved
-PATCH http://localhost:8080/api/v1/loan-applications
+### 06 - Маппинг Подтверждения кредитной заявки
+PATCH http://localhost:8083/api/v1/credit/loan-applications
 Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 {
-  "id": 2,
+  "id": 1,
   "status": "APPROVED_BY_CLIENT"
 }
+
+### 07 - Маппинг Отправки графика платежей по кредиту
+GET http://localhost:8083/api/v1/credit/credits/1/schedule
+clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
+### 08 - Маппинг Получения реквизитов кредита для платежа
+GET http://localhost:8083/api/v1/credit/credits/1/details
+
+### 10 - Отправка информации по кредитной карте
+GET http://localhost:8083/api/v1/credit/credit-cards/1234567891234567
+
+### 11 - Маппинг Отправки краткой информации о действующих кредитных продуктах пользователя
+GET http://localhost:8083/api/v1/credit/credits/information/short?clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
+### 12 - Маппинг Отправки подробной информации о действующем кредитном продукте пользователя
+GET http://localhost:8083/api/v1/credit/credits/information/detailed?creditId=1&clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
+
+
+
+
+
+
+
+
+
 
 ###==CREDIT CARD===
 
@@ -47,15 +77,15 @@ Content-Type: application/json
 
 {
   "cardNumber": "1234567891234567",
-  "cardStatus": "BLOCKED"
+  "cardStatus": "ACTIVE"
 }
 
 ###pin
-POST http://localhost:8080/api/v1/credit-cards/code
+POST http://localhost:8083/api/v1/credit-cards/code
 Content-Type: application/json
 
 {
-  "cardNumber": "1234567800234567",
+  "cardNumber": "1234567891234567",
   "newPin": "4321"
 }
 
@@ -68,16 +98,18 @@ Content-Type: application/json
   "transactionLimit": 100
 }
 
+###getById
+GET http://localhost:8083/api/v1/credit-cards/1234567891234567
+
+###getAll
+GET http://localhost:8083/api/v1/credit-cards?clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
 ###==CREDIT===
 
-### schedule
-GET http://localhost:8083/api/v1/credits/1/schedule
-clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
+###getAll
+GET http://localhost:8083/api/v1/credits?clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
-### agreement
-GET http://localhost:8083/api/v1/credits/1/details
 
-###==CREDIT_PRODUCT===
 
-### getById
-GET http://localhost:8083/auth/credit-products/2
+
+

@@ -30,7 +30,6 @@ import java.math.BigDecimal;
 @Setter
 public class CreditEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @OneToOne(mappedBy = "credit", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn

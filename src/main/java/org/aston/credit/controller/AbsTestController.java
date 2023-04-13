@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/abs")
 public class AbsTestController {
     private final KafkaAbsService kafkaAbsService;
-    @Value("${spring.kafka.topics.tp1}")
+    @Value("${spring.kafka.topics.update-status-from}")
     private String topic;
 
     /**

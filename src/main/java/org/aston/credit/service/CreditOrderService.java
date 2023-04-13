@@ -27,9 +27,9 @@ public class CreditOrderService {
     private final CreditProductRepository creditProductRepository;
 
     /**
-     * CR.1 - Отправка краткой информации о кредитных продуктах клиента.
+     * 03 - Маппинг Создания заявки на кредит
      * <p>
-     * OC.2 - Получение данных о кредитных заявках.
+     * 04 - Маппинг Получения данных о кредитных заявках
      * <p>
      * Происходит SELECT запрос в БД на поиск информации о кредитных заявках клиента по его uuid, если такой id есть -
      * возвращается вся информация из БД по кредитным заявкам для передачи её в контроллер и последующего маппинга в ДТО,
@@ -39,16 +39,6 @@ public class CreditOrderService {
      * @return CreditOrderEntity с информацией о кредитных заявках клиента
      * @throws jakarta.persistence.EntityNotFoundException если клиента с таким id не существует
      */
-
-    public List<CreditOrderEntity> getCreditOrdersByClientId(UUID clientId) {
-        List<CreditOrderEntity> creditOrders = creditOrderRepository.findAllByClientId(clientId);
-
-        if (creditOrders.isEmpty()) {
-            throw new EntityNotFoundException();
-        }
-
-        return creditOrders;
-    }
 
     public void create(UUID clientId, CreditOrderEntity creditOrder) {
         final BigDecimal amount = creditOrder.getAmount();
@@ -73,6 +63,16 @@ public class CreditOrderService {
         creditOrder.setClientId(clientId);
         creditOrder.setStatus(OrderStatusEnum.PENDING);
         creditOrderRepository.save(creditOrder);
+    }
+
+    public List<CreditOrderEntity> getCreditOrdersByClientId(UUID clientId) {
+        List<CreditOrderEntity> creditOrders = creditOrderRepository.findAllByClientId(clientId);
+
+        if (creditOrders.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+
+        return creditOrders;
     }
 
     public void approved(UUID clientId, CreditOrderEntity order) {

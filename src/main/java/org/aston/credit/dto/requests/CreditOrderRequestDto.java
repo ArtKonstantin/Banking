@@ -33,8 +33,6 @@ public class CreditOrderRequestDto {
     @Min(value = 0, message = "срок кредита не может быть меньше 0")
     Integer periodMonths;
 
-    //TODO: Стоит ли передавать дату создания заявки в теле? Мб просто брать LD.now()?
-    //TODO: Узнать у аналитиков минимальные значения для числовых параметров? И в целом какие им нужны ограничения?
     @Schema(description = "дата создания заявки", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "дата создания заявки не может быть пустой")
     LocalDate creationDate;
