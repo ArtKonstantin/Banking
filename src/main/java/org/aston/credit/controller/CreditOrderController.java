@@ -40,8 +40,7 @@ public class CreditOrderController {
     public void create(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId,
-            @RequestBody CreditOrderRequestDto creditOrderRequestDto)
-    {
+            @RequestBody CreditOrderRequestDto creditOrderRequestDto) {
         final CreditOrderEntity orderEntity = creditOrderMapper.toEntity(creditOrderRequestDto);
         creditOrderService.create(clientId, orderEntity);
     }
@@ -51,8 +50,7 @@ public class CreditOrderController {
             description = "Приложение посылает запрос серверу, чтобы отобразить пользователю его кредитные заявки и информацию о них")
     public List<CreditOrderResponseDto> getOrdersByClientId(
             @RequestHeader(name = "clientId")
-            @Parameter(description = Constants.UUID, required = true) final UUID clientId)
-    {
+            @Parameter(description = Constants.UUID, required = true) final UUID clientId) {
         final List<CreditOrderEntity> creditOrders = creditOrderService.getCreditOrdersByClientId(clientId);
         return creditOrderMapper.toDtoList(creditOrders);
     }
@@ -64,8 +62,7 @@ public class CreditOrderController {
     public void approved(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId,
-            @RequestBody CreditOrderApprovedRequestDto creditOrder)
-    {
+            @RequestBody CreditOrderApprovedRequestDto creditOrder) {
         final CreditOrderEntity orderEntity = creditOrderMapper.toStatus(creditOrder);
         creditOrderService.approved(clientId, orderEntity);
     }
