@@ -6,7 +6,7 @@ services:
     container_name: $APP-$CI_COMMIT_BRANCH
     restart: always
     ports:
-      - "8084:8084"
+      - "8086:8086"
     networks:
       - astlink
 
