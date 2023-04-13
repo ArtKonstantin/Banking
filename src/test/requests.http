@@ -59,29 +59,17 @@ GET http://localhost:8083/api/v1/credit/credits/information/short?clientId=0799f
 ### 12 - Маппинг Отправки подробной информации о действующем кредитном продукте пользователя
 GET http://localhost:8083/api/v1/credit/credits/information/detailed?creditId=1&clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
-
-
-
-
-
-
-
-
-
-
-###==CREDIT CARD===
-
-###block
-PATCH http://localhost:8083/api/v1/credit-cards
+### 14 -Маппинг Блокировки/разблокировки кредитной карты
+PATCH http://localhost:8083/api/v1/credit/credit-cards
 Content-Type: application/json
 
 {
   "cardNumber": "1234567891234567",
-  "cardStatus": "ACTIVE"
+  "cardStatus": "BLOCKED"
 }
 
-###pin
-POST http://localhost:8083/api/v1/credit-cards/code
+### 15 - Маппинг Изменения PIN-кода кредитной карты
+POST http://localhost:8083/api/v1/credit/credit-cards/code
 Content-Type: application/json
 
 {
@@ -89,14 +77,21 @@ Content-Type: application/json
   "newPin": "4321"
 }
 
-###limit
-PATCH http://localhost:8080/api/v1/credit-cards/limit
+### 16 - Маппинг Установления лимита кредитной карты
+PATCH http://localhost:8083/api/v1/credit/credit-cards/limit
 Content-Type: application/json
 
 {
-  "cardNumber": "1234007891234567",
+  "cardNumber": "1234567891234567",
   "transactionLimit": 100
 }
+
+
+
+
+
+
+
 
 ###getById
 GET http://localhost:8083/api/v1/credit-cards/1234567891234567

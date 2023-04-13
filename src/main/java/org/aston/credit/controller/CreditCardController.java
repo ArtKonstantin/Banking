@@ -31,7 +31,7 @@ public class CreditCardController {
     private final CreditCardMapper creditCardMapper;
 
     @PatchMapping
-    @Operation(summary = "CC.3 - Блокировка/разблокировка кредитной карты.",
+    @Operation(summary = "14 -Маппинг Блокировки/разблокировки кредитной карты",
             description = "В данном endpoint необходимо осуществить блокировку кредитной карты по запросу клиента " +
                     "в приложении в случае, если карта имеет статус ACTIVE, тогда необходимо изменить её статус на " +
                     "BLOCKED, либо осуществить разблокировку, если статус карты - BLOCKED, с изменением её статуса на ACTIVE")
@@ -41,7 +41,7 @@ public class CreditCardController {
     }
 
     @PostMapping("/code")
-    @Operation(summary = "CC.4 - Изменение PIN-кода кредитной карты.",
+    @Operation(summary = "15 - Маппинг Изменения PIN-кода кредитной карты",
             description = "В данном эндпоинте необходимо обновить PIN-код кредитной карты")
     public void pin(@Valid @RequestBody ChangePinCardRequestDto creditCardDto) {
         final CreditCardEntity creditCardEntity = creditCardMapper.newPinDtoToEntity(creditCardDto);
@@ -49,9 +49,9 @@ public class CreditCardController {
     }
 
     @PatchMapping("/limit")
-    @Operation(summary = "CC.5 - Установление лимита кредитной карты.",
+    @Operation(summary = "16 - Маппинг Установления лимита кредитной карты",
             description = "В данном эндпоинте необходимо установить новый лимит кредитной карты")
-    public void limit(@Valid @RequestBody ChangeCardLimitRequestDto creditCardDto) {
+    public void limit(@RequestBody ChangeCardLimitRequestDto creditCardDto) {
         final CreditCardEntity creditCardEntity = creditCardMapper.newLimitDtoToEntity(creditCardDto);
         creditCardService.limit(creditCardEntity);
     }
