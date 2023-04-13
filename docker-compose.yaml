@@ -1,13 +1,12 @@
 version: '3.6'
 
 services:
-
-  credit-service:
+  user-service:
     image: '$AND_DOCKER_REGISTRY_NAME/$PROJECT-$APP:$CI_COMMIT_BRANCH'
     container_name: $APP-$CI_COMMIT_BRANCH
     restart: always
     ports:
-      - "8086:8086"
+      - "8084:8084"
     networks:
       - astlink
 
@@ -32,12 +31,13 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-  networks:
-    astlink:
-      external: true
+networks:
+  astlink:
+    external: true
 
-  volumes:
-    data-postgres:
+volumes:
+  data-postgres:
+
 
   #db - это для теста только у меня локально. убрать перед заливкой на сервер!
 #  db:
