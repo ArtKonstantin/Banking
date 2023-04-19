@@ -59,6 +59,9 @@ GET http://localhost:8083/api/v1/credit/credits/information/short?clientId=0799f
 ### 12 - Маппинг Отправки подробной информации о действующем кредитном продукте пользователя
 GET http://localhost:8083/api/v1/credit/credits/information/detailed?creditId=1&clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
+### 13 - Маппинг Закрытия кредитной карты
+POST http://localhost:8083/api/v1/credit/credit-cards?cardId=f34f8980-0965-4132-8947-deb1e6170b2c
+
 ### 14 -Маппинг Блокировки/разблокировки кредитной карты
 PATCH http://localhost:8083/api/v1/credit/credit-cards
 Content-Type: application/json

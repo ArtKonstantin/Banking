@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
@@ -43,6 +44,15 @@ public class CreditCardController {
     public void block(@Valid @RequestBody ChangeCardStatusRequestDto creditCardDto) {
         final CreditCardEntity creditCardEntity = creditCardMapper.newStatusDtoToEntity(creditCardDto);
         creditCardService.block(creditCardEntity);
+    }
+
+    @PostMapping
+    @Operation(summary = "13 - Маппинг Закрытия кредитной карты",
+            description = "В данном эндпоинте необходимо установить статус Deleted для карты в БД Кредитного сервиса")
+    public void delete(
+            @RequestParam(name = "cardId")
+            @Parameter(description = Constants.UUID, required = true) UUID cardId) {
+        creditCardService.deleteCardById(cardId);
     }
 
     @PostMapping("/code")

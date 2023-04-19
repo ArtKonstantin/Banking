@@ -5,13 +5,17 @@ import lombok.RequiredArgsConstructor;
 import org.aston.credit.dto.KafkaCreditCardDto;
 import org.aston.credit.dto.KafkaPinCodeDto;
 import org.aston.credit.entity.CreditCardEntity;
+import org.aston.credit.entity.enums.CardStatusEnum;
+import org.aston.credit.exception.BadCardBalanceException;
 import org.aston.credit.exception.BadRequestException;
+import org.aston.credit.exception.ForbiddenException;
 import org.aston.credit.mapper.CreditCardMapper;
 import org.aston.credit.repository.CreditCardRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -95,5 +99,22 @@ public class CreditCardService {
         }
 
         return creditCard.get();
+    }
+
+    public void deleteCardById(UUID cardId) {
+        final Optional<CreditCardEntity> creditCard = creditCardRepository.findById(cardId);
+
+        if (creditCard.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+
+        final CreditCardEntity creditCardEntity = creditCard.get();
+
+        if (creditCardEntity.getLimit().compareTo(BigDecimal.valueOf(creditCardEntity.getCardBalance())) != 0) {
+            throw new BadCardBalanceException();
+        }
+
+        creditCardEntity.setCardStatus(CardStatusEnum.DELETED);
+        creditCardRepository.save(creditCardEntity);
     }
 }
