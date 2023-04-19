@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class CreditCardService {
@@ -82,5 +85,15 @@ public class CreditCardService {
         }
 
         return creditCard;
+    }
+
+    public CreditCardEntity findCardById(UUID cardId) {
+        final Optional<CreditCardEntity> creditCard = creditCardRepository.findById(cardId);
+
+        if (creditCard.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+
+        return creditCard.get();
     }
 }

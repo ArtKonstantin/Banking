@@ -1,12 +1,15 @@
 package org.aston.credit.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.aston.credit.Constants;
 import org.aston.credit.dto.requests.ChangeCardLimitRequestDto;
 import org.aston.credit.dto.requests.ChangeCardStatusRequestDto;
 import org.aston.credit.dto.requests.ChangePinCardRequestDto;
+import org.aston.credit.dto.responses.CreditCardForTransferServiceResponseDto;
 import org.aston.credit.dto.responses.CreditCardResponseDto;
 import org.aston.credit.entity.CreditCardEntity;
 import org.aston.credit.mapper.CreditCardMapper;
@@ -19,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -62,5 +67,16 @@ public class CreditCardController {
     public CreditCardResponseDto getById(@PathVariable final String cardId) {
         CreditCardEntity creditCard = creditCardService.getById(cardId);
         return creditCardMapper.creditCardToDto(creditCard);
+    }
+
+    @GetMapping("/money-transfer/{cardId}")
+    @Operation(summary = "Получение карты по идентификатору (для MONEY TRANSFER SERVICE)",
+            description = "Позволяет получить карту с полями по идентификатору(контроллер " +
+                    "для интеграции с Money Transfer Service")
+    public CreditCardForTransferServiceResponseDto findCardById(
+            @PathVariable
+            @Parameter(description = Constants.UUID, required = true) UUID cardId) {
+        CreditCardEntity creditCard = creditCardService.findCardById(cardId);
+        return creditCardMapper.creditCardFromTransferServiceToDto(creditCard);
     }
 }

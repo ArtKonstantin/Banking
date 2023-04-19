@@ -90,7 +90,8 @@ CREATE TABLE payment_schedule
 
 CREATE TABLE credit_card
 (
-    card_number       VARCHAR(16) PRIMARY KEY,
+    id                UUID PRIMARY KEY,
+    card_number       VARCHAR(20)    NOT NULL,
     account_number    VARCHAR(20)    NOT NULL REFERENCES credit_account,
     holder_name       VARCHAR(50)    NOT NULL,
     expiration_date   DATE           NOT NULL,

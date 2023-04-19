@@ -86,25 +86,8 @@ Content-Type: application/json
   "transactionLimit": 100
 }
 
-
-
-
-
-
-
-
-###getById
-GET http://localhost:8083/api/v1/credit-cards/1234567891234567
-
-###getAll
-GET http://localhost:8083/api/v1/credit-cards?clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
-
-###==CREDIT===
-
-###getAll
-GET http://localhost:8083/api/v1/credits?clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
-
-
+### Получение карты по идентификатору (для MONEY TRANSFER SERVICE)
+GET http://localhost:8083/api/v1/credit/credit-cards/money-transfer/f34f8980-0965-4132-8947-deb1e6170b2c
 
 
 
