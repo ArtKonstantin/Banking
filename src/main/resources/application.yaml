@@ -31,7 +31,7 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
-      group-id: CreditGroupId
+#      group-id: CreditGroupId
       auto-offset-reset: latest
     topics:
       update-status-from: master_to_credit_update_status_card

@@ -22,7 +22,7 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig {
     @Value("${spring.kafka.consumer.group-id}")
-    private String groupId;
+//    private String groupId;
 
     @Bean
     public Map<String, Object> consumerConfigs() {
@@ -30,7 +30,7 @@ public class KafkaConsumerConfig {
 //        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+//        props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         return props;
     }
 
