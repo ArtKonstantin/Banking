@@ -5,7 +5,7 @@ import org.aston.credit.dto.KafkaPinCodeDto;
 import org.aston.credit.dto.requests.ChangeCardLimitRequestDto;
 import org.aston.credit.dto.requests.ChangeCardStatusRequestDto;
 import org.aston.credit.dto.requests.ChangePinCardRequestDto;
-import org.aston.credit.dto.responses.CreditCardForTransferServiceResponseDto;
+import org.aston.credit.dto.responses.CardResponseDto;
 import org.aston.credit.dto.responses.CreditCardInformationResponseDto;
 import org.aston.credit.dto.responses.CreditCardResponseDto;
 import org.aston.credit.entity.CreditCardEntity;
@@ -38,7 +38,9 @@ public interface CreditCardMapper {
     @Mapping(target = "terminationDate", source = "creditAccount.credit.creditAgreement.terminationDate")
     CreditCardResponseDto creditCardToDto(CreditCardEntity creditCard);
 
-    CreditCardForTransferServiceResponseDto creditCardFromTransferServiceToDto (CreditCardEntity creditCard);
+    @Mapping(target = "cardStatusName", source = "cardStatus")
+
+    CardResponseDto creditCardFromTransferServiceToDto (CreditCardEntity creditCard);
 
     @Mapping(target = "productName", source = "creditAccount.credit.creditOrder.creditProduct.productName")
     @Mapping(target = "currencyCode", source = "creditAccount.currencyCode")
