@@ -6,8 +6,8 @@ import org.aston.credit.entity.enums.CardStatusEnum;
 import java.util.UUID;
 
 @Data
-public class CreditCardForTransferServiceResponseDto {
+public class CardResponseDto {
     private UUID id;
     private String cardNumber;
-    private CardStatusEnum cardStatus;
+    private CardStatusEnum cardStatusName;
 }

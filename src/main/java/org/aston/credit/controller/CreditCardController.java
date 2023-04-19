@@ -9,7 +9,7 @@ import org.aston.credit.Constants;
 import org.aston.credit.dto.requests.ChangeCardLimitRequestDto;
 import org.aston.credit.dto.requests.ChangeCardStatusRequestDto;
 import org.aston.credit.dto.requests.ChangePinCardRequestDto;
-import org.aston.credit.dto.responses.CreditCardForTransferServiceResponseDto;
+import org.aston.credit.dto.responses.CardResponseDto;
 import org.aston.credit.dto.responses.CreditCardResponseDto;
 import org.aston.credit.entity.CreditCardEntity;
 import org.aston.credit.mapper.CreditCardMapper;
@@ -73,7 +73,7 @@ public class CreditCardController {
     @Operation(summary = "Получение карты по идентификатору (для MONEY TRANSFER SERVICE)",
             description = "Позволяет получить карту с полями по идентификатору(контроллер " +
                     "для интеграции с Money Transfer Service")
-    public CreditCardForTransferServiceResponseDto findCardById(
+    public CardResponseDto findCardById(
             @PathVariable
             @Parameter(description = Constants.UUID, required = true) UUID cardId) {
         CreditCardEntity creditCard = creditCardService.findCardById(cardId);
