@@ -50,6 +50,9 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 ### 08 - Маппинг Получения реквизитов кредита для платежа
 GET http://localhost:8083/api/v1/credit/credits/1/details
 
+### 09 - Маппинг Отправки информации о кредитных картах
+GET http://localhost:8083/api/v1/credit/credit-cards?clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
+
 ### 10 - Отправка информации по кредитной карте
 GET http://localhost:8083/api/v1/credit/credit-cards/1234567891234567
 
@@ -57,7 +60,8 @@ GET http://localhost:8083/api/v1/credit/credit-cards/1234567891234567
 GET http://localhost:8083/api/v1/credit/credits/information/short?clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 ### 12 - Маппинг Отправки подробной информации о действующем кредитном продукте пользователя
-GET http://localhost:8083/api/v1/credit/credits/information/detailed?creditId=1&clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
+GET http://localhost:8083/api/v1/credit/credits/information/detailed?creditId=1&
+    clientId=0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 ### 13 - Маппинг Закрытия кредитной карты
 POST http://localhost:8083/api/v1/credit/credit-cards?cardId=f34f8980-0965-4132-8947-deb1e6170b2c

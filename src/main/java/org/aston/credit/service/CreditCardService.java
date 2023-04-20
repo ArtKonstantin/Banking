@@ -4,18 +4,25 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.dto.KafkaCreditCardDto;
 import org.aston.credit.dto.KafkaPinCodeDto;
+import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditCardEntity;
+import org.aston.credit.entity.CreditEntity;
+import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.enums.CardStatusEnum;
 import org.aston.credit.exception.BadCardBalanceException;
 import org.aston.credit.exception.BadRequestException;
-import org.aston.credit.exception.ForbiddenException;
 import org.aston.credit.mapper.CreditCardMapper;
+import org.aston.credit.repository.CreditAccountRepository;
 import org.aston.credit.repository.CreditCardRepository;
+import org.aston.credit.repository.CreditOrderRepository;
+import org.aston.credit.repository.CreditRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -24,12 +31,14 @@ import java.util.UUID;
 public class CreditCardService {
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final CreditCardRepository creditCardRepository;
-    private final CreditOrderService creditOrderService;
     private final CreditCardMapper creditCardMapper;
     @Value("${spring.kafka.topics.update-status-in}")
     private String topic;
     @Value("${spring.kafka.topics.update-pin}")
     private String topicPin;
+    private final CreditAccountRepository creditAccountRepository;
+    private final CreditOrderRepository creditOrderRepository;
+    private final CreditRepository creditRepository;
 
     public void block(CreditCardEntity creditCardEntity) {
         CreditCardEntity creditCard = check(creditCardEntity);
@@ -116,5 +125,23 @@ public class CreditCardService {
 
         creditCardEntity.setCardStatus(CardStatusEnum.DELETED);
         creditCardRepository.save(creditCardEntity);
+    }
+
+    public List<CreditCardEntity> getAllByClientId(UUID clientId) {
+        List<CreditOrderEntity> creditOrders = creditOrderRepository.findAllByClientId(clientId);
+        List<CreditAccountEntity> creditAccounts = new ArrayList<>();
+        List<CreditCardEntity> creditCards = new ArrayList<>();
+
+        for (CreditOrderEntity creditOrder : creditOrders) {
+            CreditEntity credit = creditRepository.findByCreditOrder(creditOrder);
+            creditAccounts.add(credit.getCreditAccount());
+        }
+
+        for (CreditAccountEntity creditAccount : creditAccounts) {
+            final List<CreditCardEntity> allByCreditAccount = creditCardRepository.findAllByCreditAccount(creditAccount);
+            creditCards.addAll(allByCreditAccount);
+        }
+
+        return creditCards;
     }
 }

@@ -10,6 +10,7 @@ import org.aston.credit.dto.requests.ChangeCardLimitRequestDto;
 import org.aston.credit.dto.requests.ChangeCardStatusRequestDto;
 import org.aston.credit.dto.requests.ChangePinCardRequestDto;
 import org.aston.credit.dto.responses.CardResponseDto;
+import org.aston.credit.dto.responses.CreditCardInformationResponseDto;
 import org.aston.credit.dto.responses.CreditCardResponseDto;
 import org.aston.credit.entity.CreditCardEntity;
 import org.aston.credit.mapper.CreditCardMapper;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -69,6 +71,16 @@ public class CreditCardController {
     public void limit(@RequestBody ChangeCardLimitRequestDto creditCardDto) {
         final CreditCardEntity creditCardEntity = creditCardMapper.newLimitDtoToEntity(creditCardDto);
         creditCardService.limit(creditCardEntity);
+    }
+
+    @GetMapping
+    @Operation(summary = "09 - Маппинг Отправки информации о кредитных картах",
+            description = "В данном эндпоинте необходимо запросить общую информацию о кредитных картах для отображения")
+    public List<CreditCardInformationResponseDto> getById(
+            @RequestParam(name = "clientId")
+            @Parameter(description = Constants.UUID, required = true) UUID clientId) {
+        List<CreditCardEntity> creditCards = creditCardService.getAllByClientId(clientId);
+        return creditCardMapper.creditCardInfoToDtoList(creditCards);
     }
 
     @GetMapping("/{cardId}")
