@@ -26,7 +26,7 @@ volumes:
 #      - POSTGRES_PASSWORD=Mgy4Xn1Wkeul
 #    ports:
 #      - '5433:5432'
-
+#
 #  #  zookeeper - это для теста только у меня локально. убрать перед заливкой на сервер!
 #  zookeeper:
 #    image: confluentinc/cp-zookeeper:latest
@@ -35,7 +35,7 @@ volumes:
 #      ZOOKEEPER_TICK_TIME: 2000
 #    ports:
 #      - '2181:2181'
-
+#
 #  #  kafka - это для теста только у меня локально. убрать перед заливкой на сервер!
 #  kafka:
 #    image: confluentinc/cp-kafka:latest

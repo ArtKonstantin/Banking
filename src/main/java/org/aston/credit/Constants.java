@@ -2,7 +2,7 @@ package org.aston.credit;
 
 public class Constants {
 
-    public static final String UUID = "uuid клиента";
+    public static final String UUID = "uuid клиента или карты";
 
     public static final String UUID_PATTERN = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
 

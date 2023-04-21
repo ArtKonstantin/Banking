@@ -38,13 +38,13 @@ public interface CreditCardMapper {
     @Mapping(target = "terminationDate", source = "creditAccount.credit.creditAgreement.terminationDate")
     CreditCardResponseDto creditCardToDto(CreditCardEntity creditCard);
 
-    @Mapping(target = "cardStatusName", source = "cardStatus")
 
-    CardResponseDto creditCardFromTransferServiceToDto (CreditCardEntity creditCard);
+    @Mapping(target = "cardStatusName", source = "cardStatus")
+    CardResponseDto creditCardFromTransferServiceToDto(CreditCardEntity creditCard);
 
     @Mapping(target = "productName", source = "creditAccount.credit.creditOrder.creditProduct.productName")
     @Mapping(target = "currencyCode", source = "creditAccount.currencyCode")
     CreditCardInformationResponseDto creditCardInfoToDto(CreditCardEntity creditCard);
 
-    List<CreditCardInformationResponseDto> creditCardsInfoToDto(List<CreditCardEntity> creditCards);
+    List<CreditCardInformationResponseDto> creditCardInfoToDtoList(List<CreditCardEntity> creditCards);
 }
