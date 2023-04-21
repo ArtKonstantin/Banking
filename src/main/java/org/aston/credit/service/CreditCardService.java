@@ -130,9 +130,13 @@ public class CreditCardService {
         List<CreditAccountEntity> creditAccounts = new ArrayList<>();
         List<CreditCardEntity> creditCards = new ArrayList<>();
 
+        if (creditOrders.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+
         for (CreditOrderEntity creditOrder : creditOrders) {
-            if (creditOrder != null) {
-                CreditEntity credit = creditRepository.findByCreditOrder(creditOrder);
+            CreditEntity credit = creditRepository.findByCreditOrder(creditOrder);
+            if (credit != null) {
                 creditAccounts.add(credit.getCreditAccount());
             }
         }
