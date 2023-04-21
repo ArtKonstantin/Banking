@@ -12,7 +12,6 @@ import org.aston.credit.entity.enums.CardStatusEnum;
 import org.aston.credit.exception.BadCardBalanceException;
 import org.aston.credit.exception.BadRequestException;
 import org.aston.credit.mapper.CreditCardMapper;
-import org.aston.credit.repository.CreditAccountRepository;
 import org.aston.credit.repository.CreditCardRepository;
 import org.aston.credit.repository.CreditOrderRepository;
 import org.aston.credit.repository.CreditRepository;
@@ -36,7 +35,6 @@ public class CreditCardService {
     private String topic;
     @Value("${spring.kafka.topics.update-pin}")
     private String topicPin;
-    private final CreditAccountRepository creditAccountRepository;
     private final CreditOrderRepository creditOrderRepository;
     private final CreditRepository creditRepository;
 
@@ -133,8 +131,10 @@ public class CreditCardService {
         List<CreditCardEntity> creditCards = new ArrayList<>();
 
         for (CreditOrderEntity creditOrder : creditOrders) {
-            CreditEntity credit = creditRepository.findByCreditOrder(creditOrder);
-            creditAccounts.add(credit.getCreditAccount());
+            if (creditOrder != null) {
+                CreditEntity credit = creditRepository.findByCreditOrder(creditOrder);
+                creditAccounts.add(credit.getCreditAccount());
+            }
         }
 
         for (CreditAccountEntity creditAccount : creditAccounts) {
