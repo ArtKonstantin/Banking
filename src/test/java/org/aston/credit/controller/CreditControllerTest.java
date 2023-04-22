@@ -65,7 +65,7 @@ class CreditControllerTest {
                 "123456789012"));
         Mockito.when(creditOrderService.getCreditOrdersByClientId(Mockito.any()))
                 .thenReturn(expected);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information/short")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/short")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03"))
                 .andDo(print())
@@ -84,7 +84,7 @@ class CreditControllerTest {
         Mockito.when(creditService.getInformation(Mockito.any()))
                 .thenReturn(expected);
         Mockito.when(creditMapper.toInformationDto(Mockito.any())).thenReturn(expectedDto);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/detailed")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03")
                         .param("creditId", "5"))
@@ -96,7 +96,7 @@ class CreditControllerTest {
     void whenGetShortInformation_thenThrowNotFoundException() throws Exception {
         Mockito.when(creditService.getInformation(Mockito.any()))
                 .thenThrow(NoSuchElementException.class);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03")
                         .param("creditId", "5"))
@@ -108,7 +108,7 @@ class CreditControllerTest {
     void whenGetShortInformation_thenThrowInternalServerException() throws Exception {
         Mockito.when(creditService.getInformation(Mockito.any()))
                 .thenThrow(InternalError.class);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/detailed")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03")
                         .param("creditId", "5"))
@@ -120,7 +120,7 @@ class CreditControllerTest {
     void whenGetInformation_thenThrowInternalServerException() throws Exception {
         Mockito.when(creditOrderService.getCreditOrdersByClientId(Mockito.any()))
                 .thenThrow(InternalError.class);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information/short")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/short")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03"))
                 .andDo(print())
@@ -131,7 +131,7 @@ class CreditControllerTest {
     void whenGetInformation_thenThrowNotFoundException() throws Exception {
         Mockito.when(creditOrderService.getCreditOrdersByClientId(Mockito.any()))
                 .thenThrow(EntityNotFoundException.class);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information/short")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/short")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03"))
                 .andDo(print())

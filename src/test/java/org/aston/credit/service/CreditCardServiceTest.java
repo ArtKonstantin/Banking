@@ -1,16 +1,20 @@
 package org.aston.credit.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.aston.credit.dto.KafkaCreditCardDto;
+import org.aston.credit.dto.KafkaPinCodeDto;
 import org.aston.credit.entity.CreditCardEntity;
 import org.aston.credit.entity.enums.CardStatusEnum;
 import org.aston.credit.exception.BadRequestException;
 import org.aston.credit.helper.CreditCardHelper;
+import org.aston.credit.mapper.CreditCardMapper;
 import org.aston.credit.repository.CreditCardRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.kafka.core.KafkaTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -25,18 +29,25 @@ class CreditCardServiceTest {
     private CreditCardService cardService;
     @Mock
     private CreditCardRepository creditCardRepository;
+    @Mock
+    private CreditCardMapper creditCardMapper;
+    @Mock
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
     @Test
     void block() {
         CreditCardEntity creditCard = CreditCardHelper.getCreditCard();
         CreditCardEntity creditCardEntity = mock(CreditCardEntity.class);
+        KafkaCreditCardDto kafkaCreditCardDto = CreditCardHelper.getKafkaCreditCardDto();
 
         when(creditCardEntity.getCardStatus()).thenReturn(CardStatusEnum.ACTIVE);
         when(creditCardEntity.getCardNumber()).thenReturn("1234567891234567");
         when(creditCardRepository.findByCardNumber(creditCardEntity.getCardNumber())).thenReturn(creditCard);
+        when(creditCardMapper.toKafkaCreditCardDto(creditCard)).thenReturn(kafkaCreditCardDto);
 
         cardService.block(creditCardEntity);
         verify(creditCardRepository, times(1)).save(creditCard);
+        verify(kafkaTemplate, times(1)).send(null, kafkaCreditCardDto);
     }
 
     @Test
@@ -55,14 +66,17 @@ class CreditCardServiceTest {
     @Test
     void pin() {
         CreditCardEntity creditCard = CreditCardHelper.getCreditCard();
+        KafkaPinCodeDto kafkaPinCodeDto = CreditCardHelper.getKafkaPiCodeDto();
         CreditCardEntity creditCardEntity = mock(CreditCardEntity.class);
 
         when(creditCardEntity.getPin()).thenReturn("4321");
         when(creditCardEntity.getCardNumber()).thenReturn("1234567891234567");
         when(creditCardRepository.findByCardNumber(creditCardEntity.getCardNumber())).thenReturn(creditCard);
+        when(creditCardMapper.toKafkaPinCodeDto(creditCard)).thenReturn(kafkaPinCodeDto);
 
         cardService.pin(creditCardEntity);
         verify(creditCardRepository, times(1)).save(creditCard);
+        verify(kafkaTemplate, times(1)).send(null, kafkaPinCodeDto);
     }
 
     @Test
