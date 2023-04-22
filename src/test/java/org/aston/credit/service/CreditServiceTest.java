@@ -1,5 +1,6 @@
 package org.aston.credit.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditEntity;
 import org.aston.credit.entity.PaymentScheduleEntity;
@@ -73,6 +74,14 @@ class CreditServiceTest {
         when(creditRepository.getReferenceById(creditId)).thenReturn(credit);
         assertThrows(ForbiddenException.class,
                 () -> creditService.schedule(UUID.fromString("0799f8b8-729d-0000-b1ba-5e64f88f6d03"), creditId));
+    }
+
+    @Test
+    void throwExceptionIfCreditNotFound() {
+        when(creditRepository.findByCreditAgreementId(agreementId)).thenReturn(null);
+
+        assertThrows(EntityNotFoundException.class,
+                () -> creditService.credit(agreementId));
     }
 
     @Test

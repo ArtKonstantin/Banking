@@ -10,6 +10,7 @@ import org.aston.credit.entity.CreditEntity;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.enums.CardStatusEnum;
 import org.aston.credit.exception.BadCardBalanceException;
+import org.aston.credit.exception.BadCardStatusException;
 import org.aston.credit.exception.BadRequestException;
 import org.aston.credit.mapper.CreditCardMapper;
 import org.aston.credit.repository.CreditCardRepository;
@@ -39,7 +40,7 @@ public class CreditCardService {
     private final CreditRepository creditRepository;
 
     public void block(CreditCardEntity creditCardEntity) {
-        CreditCardEntity creditCard = check(creditCardEntity);
+        CreditCardEntity creditCard = getById(creditCardEntity.getCardNumber());
 
         if (creditCard.getCardStatus().equals(creditCardEntity.getCardStatus())) {
             throw new BadRequestException();
@@ -53,16 +54,17 @@ public class CreditCardService {
     }
 
     public void blockFromAbs(CreditCardEntity creditCardEntity) {
-        CreditCardEntity creditCard = check(creditCardEntity);
+        CreditCardEntity creditCard = getById(creditCardEntity.getCardNumber());
 
         if (!creditCard.getCardStatus().equals(creditCardEntity.getCardStatus())) {
             creditCard.setCardStatus(creditCardEntity.getCardStatus());
             creditCardRepository.save(creditCard);
         }
+        else throw new BadCardStatusException();
     }
 
     public void pin(CreditCardEntity creditCardEntity) {
-        CreditCardEntity creditCard = check(creditCardEntity);
+        CreditCardEntity creditCard = getById(creditCardEntity.getCardNumber());
 
         creditCard.setPin(creditCardEntity.getPin());
         creditCardRepository.save(creditCard);
@@ -72,20 +74,10 @@ public class CreditCardService {
     }
 
     public void limit(CreditCardEntity creditCardEntity) {
-        CreditCardEntity creditCard = check(creditCardEntity);
+        CreditCardEntity creditCard = getById(creditCardEntity.getCardNumber());
 
         creditCard.setTransactionLimit(creditCardEntity.getTransactionLimit());
         creditCardRepository.save(creditCard);
-    }
-
-    public CreditCardEntity check(CreditCardEntity creditCardEntity) {
-        final CreditCardEntity creditCard = creditCardRepository.findByCardNumber(creditCardEntity.getCardNumber());
-
-        if (creditCard == null) {
-            throw new EntityNotFoundException();
-        }
-
-        return creditCard;
     }
 
     public CreditCardEntity getById(String cardId) {

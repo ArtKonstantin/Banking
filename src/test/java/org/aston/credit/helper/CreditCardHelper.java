@@ -8,13 +8,19 @@ import org.aston.credit.dto.requests.ChangePinCardRequestDto;
 import org.aston.credit.entity.CreditCardEntity;
 import org.aston.credit.entity.enums.CardStatusEnum;
 
+import java.math.BigDecimal;
+import java.util.UUID;
+
 public class CreditCardHelper {
 
     public static CreditCardEntity getCreditCard() {
         CreditCardEntity creditCard = new CreditCardEntity();
         creditCard.setCardNumber("1234567891234567");
+        creditCard.setId(UUID.fromString("f34f8980-0965-4132-8947-deb1e6170b2c"));
         creditCard.setCardStatus(CardStatusEnum.BLOCKED);
         creditCard.setTransactionLimit(10000);
+        creditCard.setLimit(BigDecimal.valueOf(100000.00));
+        creditCard.setCardBalance(100000);
         return creditCard;
     }
 

@@ -6,6 +6,7 @@ import org.aston.credit.dto.responses.ExceptionDto;
 import org.aston.credit.dto.responses.ValidationErrorResponse;
 import org.aston.credit.dto.responses.ViolationDto;
 import org.aston.credit.exception.BadCardBalanceException;
+import org.aston.credit.exception.BadCardStatusException;
 import org.aston.credit.exception.BadRequestException;
 import org.aston.credit.exception.ForbiddenException;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,14 @@ public class ExceptionControllerAdvice {
     public ExceptionDto catchBadRequestException(BadCardBalanceException e) {
         e.printStackTrace();
         return new ExceptionDto("Bad card balance");
+    }
+
+    @ResponseBody
+    @ExceptionHandler(BadCardStatusException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ExceptionDto catchBadRequestException(BadCardStatusException e) {
+        e.printStackTrace();
+        return new ExceptionDto("Bad card status");
     }
 
     @ResponseBody
