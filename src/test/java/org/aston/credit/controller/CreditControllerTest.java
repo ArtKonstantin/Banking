@@ -7,9 +7,11 @@ import org.aston.credit.entity.CreditAgreementEntity;
 import org.aston.credit.entity.CreditEntity;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.CreditProductEntity;
+import org.aston.credit.entity.PaymentScheduleEntity;
 import org.aston.credit.entity.enums.CreditStatusEnum;
 import org.aston.credit.entity.enums.CreditTypeEnum;
 import org.aston.credit.entity.enums.OrderStatusEnum;
+import org.aston.credit.helper.CreditHelper;
 import org.aston.credit.mapper.CreditMapper;
 import org.aston.credit.mapper.CreditOrderMapper;
 import org.aston.credit.service.CreditOrderService;
@@ -30,6 +32,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
+import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -51,6 +54,36 @@ class CreditControllerTest {
 
     @MockBean
     private CreditOrderMapper creditOrderMapper;
+
+    @Test
+    void whenGetSchedule_thenReturnOk() throws Exception {
+        CreditEntity expected = CreditHelper.getCredit();
+
+        Mockito.when(creditService.schedule(Mockito.any(), Mockito.anyInt())).thenReturn(expected);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/1/schedule")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .header("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void whenGetAgreement_thenReturnOk() throws Exception {
+        CreditEntity creditExpected = CreditHelper.getCredit();
+        PaymentScheduleEntity paymentExpected = CreditHelper.getPayments().get(0);
+        CreditAccountEntity accountExpected = CreditHelper.getCreditAccount();
+
+        Mockito.when(creditService.credit(1)).thenReturn(creditExpected);
+        Mockito.when(creditService.payment(creditExpected.getCreditAccount().getPaymentSchedule())).thenReturn(paymentExpected);
+        Mockito.when(creditService.debt(creditExpected.getCreditAccount())).thenReturn(accountExpected);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/1/details")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .param("creditId", "1"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 
     @Test
     void whenGetShortInformation_thenReturnOk() throws Exception {
