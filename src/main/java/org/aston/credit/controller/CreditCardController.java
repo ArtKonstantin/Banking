@@ -15,6 +15,8 @@ import org.aston.credit.dto.responses.CreditCardResponseDto;
 import org.aston.credit.entity.CreditCardEntity;
 import org.aston.credit.mapper.CreditCardMapper;
 import org.aston.credit.service.CreditCardService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -94,10 +96,10 @@ public class CreditCardController {
     @Operation(summary = "Получение карты по идентификатору (для MONEY TRANSFER SERVICE)",
             description = "Позволяет получить карту с полями по идентификатору(контроллер " +
                     "для интеграции с Money Transfer Service")
-    public CardResponseDto findCardById(
+    public ResponseEntity<CardResponseDto> findCardById(
             @PathVariable
             @Parameter(description = Constants.UUID, required = true) UUID cardId) {
         CreditCardEntity creditCard = creditCardService.findCardById(cardId);
-        return creditCardMapper.creditCardFromTransferServiceToDto(creditCard);
+        return new ResponseEntity<>(creditCardMapper.creditCardFromTransferServiceToDto(creditCard), HttpStatus.OK);
     }
 }
