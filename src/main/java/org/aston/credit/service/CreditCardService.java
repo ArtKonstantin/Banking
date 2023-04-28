@@ -60,7 +60,7 @@ public class CreditCardService {
             creditCard.setCardStatus(creditCardEntity.getCardStatus());
             creditCardRepository.save(creditCard);
         }
-        else throw new BadCardStatusException();
+        throw new BadCardStatusException("bad card status");
     }
 
     public void pin(CreditCardEntity creditCardEntity) {
@@ -110,7 +110,7 @@ public class CreditCardService {
         final CreditCardEntity creditCardEntity = creditCard.get();
 
         if (creditCardEntity.getLimit().compareTo(BigDecimal.valueOf(creditCardEntity.getCardBalance())) != 0) {
-            throw new BadCardBalanceException();
+            throw new BadCardBalanceException("bad card balance");
         }
 
         creditCardEntity.setCardStatus(CardStatusEnum.DELETED);

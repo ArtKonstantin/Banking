@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
 
-# dev
+  # dev
   user-service:
     image: '$AND_DOCKER_REGISTRY_NAME/$PROJECT-$APP:$CI_COMMIT_BRANCH'
     container_name: $APP-$CI_COMMIT_BRANCH

@@ -30,8 +30,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Контроллер кредитных карт",
-        description = "Отвечает за эндпоинты кредитных карт клиента")
+@Tag(name = "Контроллер кредитных карт")
 @Validated
 @RequestMapping("/api/v1/credit/credit-cards")
 public class CreditCardController {

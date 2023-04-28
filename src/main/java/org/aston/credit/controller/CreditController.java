@@ -30,8 +30,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Контроллер кредитных продуктов клиента",
-        description = "Отвечает за эндпоинты кредитов клиента")
+@Tag(name = "Контроллер кредитных продуктов клиента")
 @Validated
 @RequestMapping("/api/v1/credit/credits")
 public class CreditController {
@@ -64,15 +63,6 @@ public class CreditController {
         return creditMapper.agreementToDto(credit, payment, debt);
     }
 
-    /**
-     * 11 - Маппинг Отправки краткой информации о действующих кредитных продуктах пользователя.
-     * <p>
-     * Пользователь заполняет форму "Заявка на кредит" в приложении и нажимает кнопку "Отправить заявку".
-     *
-     * @param clientId uuid клинета
-     * @return List of {@link ShortCreditResponseDto}
-     * @throws jakarta.persistence.EntityNotFoundException если клиента с таким id не существует
-     */
     @GetMapping("/information/short")
     @Operation(summary = "11 - Маппинг Отправки краткой информации о действующих кредитных продуктах пользователя",
             description = "Возвращает список с краткой информацией о всех кредитных продуктов клиента")
@@ -83,19 +73,6 @@ public class CreditController {
                 .toListShortDto(creditOrderService.getCreditOrdersByClientId(clientId));
     }
 
-    /**
-     * 12 - Маппинг Отправки подробной информации о действующем кредитном продукте пользователя.
-     * <p>
-     * Запрос на получение подробной информации о действующем кредитном продукте пользователя из БД.
-     * <p>
-     * <b>Следующие поля не включены в маппинг:</b> <i>number</i> (номер кредитного договра),
-     * <i>payment date</i>, <i>три неописанных поля</i>.
-     *
-     * @param creditId id крединтного продукта
-     * @param clientId uuid клинета (в документации не описано как он должен учавствовать в этом эндпоинте)
-     * @return {@link CreditInformationResponseDto} с информацией о кредитных продуктах клиента
-     * @throws jakarta.persistence.EntityNotFoundException если клиента с таким id не существует
-     */
     @GetMapping("/information/detailed")
     @Operation(summary = "12 - Маппинг Отправки подробной информации о действующем кредитном продукте пользователя",
             description = "Возвращает список всех кредитных продуктов клиента")

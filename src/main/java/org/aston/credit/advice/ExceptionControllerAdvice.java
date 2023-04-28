@@ -28,7 +28,7 @@ public class ExceptionControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ExceptionDto catchBadRequestException(BadCardBalanceException e) {
         e.printStackTrace();
-        return new ExceptionDto("Bad card balance");
+        return new ExceptionDto(e.getMessage());
     }
 
     @ResponseBody
@@ -36,7 +36,7 @@ public class ExceptionControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ExceptionDto catchBadRequestException(BadCardStatusException e) {
         e.printStackTrace();
-        return new ExceptionDto("Bad card status");
+        return new ExceptionDto(e.getMessage());
     }
 
     @ResponseBody
