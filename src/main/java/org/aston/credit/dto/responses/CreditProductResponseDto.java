@@ -55,4 +55,7 @@ public class CreditProductResponseDto {
     private int gracePeriodMonths;
 
     private boolean needIncomeDetails;
+
+    private BigDecimal interestRate;
+
 }

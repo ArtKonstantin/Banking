@@ -54,15 +54,25 @@ public class CreditOrderController {
         return creditOrderMapper.toDtoList(creditOrders);
     }
 
-    @PatchMapping
-    @Operation(summary = "05/06 - Маппинг Отзыва/Подтверждения кредитной заявки",
-            description = "После вызова эндпоинта происходит изменения статуса кредитной заявки на " +
-                    "\"APPROVED BY CLIENT\" или же на \"REJECTED BY CLIENT\"")
-    public void approved(
+    @PatchMapping("/recall")
+    @Operation(summary = "05 - Маппинг Отзыва кредитной заявки",
+            description = "После вызова эндпоинта происходит изменения статуса кредитной заявки на \"REJECTED BY CLIENT\"")
+    public void recall(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId,
             @RequestBody CreditOrderApprovedRequestDto creditOrder) {
         final CreditOrderEntity orderEntity = creditOrderMapper.toStatus(creditOrder);
-        creditOrderService.approved(clientId, orderEntity);
+        creditOrderService.recall(clientId, orderEntity);
+    }
+
+    @PatchMapping("/confirmation")
+    @Operation(summary = "06 - Маппинг Подтверждения кредитной заявки",
+            description = "После вызова эндпоинта происходит изменения статуса кредитной заявки на \"APPROVED BY CLIENT\"")
+    public void confirmation(
+            @RequestHeader(name = "clientId")
+            @Parameter(description = Constants.UUID, required = true) final UUID clientId,
+            @RequestBody CreditOrderApprovedRequestDto creditOrder) {
+        final CreditOrderEntity orderEntity = creditOrderMapper.toStatus(creditOrder);
+        creditOrderService.confirmation(clientId, orderEntity);
     }
 }

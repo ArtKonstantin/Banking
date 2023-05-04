@@ -65,7 +65,7 @@ public class CreditOrderHelper {
 
     public static CreditOrderResponseDto getCreditOrderDto() {
         return CreditOrderResponseDto.builder().applicationId(1).productId(1).productName("Стартовый")
-                .status(OrderStatusEnum.APPROVED_BY_BANK).amountRequested(BigDecimal.valueOf(50000.00))
+                .amountRequested(BigDecimal.valueOf(50000.00))
                 .periodMonths(12).creationDate(LocalDate.now()).build();
     }
 

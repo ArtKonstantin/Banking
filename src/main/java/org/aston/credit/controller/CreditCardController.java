@@ -49,7 +49,7 @@ public class CreditCardController {
         creditCardService.block(creditCardEntity);
     }
 
-    @PostMapping
+    @PatchMapping("/close")
     @Operation(summary = "13 - Маппинг Закрытия кредитной карты",
             description = "В данном эндпоинте необходимо установить статус Deleted для карты в БД Кредитного сервиса")
     public void delete(

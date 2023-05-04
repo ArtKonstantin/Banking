@@ -108,12 +108,12 @@ class CreditControllerTest {
     void whenGetInformation_thenReturnOk() throws Exception {
         CreditEntity expected = new CreditEntity(1L, new CreditAgreementEntity(), new CreditOrderEntity(),
                 CreditTypeEnum.CONSUMER_CREDIT, BigDecimal.valueOf(900000.00), "RUB",
-                BigDecimal.valueOf(0.15), true, 0, CreditStatusEnum.ACTIVE,
-                new CreditAccountEntity());
+                BigDecimal.valueOf(15.00), CreditStatusEnum.ACTIVE, BigDecimal.valueOf(900000.00),
+                BigDecimal.valueOf(39010.00), new CreditAccountEntity());
         CreditInformationResponseDto expectedDto = new CreditInformationResponseDto(1L, "someCredit", "RUB",
                 "1000000001", BigDecimal.valueOf(900000.00), BigDecimal.valueOf(0.15), "10.02.2025",
                 LocalDate.now());
-        Mockito.when(creditService.getInformation(Mockito.any()))
+        Mockito.when(creditService.getInformation(Mockito.any(), Mockito.any()))
                 .thenReturn(expected);
         Mockito.when(creditMapper.toInformationDto(Mockito.any())).thenReturn(expectedDto);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/detailed")
@@ -126,7 +126,7 @@ class CreditControllerTest {
 
     @Test
     void whenGetShortInformation_thenThrowNotFoundException() throws Exception {
-        Mockito.when(creditService.getInformation(Mockito.any()))
+        Mockito.when(creditService.getInformation(Mockito.any(), Mockito.any()))
                 .thenThrow(NoSuchElementException.class);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information")
                         .accept(MediaType.APPLICATION_JSON)
@@ -138,7 +138,7 @@ class CreditControllerTest {
 
     @Test
     void whenGetShortInformation_thenThrowInternalServerException() throws Exception {
-        Mockito.when(creditService.getInformation(Mockito.any()))
+        Mockito.when(creditService.getInformation(Mockito.any(), Mockito.any()))
                 .thenThrow(InternalError.class);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/detailed")
                         .accept(MediaType.APPLICATION_JSON)

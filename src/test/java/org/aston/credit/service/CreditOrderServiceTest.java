@@ -125,7 +125,7 @@ class CreditOrderServiceTest {
         when(creditOrderRepository.getReferenceById(orderRequest.getId())).thenReturn(order);
         when(orderRequest.getStatus()).thenReturn(APPROVED_BY_CLIENT);
 
-        creditOrder.approved(clientId, orderRequest);
+        creditOrder.recall(clientId, orderRequest);
         verify(creditOrderRepository, times(1)).save(order);
     }
 
@@ -140,7 +140,7 @@ class CreditOrderServiceTest {
         when(orderRequest.getStatus()).thenReturn(APPROVED_BY_CLIENT);
 
         assertThrows(BadRequestException.class,
-                () -> creditOrder.approved(clientId, orderRequest));
+                () -> creditOrder.recall(clientId, orderRequest));
     }
 
     @Test
@@ -152,7 +152,7 @@ class CreditOrderServiceTest {
         when(creditOrderRepository.getReferenceById(orderRequest.getId())).thenReturn(order);
         when(orderRequest.getStatus()).thenReturn(REJECT_BY_CLIENT);
 
-        creditOrder.approved(clientId, orderRequest);
+        creditOrder.recall(clientId, orderRequest);
         verify(creditOrderRepository, times(1)).save(order);
     }
 
@@ -167,7 +167,7 @@ class CreditOrderServiceTest {
         when(orderRequest.getStatus()).thenReturn(REJECT_BY_CLIENT);
 
         assertThrows(BadRequestException.class,
-                () -> creditOrder.approved(clientId, orderRequest));
+                () -> creditOrder.recall(clientId, orderRequest));
     }
 
 
@@ -179,6 +179,6 @@ class CreditOrderServiceTest {
         when(creditOrderRepository.getReferenceById(orderRequest.getId())).thenReturn(order);
 
         assertThrows(ForbiddenException.class,
-                () -> creditOrder.approved(UUID.fromString("0799f8b8-0000-4818-b1ba-5e64f88f6d03"), orderRequest));
+                () -> creditOrder.recall(UUID.fromString("0799f8b8-0000-4818-b1ba-5e64f88f6d03"), orderRequest));
     }
 }

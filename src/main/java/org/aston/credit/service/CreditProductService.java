@@ -12,12 +12,6 @@ import java.util.List;
 public class CreditProductService {
     private final CreditProductRepository creditProductRepository;
 
-    /**
-     * 01- Маппинг Отправки активных кредитных продуктов
-     *
-     * @return Список активных кредитных продуктов банка
-     */
-
     public List<CreditProductEntity> getAllActive() {
         return creditProductRepository.findAllByProductIsActiveIsTrue();
     }

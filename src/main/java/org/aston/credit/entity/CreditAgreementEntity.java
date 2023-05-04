@@ -17,7 +17,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "credit_agreement")
+@Table(name = "agreement")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -42,4 +42,7 @@ public class CreditAgreementEntity {
 
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
+
+    @Column(name = "number", nullable = false)
+    private String number;
 }

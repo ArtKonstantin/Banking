@@ -19,7 +19,6 @@ class CreditOrderMapperTest {
         assertEquals(creditOrder.getAmountRequested(), creditOrderDto.getAmountRequested());
         assertEquals(creditOrder.getProductId(), creditOrderDto.getProductId());
         assertEquals(creditOrder.getProductName(), creditOrderDto.getProductName());
-        assertEquals(creditOrder.getStatus(), creditOrderDto.getStatus());
         assertEquals(creditOrder.getPeriodMonths(), creditOrderDto.getPeriodMonths());
         assertEquals(creditOrder.getCreationDate(), creditOrderDto.getCreationDate());
     }

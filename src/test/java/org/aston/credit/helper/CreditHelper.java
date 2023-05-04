@@ -59,8 +59,6 @@ public class CreditHelper {
         credit.setCreditLimit(BigDecimal.valueOf(900000.00));
         credit.setCurrencyCode("RUB");
         credit.setInterestRate(BigDecimal.valueOf(0.15));
-        credit.setPersonalGuarantees(true);
-        credit.setGracePeriodMonths(0);
         credit.setCreditStatus(CreditStatusEnum.ACTIVE);
         credit.setCreditAccount(getCreditAccount());
         return credit;

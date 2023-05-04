@@ -75,13 +75,13 @@ public class CreditController {
 
     @GetMapping("/information/detailed")
     @Operation(summary = "12 - Маппинг Отправки подробной информации о действующем кредитном продукте пользователя",
-            description = "Возвращает список всех кредитных продуктов клиента")
+            description = "Возвращает информацию о конкретном кредитном продукте клиента")
     public ResponseEntity<CreditInformationResponseDto> getInformation(
-            @RequestParam(name = "creditId")
+            @RequestParam(name = "credit_id")
             @Parameter(description = Constants.CREDIT_ID, required = true) Long creditId,
-            @RequestParam(name = "clientId")
+            @RequestParam(name = "uuid")
             @Parameter(description = Constants.UUID, required = true) UUID clientId) {
         return ResponseEntity.ok(creditMapper
-                .toInformationDto(creditService.getInformation(creditId)));
+                .toInformationDto(creditService.getInformation(clientId, creditId)));
     }
 }

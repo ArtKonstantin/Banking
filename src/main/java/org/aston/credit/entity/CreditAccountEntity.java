@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "credit_account")
+@Table(name = "account")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -57,4 +57,10 @@ public class CreditAccountEntity {
 
     @Column(name = "currency_code", nullable = false)
     private String currencyCode;
+
+    @Column(name = "current_principal_amount", nullable = false)
+    private BigDecimal currentPrincipalAmount;
+
+    @Column(name = "current_interest_amount", nullable = false)
+    private BigDecimal currentInterestAmount;
 }
