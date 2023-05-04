@@ -3,9 +3,11 @@ package org.aston.credit.service;
 import jakarta.persistence.EntityNotFoundException;
 import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditEntity;
+import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.PaymentScheduleEntity;
 import org.aston.credit.exception.ForbiddenException;
 import org.aston.credit.helper.CreditHelper;
+import org.aston.credit.helper.CreditOrderHelper;
 import org.aston.credit.repository.CreditRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -87,8 +89,12 @@ class CreditServiceTest {
     @Test
     void whenGetInformation_thenReturnEntity() {
         CreditEntity expected = new CreditEntity();
+        UUID clientId = CreditOrderHelper.CLIENT_ID;
+        CreditOrderEntity creditOrder = CreditOrderHelper.getCreditOrder();
+
+        when(creditOrder.getClientId()).thenReturn(CreditHelper.CLIENT_ID);
         Mockito.when(creditRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(expected));
-        CreditEntity entity = creditService.getInformation(1L);
+        CreditEntity entity = creditService.getInformation(Mockito.any(), 1L);
         Assertions.assertEquals(expected, entity);
         Mockito.verify(creditRepository, Mockito.times(1)).findById(Mockito.anyLong());
     }
@@ -96,7 +102,7 @@ class CreditServiceTest {
     @Test
     void whenGetInformation_thenThrowException() {
         Mockito.when(creditRepository.findById(Mockito.anyLong())).thenThrow(NoSuchElementException.class);
-        Assertions.assertThrows(NoSuchElementException.class, () -> creditService.getInformation(1L));
+        Assertions.assertThrows(NoSuchElementException.class, () -> creditService.getInformation(Mockito.any(), 1L));
         Mockito.verify(creditRepository, Mockito.times(1)).findById(Mockito.anyLong());
     }
 }

@@ -50,15 +50,15 @@ public class CreditEntity {
     @Column(name = "interest_rate", nullable = false)
     private BigDecimal interestRate;
 
-    @Column(name = "personal_guarantees", nullable = false)
-    private boolean personalGuarantees;
-
-    @Column(name = "grace_period_months", nullable = false)
-    private int gracePeriodMonths;
-
-    @Column(name = "credit_status", nullable = false)
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private CreditStatusEnum creditStatus;
+
+    @Column(name = "principal_amount", nullable = false)
+    private BigDecimal principalAmount;
+
+    @Column(name = "interest_amount", nullable = false)
+    private BigDecimal interestAmount;
 
     @OneToOne
     @JoinColumn(name = "account_number", referencedColumnName = "account_number", nullable = false)

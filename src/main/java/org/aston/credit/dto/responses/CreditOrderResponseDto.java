@@ -15,7 +15,7 @@ public class CreditOrderResponseDto {
     private long applicationId;
     private long productId;
     private String productName;
-    private OrderStatusEnum status;
+    private OrderStatusEnum app_status;
     private BigDecimal amountRequested;
     private int periodMonths;
     private LocalDate creationDate;

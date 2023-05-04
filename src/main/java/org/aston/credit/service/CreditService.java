@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.entity.CreditAccountEntity;
 import org.aston.credit.entity.CreditEntity;
+import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.PaymentScheduleEntity;
 import org.aston.credit.exception.ForbiddenException;
 import org.aston.credit.repository.CreditRepository;
@@ -86,22 +87,14 @@ public class CreditService {
         return schedule;
     }
 
-    /**
-     * CR.2 - Отправка полной информации о кредитном продукте клиента.
-     * <p>
-     * Запрос на получение подробной информации о действующем кредитном продукте пользователя из БД.
-     * <p>
-     * Происходит SELECT запрос в БД на поиск информации о кредите по его id, если такой id есть -
-     * возвращается вся информация из БД по кредиту для передачи её в контроллер и последующего маппинга в ДТО,
-     * если её нет - выбрасывыается исключение
-     * <p>
-     * Следующие поля не включены в маппинг: number (номер кредитного договра), payment date, три неописанных поля.
-     *
-     * @param creditId id крединтного продукта
-     * @return CreditEntity с информацией о кредитных продуктах клиента
-     * @throws java.util.NoSuchElementException если клиента с таким id не существует
-     */
-    public CreditEntity getInformation(Long creditId) {
-        return creditRepository.findById(creditId).orElseThrow();
+    public CreditEntity getInformation(UUID clientId, Long creditId) {
+        final CreditEntity credit = creditRepository.findById(creditId).orElseThrow();
+        final CreditOrderEntity creditOrder = credit.getCreditOrder();
+
+        if (!clientId.equals(creditOrder.getClientId())) {
+            throw new ForbiddenException();
+        }
+
+        return credit;
     }
 }

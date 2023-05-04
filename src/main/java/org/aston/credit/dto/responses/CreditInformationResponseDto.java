@@ -7,15 +7,6 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/**
- * ДТО с полной информацией о кредитном продукте клиента.
- * <p>
- * Используется в эндпоинтах: CR.2.
- *
- * @author Gleb Buriak
- * @see org.aston.credit.controller.CreditController
- * @see org.aston.credit.service.CreditService
- */
 @Data
 @AllArgsConstructor
 public class CreditInformationResponseDto {
@@ -38,7 +29,7 @@ public class CreditInformationResponseDto {
     @Schema(description = "Ставка по кредиту")
     private BigDecimal interestRate;
 
-    @Schema(description = "Дата последнего платежа по кредиту")
+    @Schema(description = "Дата прекращения действия кредитного договора")
     private String terminationDate;
 
     @Schema(description = "Ближайшая дата платежа")

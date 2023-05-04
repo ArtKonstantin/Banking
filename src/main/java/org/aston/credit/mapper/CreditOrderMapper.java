@@ -30,19 +30,6 @@ public interface CreditOrderMapper {
 
     List<CreditOrderResponseDto> toDtoList(List<CreditOrderEntity> creditOrders);
 
-    /**
-     * CR.1 - Отправка краткой информации о кредитных продуктах клиента.
-     * <p>
-     * Метод для маппинга {@link CreditOrderEntity} в ДТО с краткой информацией о кредитном продукте клиента.
-     * <p>
-     * В маппинге учавтсвуют следующие поля сущностей: <i>creditId</i>, <i>productName</i>, <i>amount</i>,
-     * <i>currencyCode</i>, <i>periodMonths</i>
-     * <p>
-     * Значение поля <i>creditTermYears</i> вычисляется на основании значения поля <i>creditTermMonths</i> путем деления значения на 12.
-     *
-     * @param creditOrder сущность которую необходимо смапить
-     * @return {@link ShortCreditResponseDto} с информацией о кредитных продуктах клиента
-     */
     @Mapping(target = "creditId", source = "id")
     @Mapping(target = "productName", source = "creditProduct.productName")
     @Mapping(target = "creditAmount", source = "amount")
@@ -51,16 +38,5 @@ public interface CreditOrderMapper {
     @Mapping(target = "creditTermYears", expression = "java(creditTermYears = BigDecimal.valueOf(creditTermMonths/12))")
     ShortCreditResponseDto toShortDto(CreditOrderEntity creditOrder);
 
-    /**
-     * CR.1 - Отправка краткой информации о кредитных продуктах клиента.
-     * <p>
-     * Метод для маппинга списка {@link CreditOrderEntity} в ДТО с краткой информацией о кредитных продуктах клиента.
-     * <p>
-     * В маппинге учавтсвуют следующие поля сущностей: <i>creditId</i>, <i>productName</i>, <i>amount</i>,
-     * <i>currencyCode</i>, <i>periodMonths</i>
-     *
-     * @param credits сущность которую необходимо смапить
-     * @return List of {@link ShortCreditResponseDto} с информацией о кредитных продуктах клиента
-     */
     List<ShortCreditResponseDto> toListShortDto(List<CreditOrderEntity> credits);
 }

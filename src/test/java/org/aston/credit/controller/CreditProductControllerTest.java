@@ -40,19 +40,19 @@ class CreditProductControllerTest {
     void setUp() {
         expected.add(new CreditProductEntity(1, List.of(new CreditOrderEntity()), "Стартовый",
                 BigDecimal.valueOf(100000.00), BigDecimal.valueOf(1000000.00), "RUB",
-                BigDecimal.valueOf(0.05), BigDecimal.valueOf(0.30), false, false,
+                BigDecimal.valueOf(15.00), BigDecimal.valueOf(30.00), false, false,
                 true, 6, 36, true,
-                "Стандартный кредит", CalculationModeEnum.ANNUITY, 0, true));
+                "Стандартный кредит", CalculationModeEnum.ANNUITY, 0, true, BigDecimal.valueOf(15.00)));
         expected.add(new CreditProductEntity(2, List.of(new CreditOrderEntity()), "Ne Стартовый",
                 BigDecimal.valueOf(10000.00), BigDecimal.valueOf(100000.00), "RUB",
-                BigDecimal.valueOf(0.05), BigDecimal.valueOf(0.30), false, false,
+                BigDecimal.valueOf(15.00), BigDecimal.valueOf(30.00), false, false,
                 true, 6, 36, true,
-                "Стандартный кредит", CalculationModeEnum.ANNUITY, 0, true));
+                "Стандартный кредит", CalculationModeEnum.ANNUITY, 0, true, BigDecimal.valueOf(15.00)));
         expected.add(new CreditProductEntity(3, List.of(new CreditOrderEntity()), "Ne Ne Стартовый",
                 BigDecimal.valueOf(1000.00), BigDecimal.valueOf(10000.00), "RUB",
-                BigDecimal.valueOf(0.05), BigDecimal.valueOf(0.30), false, false,
+                BigDecimal.valueOf(15.00), BigDecimal.valueOf(30.00), false, false,
                 true, 6, 36, true,
-                "Стандартный кредит", CalculationModeEnum.ANNUITY, 0, true));
+                "Стандартный кредит", CalculationModeEnum.ANNUITY, 0, true, BigDecimal.valueOf(15.00)));
     }
 
     @Test

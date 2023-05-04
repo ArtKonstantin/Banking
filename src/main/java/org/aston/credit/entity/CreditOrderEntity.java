@@ -23,7 +23,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "credit_order")
+@Table(name = "credit_application")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

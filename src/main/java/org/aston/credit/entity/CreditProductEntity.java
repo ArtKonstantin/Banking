@@ -34,7 +34,7 @@ public class CreditProductEntity {
     @OneToMany(mappedBy = "creditProduct")
     private List<CreditOrderEntity> creditOrders;
 
-    @Column(name = "product_name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String productName;
 
     @Column(name = "min_sum", nullable = false)
@@ -68,10 +68,10 @@ public class CreditProductEntity {
     @Column(name = "max_period_months", nullable = false)
     private int maxPeriodMonths;
 
-    @Column(name = "product_is_active", nullable = false)
+    @Column(name = "is_active", nullable = false)
     private boolean productIsActive;
 
-    @Column(name = "product_details", nullable = false)
+    @Column(name = "details", nullable = false)
     private String productDetails;
 
     @Column(name = "calculation_mode", nullable = false)
@@ -83,4 +83,7 @@ public class CreditProductEntity {
 
     @Column(name = "need_income_details", nullable = false)
     private boolean needIncomeDetails;
+
+    @Column(name = "interest_rate", nullable = false)
+    private BigDecimal interestRate;
 }
