@@ -24,9 +24,9 @@ spring:
       on-profile: "dev"
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://postgresDB:5432/credit
-    username: verification_service_developer
-    password: Mgy4Xn1Wkeul
+    url: ${DB_URL:jdbc:postgresql://postgresDB:5432/credit}
+    username: ${DB_USER:verification_service_developer}
+    password: ${DB_PASSWORD:Mgy4Xn1Wkeul}
   #далее прописано для kafka
   kafka:
     bootstrap-servers: ${KF_URL:kafka:9092}
