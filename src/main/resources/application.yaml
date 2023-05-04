@@ -29,7 +29,7 @@ spring:
     password: Mgy4Xn1Wkeul
   #далее прописано для kafka
   kafka:
-    bootstrap-servers: kafka:9092
+    bootstrap-servers: ${KF_URL:kafka:9092}
     consumer:
       group-id: CreditGroupId
       auto-offset-reset: latest
