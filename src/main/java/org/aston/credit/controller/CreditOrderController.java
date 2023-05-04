@@ -25,8 +25,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Контроллер заявок на кредиты",
-        description = "Отвечает за эндпоинты кредитных заявок клиента")
+@Tag(name = "Контроллер заявок на кредиты")
 @Validated
 @RequestMapping("/api/v1/credit/loan-applications")
 public class CreditOrderController {

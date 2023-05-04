@@ -16,18 +16,11 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@Tag(name = "Контроллер банковских кредитных продуктов",
-        description = "Отвечает за эндпоинты таблицы кредитных продуктов банка")
+@Tag(name = "Контроллер банковских кредитных продуктов")
 @RequestMapping("/api/v1/credit/credit-products")
 public class CreditProductController {
     public final CreditProductService creditProductService;
     private final CreditProductMapper creditProductMapper;
-
-    /**
-     * 01- Маппинг Отправки активных кредитных продуктов
-     *
-     * @return Список активных кредитных продуктов банка
-     */
 
     @GetMapping
     @Operation(summary = "01- Маппинг Отправки активных кредитных продуктов",

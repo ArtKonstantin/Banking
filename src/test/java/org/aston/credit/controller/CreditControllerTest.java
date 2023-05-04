@@ -7,9 +7,11 @@ import org.aston.credit.entity.CreditAgreementEntity;
 import org.aston.credit.entity.CreditEntity;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.CreditProductEntity;
+import org.aston.credit.entity.PaymentScheduleEntity;
 import org.aston.credit.entity.enums.CreditStatusEnum;
 import org.aston.credit.entity.enums.CreditTypeEnum;
 import org.aston.credit.entity.enums.OrderStatusEnum;
+import org.aston.credit.helper.CreditHelper;
 import org.aston.credit.mapper.CreditMapper;
 import org.aston.credit.mapper.CreditOrderMapper;
 import org.aston.credit.service.CreditOrderService;
@@ -53,6 +55,36 @@ class CreditControllerTest {
     private CreditOrderMapper creditOrderMapper;
 
     @Test
+    void whenGetSchedule_thenReturnOk() throws Exception {
+        CreditEntity expected = CreditHelper.getCredit();
+
+        Mockito.when(creditService.schedule(Mockito.any(), Mockito.anyInt())).thenReturn(expected);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/1/schedule")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .header("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void whenGetAgreement_thenReturnOk() throws Exception {
+        CreditEntity creditExpected = CreditHelper.getCredit();
+        PaymentScheduleEntity paymentExpected = CreditHelper.getPayments().get(0);
+        CreditAccountEntity accountExpected = CreditHelper.getCreditAccount();
+
+        Mockito.when(creditService.credit(1)).thenReturn(creditExpected);
+        Mockito.when(creditService.payment(creditExpected.getCreditAccount().getPaymentSchedule())).thenReturn(paymentExpected);
+        Mockito.when(creditService.debt(creditExpected.getCreditAccount())).thenReturn(accountExpected);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/1/details")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .param("creditId", "1"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
     void whenGetShortInformation_thenReturnOk() throws Exception {
         List<CreditOrderEntity> expected = new ArrayList<>();
         expected.add(new CreditOrderEntity(1L, UUID.randomUUID(), new CreditEntity(), new CreditProductEntity(),
@@ -65,7 +97,7 @@ class CreditControllerTest {
                 "123456789012"));
         Mockito.when(creditOrderService.getCreditOrdersByClientId(Mockito.any()))
                 .thenReturn(expected);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information/short")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/short")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03"))
                 .andDo(print())
@@ -84,7 +116,7 @@ class CreditControllerTest {
         Mockito.when(creditService.getInformation(Mockito.any()))
                 .thenReturn(expected);
         Mockito.when(creditMapper.toInformationDto(Mockito.any())).thenReturn(expectedDto);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/detailed")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03")
                         .param("creditId", "5"))
@@ -96,7 +128,7 @@ class CreditControllerTest {
     void whenGetShortInformation_thenThrowNotFoundException() throws Exception {
         Mockito.when(creditService.getInformation(Mockito.any()))
                 .thenThrow(NoSuchElementException.class);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03")
                         .param("creditId", "5"))
@@ -108,7 +140,7 @@ class CreditControllerTest {
     void whenGetShortInformation_thenThrowInternalServerException() throws Exception {
         Mockito.when(creditService.getInformation(Mockito.any()))
                 .thenThrow(InternalError.class);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/detailed")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03")
                         .param("creditId", "5"))
@@ -120,7 +152,7 @@ class CreditControllerTest {
     void whenGetInformation_thenThrowInternalServerException() throws Exception {
         Mockito.when(creditOrderService.getCreditOrdersByClientId(Mockito.any()))
                 .thenThrow(InternalError.class);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information/short")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/short")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03"))
                 .andDo(print())
@@ -131,7 +163,7 @@ class CreditControllerTest {
     void whenGetInformation_thenThrowNotFoundException() throws Exception {
         Mockito.when(creditOrderService.getCreditOrdersByClientId(Mockito.any()))
                 .thenThrow(EntityNotFoundException.class);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credits/information/short")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credits/information/short")
                         .accept(MediaType.APPLICATION_JSON)
                         .param("clientId", "0799f8b8-729d-4818-b1ba-5e64f88f6d03"))
                 .andDo(print())

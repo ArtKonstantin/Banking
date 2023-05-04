@@ -59,7 +59,7 @@ class CreditProductControllerTest {
     void getAllActive() throws Exception {
         Mockito.when(creditProductService.getAllActive())
                 .thenReturn(expected);
-        mockMvc.perform(MockMvcRequestBuilders.get("/auth/credit-products")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/credit/credit-products")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
