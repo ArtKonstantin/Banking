@@ -52,10 +52,6 @@ public class CreditOrderService {
     public List<CreditOrderEntity> getCreditOrdersByClientId(UUID clientId) {
         List<CreditOrderEntity> creditOrders = creditOrderRepository.findAllByClientId(clientId);
 
-        if (creditOrders.isEmpty()) {
-            throw new EntityNotFoundException();
-        }
-
         return creditOrders;
     }
 
