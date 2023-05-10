@@ -24,24 +24,14 @@ GET http://localhost:8083/api/v1/credit/loan-applications
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 ### 05 - Маппинг Отзыва кредитной заявки
-PATCH http://localhost:8083/api/v1/credit/loan-applications/recall
+PATCH http://localhost:8083/api/v1/credit/loan-applications/1/recall
 Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
-
-{
-  "id": 1,
-  "status": "REJECT_BY_CLIENT"
-}
 
 ### 06 - Маппинг Подтверждения кредитной заявки
-PATCH http://localhost:8083/api/v1/credit/loan-applications/recall
+PATCH http://localhost:8083/api/v1/credit/loan-applications/1/confirmation
 Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
-
-{
-  "id": 1,
-  "status": "APPROVED_BY_CLIENT"
-}
 
 ### 07 - Маппинг Отправки графика платежей по кредиту
 GET http://localhost:8083/api/v1/credit/credits/1/schedule

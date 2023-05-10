@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.Constants;
-import org.aston.credit.dto.requests.CreditOrderApprovedRequestDto;
 import org.aston.credit.dto.requests.CreditOrderRequestDto;
 import org.aston.credit.dto.responses.CreditOrderResponseDto;
 import org.aston.credit.entity.CreditOrderEntity;
@@ -14,6 +13,7 @@ import org.aston.credit.service.CreditOrderService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -59,25 +59,23 @@ public class CreditOrderController {
         return map;
     }
 
-    @PatchMapping("/recall")
+    @PatchMapping("{applicationId}/recall")
     @Operation(summary = "05 - Маппинг Отзыва кредитной заявки",
             description = "После вызова эндпоинта происходит изменения статуса кредитной заявки на \"REJECTED BY CLIENT\"")
     public void recall(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId,
-            @RequestBody CreditOrderApprovedRequestDto creditOrder) {
-        final CreditOrderEntity orderEntity = creditOrderMapper.toStatus(creditOrder);
-        creditOrderService.recall(clientId, orderEntity);
+            @PathVariable final long applicationId) {
+        creditOrderService.recall(clientId, applicationId);
     }
 
-    @PatchMapping("/confirmation")
+    @PatchMapping("{applicationId}/confirmation")
     @Operation(summary = "06 - Маппинг Подтверждения кредитной заявки",
             description = "После вызова эндпоинта происходит изменения статуса кредитной заявки на \"APPROVED BY CLIENT\"")
     public void confirmation(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId,
-            @RequestBody CreditOrderApprovedRequestDto creditOrder) {
-        final CreditOrderEntity orderEntity = creditOrderMapper.toStatus(creditOrder);
-        creditOrderService.confirmation(clientId, orderEntity);
+            @PathVariable final long applicationId) {
+        creditOrderService.confirmation(clientId, applicationId);
     }
 }

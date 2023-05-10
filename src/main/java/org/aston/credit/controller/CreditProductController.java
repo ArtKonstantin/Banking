@@ -3,8 +3,8 @@ package org.aston.credit.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.aston.credit.dto.responses.CreditProductByIdResponseDto;
 import org.aston.credit.dto.responses.CreditProductResponseDto;
+import org.aston.credit.dto.responses.CreditActiveProductResponseDto;
 import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.mapper.CreditProductMapper;
 import org.aston.credit.service.CreditProductService;
@@ -26,7 +26,7 @@ public class CreditProductController {
     @GetMapping
     @Operation(summary = "01- Маппинг Отправки активных кредитных продуктов",
             description = "Получение информации о действующих продуктах Банка")
-    public List<CreditProductResponseDto> getAllActive() {
+    public List<CreditActiveProductResponseDto> getAllActive() {
         List<CreditProductEntity> products = creditProductService.getAllActive();
         return creditProductMapper.toDtoList(products);
     }
@@ -34,7 +34,7 @@ public class CreditProductController {
     @GetMapping("/{creditProductId}")
     @Operation(summary = "02 - Просмотр активного кредитного продукта",
             description = "Получение подробной информации о кредитном продукте Банка")
-    public CreditProductByIdResponseDto getById(@PathVariable final long creditProductId) {
+    public CreditProductResponseDto getById(@PathVariable final long creditProductId) {
         CreditProductEntity product = creditProductService.getById(creditProductId);
         return creditProductMapper.toDtoById(product);
     }

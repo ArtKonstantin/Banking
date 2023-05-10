@@ -1,6 +1,5 @@
 package org.aston.credit.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.CreditProductEntity;
@@ -55,8 +54,8 @@ public class CreditOrderService {
         return creditOrders;
     }
 
-    public void recall(UUID clientId, CreditOrderEntity order) {
-        final CreditOrderEntity creditOrder = creditOrderRepository.getReferenceById(order.getId());
+    public void recall(UUID clientId, long applicationId) {
+        final CreditOrderEntity creditOrder = creditOrderRepository.getReferenceById(applicationId);
 
         if (!creditOrder.getClientId().equals(clientId)) {
             throw new ForbiddenException();
@@ -66,8 +65,8 @@ public class CreditOrderService {
         creditOrderRepository.save(creditOrder);
     }
 
-    public void confirmation(UUID clientId, CreditOrderEntity order) {
-        final CreditOrderEntity creditOrder = creditOrderRepository.getReferenceById(order.getId());
+    public void confirmation(UUID clientId, long applicationId) {
+        final CreditOrderEntity creditOrder = creditOrderRepository.getReferenceById(applicationId);
 
         if (!creditOrder.getClientId().equals(clientId)) {
             throw new ForbiddenException();

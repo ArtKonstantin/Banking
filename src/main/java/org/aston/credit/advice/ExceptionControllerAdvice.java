@@ -2,14 +2,15 @@ package org.aston.credit.advice;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
+import org.aston.credit.dto.responses.ErrorDto;
 import org.aston.credit.dto.responses.ExceptionDto;
-import org.aston.credit.dto.responses.ExceptionDtoForResponce;
+import org.aston.credit.dto.responses.ExceptionDtoForResponse;
 import org.aston.credit.dto.responses.ValidationErrorResponse;
 import org.aston.credit.dto.responses.ViolationDto;
 import org.aston.credit.exception.BadCardBalanceException;
 import org.aston.credit.exception.BadCardStatusException;
 import org.aston.credit.exception.BadRequestException;
-import org.aston.credit.exception.CreditProductNotFoundException;
+import org.aston.credit.exception.CreditServiceNotFoundException;
 import org.aston.credit.exception.ForbiddenException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,24 +19,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
 
-    private Map<String, ExceptionDtoForResponce> map = new HashMap<>();
-
     @ResponseBody
-    @ExceptionHandler(CreditProductNotFoundException.class)
+    @ExceptionHandler(CreditServiceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, ExceptionDtoForResponce> catchCreditProductNotFoundException(CreditProductNotFoundException e) {
+    public ErrorDto catchCreditServiceNotFoundException(CreditServiceNotFoundException e) {
         e.printStackTrace();
-        map.put("error", new ExceptionDtoForResponce(e.getCode(), e.getDescription()));
-        return map;
+        return new ErrorDto(new ExceptionDtoForResponse(e.getCode(), e.getDescription()));
     }
 
     @ResponseBody
