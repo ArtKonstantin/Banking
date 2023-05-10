@@ -2,12 +2,15 @@ package org.aston.credit.advice;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolationException;
+import org.aston.credit.dto.responses.ErrorDto;
 import org.aston.credit.dto.responses.ExceptionDto;
+import org.aston.credit.dto.responses.ExceptionDtoForResponse;
 import org.aston.credit.dto.responses.ValidationErrorResponse;
 import org.aston.credit.dto.responses.ViolationDto;
 import org.aston.credit.exception.BadCardBalanceException;
 import org.aston.credit.exception.BadCardStatusException;
 import org.aston.credit.exception.BadRequestException;
+import org.aston.credit.exception.CreditServiceNotFoundException;
 import org.aston.credit.exception.ForbiddenException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -22,6 +25,14 @@ import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
+
+    @ResponseBody
+    @ExceptionHandler(CreditServiceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorDto catchCreditServiceNotFoundException(CreditServiceNotFoundException e) {
+        e.printStackTrace();
+        return new ErrorDto(new ExceptionDtoForResponse(e.getCode(), e.getDescription()));
+    }
 
     @ResponseBody
     @ExceptionHandler(BadCardBalanceException.class)

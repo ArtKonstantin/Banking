@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.dto.responses.CreditProductResponseDto;
+import org.aston.credit.dto.responses.CreditActiveProductResponseDto;
 import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.mapper.CreditProductMapper;
 import org.aston.credit.service.CreditProductService;
@@ -25,9 +26,9 @@ public class CreditProductController {
     @GetMapping
     @Operation(summary = "01- Маппинг Отправки активных кредитных продуктов",
             description = "Получение информации о действующих продуктах Банка")
-    public List<CreditProductResponseDto> getAllActive() {
+    public List<CreditActiveProductResponseDto> getAllActive() {
         List<CreditProductEntity> products = creditProductService.getAllActive();
-        return creditProductMapper.toDtoList(products);
+        return creditProductMapper.toActiveDtoList(products);
     }
 
     @GetMapping("/{creditProductId}")

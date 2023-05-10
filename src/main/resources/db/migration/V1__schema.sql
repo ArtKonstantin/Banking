@@ -42,7 +42,7 @@ create table if not exists credit_application
     product_id                     bigint         not null
         constraint credit_product_product_id_fk
             references credit_product,
-    status                     varchar(30)    not null,
+    status                         varchar(30)    not null,
     amount                         numeric(14, 2) not null,
     period_months                  integer        not null,
     average_monthly_expenditure    numeric(14, 2) not null,

@@ -120,12 +120,11 @@ class CreditOrderServiceTest {
     void approved_ifApprovedByClient() {
         CreditOrderEntity order = CreditOrderHelper.getCreditOrder();
         CreditOrderEntity orderRequest = mock(CreditOrderEntity.class);
+        long applicationId = 1;
 
-        when(orderRequest.getId()).thenReturn(1L);
         when(creditOrderRepository.getReferenceById(orderRequest.getId())).thenReturn(order);
-        when(orderRequest.getStatus()).thenReturn(APPROVED_BY_CLIENT);
 
-        creditOrder.recall(clientId, orderRequest);
+        creditOrder.recall(clientId, applicationId);
         verify(creditOrderRepository, times(1)).save(order);
     }
 
@@ -133,26 +132,24 @@ class CreditOrderServiceTest {
     void throwException_ifApprovedByClient_andStatusNotApprovedByBank() {
         CreditOrderEntity order = CreditOrderHelper.getCreditOrder();
         CreditOrderEntity orderRequest = mock(CreditOrderEntity.class);
+        long applicationId = 1;
 
         order.setStatus(PENDING);
-        when(orderRequest.getId()).thenReturn(1L);
         when(creditOrderRepository.getReferenceById(orderRequest.getId())).thenReturn(order);
-        when(orderRequest.getStatus()).thenReturn(APPROVED_BY_CLIENT);
 
         assertThrows(BadRequestException.class,
-                () -> creditOrder.recall(clientId, orderRequest));
+                () -> creditOrder.recall(clientId, applicationId));
     }
 
     @Test
     void approved_ifRejectByClient() {
         CreditOrderEntity order = CreditOrderHelper.getCreditOrder();
         CreditOrderEntity orderRequest = mock(CreditOrderEntity.class);
+        long applicationId = 1;
 
-        when(orderRequest.getId()).thenReturn(1L);
         when(creditOrderRepository.getReferenceById(orderRequest.getId())).thenReturn(order);
-        when(orderRequest.getStatus()).thenReturn(REJECT_BY_CLIENT);
 
-        creditOrder.recall(clientId, orderRequest);
+        creditOrder.recall(clientId, applicationId);
         verify(creditOrderRepository, times(1)).save(order);
     }
 
@@ -160,14 +157,13 @@ class CreditOrderServiceTest {
     void throwException_ifRejectByClient_andStatusNotApprovedByBankAndNotPending() {
         CreditOrderEntity order = CreditOrderHelper.getCreditOrder();
         CreditOrderEntity orderRequest = mock(CreditOrderEntity.class);
+        long applicationId = 1;
 
         order.setStatus(INDIVIDUAL_CONDITIONS);
-        when(orderRequest.getId()).thenReturn(1L);
         when(creditOrderRepository.getReferenceById(orderRequest.getId())).thenReturn(order);
-        when(orderRequest.getStatus()).thenReturn(REJECT_BY_CLIENT);
 
         assertThrows(BadRequestException.class,
-                () -> creditOrder.recall(clientId, orderRequest));
+                () -> creditOrder.recall(clientId, applicationId));
     }
 
 
@@ -175,10 +171,11 @@ class CreditOrderServiceTest {
     void throwException_ifClientIdNotEquals() {
         CreditOrderEntity order = CreditOrderHelper.getCreditOrder();
         CreditOrderEntity orderRequest = CreditOrderHelper.getCreditOrderApproved();
+        long applicationId = 1;
 
         when(creditOrderRepository.getReferenceById(orderRequest.getId())).thenReturn(order);
 
         assertThrows(ForbiddenException.class,
-                () -> creditOrder.recall(UUID.fromString("0799f8b8-0000-4818-b1ba-5e64f88f6d03"), orderRequest));
+                () -> creditOrder.recall(UUID.fromString("0799f8b8-0000-4818-b1ba-5e64f88f6d03"), applicationId));
     }
 }

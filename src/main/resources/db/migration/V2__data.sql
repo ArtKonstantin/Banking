@@ -6,12 +6,12 @@ VALUES ('Стартовый', 1000.00, 1000000.00, 'RUB', 5.00, 30.00, false, fa
         'ANNUITY', 0, true, 20.00);
 
 INSERT INTO account(account_number, principal_debt, interest_debt, is_active, opening_date, closing_date,
-                           currency_code, current_principal_amount, current_interest_amount)
+                    currency_code, current_principal_amount, current_interest_amount)
 VALUES ('10000000000000000001', 980000.00, 39010.00, true, '10.01.2022', '10.01.2025', 'RUB', 980000.00, 39010.00);
 
 INSERT INTO credit_application(client_id, product_id, status, amount, period_months,
-                         creation_date, average_monthly_income, average_monthly_expenditure,
-                         employer_identification_number)
+                               creation_date, average_monthly_income, average_monthly_expenditure,
+                               employer_identification_number)
 VALUES ('0799f8b8-729d-4818-b1ba-5e64f88f6d03', 1, 'APPROVED_BY_BANK', 900000.00, 6, '01.01.2022', 100000.00, 50000.00,
         '123456789012');
 

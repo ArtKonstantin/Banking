@@ -13,7 +13,7 @@ public class CreditProductResponseDto {
     private long id;
 
     @Schema(description = "Название кредита")
-    private String productName;
+    private String name;
 
     @Schema(description = "Минимальная сумма кредита")
     private BigDecimal minSum;
@@ -30,6 +30,7 @@ public class CreditProductResponseDto {
     @Schema(description = "Максимальная процентная ставка")
     private BigDecimal maxInterestRate;
 
+    @Schema(description = "Нужно ли обеспечение")
     private boolean needGuarantees;
 
     @Schema(description = "Возможность получить кредит наличкой")
@@ -38,6 +39,9 @@ public class CreditProductResponseDto {
     @Schema(description = "Возможность раннего погашения")
     private boolean earlyRepayment;
 
+    @Schema(description = "Нужна ли справка о доходах")
+    private boolean needIncomeDetails;
+
     @Schema(description = "Минимальный срок кредита")
     private int minPeriodMonths;
 
@@ -45,17 +49,18 @@ public class CreditProductResponseDto {
     private int maxPeriodMonths;
 
     @Schema(description = "Активный продукт либо недействительный")
-    private boolean productIsActive;
+    private boolean active;
 
     @Schema(description = "Информация о кредите")
-    private String productDetails;
+    private String details;
 
+    @Schema(description = "Схема расчета платежей")
     private CalculationModeEnum calculationMode;
 
+    @Schema(description = "Грейс-период в месяцах")
     private int gracePeriodMonths;
 
-    private boolean needIncomeDetails;
-
+    @Schema(description = "Постоянная ставка")
     private BigDecimal interestRate;
 
 }

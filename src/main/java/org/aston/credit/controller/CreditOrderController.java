@@ -5,8 +5,8 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.Constants;
-import org.aston.credit.dto.requests.CreditOrderApprovedRequestDto;
 import org.aston.credit.dto.requests.CreditOrderRequestDto;
+import org.aston.credit.dto.responses.CreditApplicationsResponseDto;
 import org.aston.credit.dto.responses.CreditOrderResponseDto;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.mapper.CreditOrderMapper;
@@ -14,13 +14,16 @@ import org.aston.credit.service.CreditOrderService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -47,32 +50,31 @@ public class CreditOrderController {
     @GetMapping
     @Operation(summary = "04 - Маппинг Получения данных о кредитных заявках",
             description = "Приложение посылает запрос серверу, чтобы отобразить пользователю его кредитные заявки и информацию о них")
-    public List<CreditOrderResponseDto> getOrdersByClientId(
+    public CreditApplicationsResponseDto getOrdersByClientId(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId) {
         final List<CreditOrderEntity> creditOrders = creditOrderService.getCreditOrdersByClientId(clientId);
-        return creditOrderMapper.toDtoList(creditOrders);
+        final List<CreditOrderResponseDto> creditOrderResponse = creditOrderMapper.toDtoList(creditOrders);
+        return new CreditApplicationsResponseDto(creditOrderResponse);
     }
 
-    @PatchMapping("/recall")
+    @PatchMapping("{applicationId}/recall")
     @Operation(summary = "05 - Маппинг Отзыва кредитной заявки",
             description = "После вызова эндпоинта происходит изменения статуса кредитной заявки на \"REJECTED BY CLIENT\"")
     public void recall(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId,
-            @RequestBody CreditOrderApprovedRequestDto creditOrder) {
-        final CreditOrderEntity orderEntity = creditOrderMapper.toStatus(creditOrder);
-        creditOrderService.recall(clientId, orderEntity);
+            @PathVariable final long applicationId) {
+        creditOrderService.recall(clientId, applicationId);
     }
 
-    @PatchMapping("/confirmation")
+    @PatchMapping("{applicationId}/confirmation")
     @Operation(summary = "06 - Маппинг Подтверждения кредитной заявки",
             description = "После вызова эндпоинта происходит изменения статуса кредитной заявки на \"APPROVED BY CLIENT\"")
     public void confirmation(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId,
-            @RequestBody CreditOrderApprovedRequestDto creditOrder) {
-        final CreditOrderEntity orderEntity = creditOrderMapper.toStatus(creditOrder);
-        creditOrderService.confirmation(clientId, orderEntity);
+            @PathVariable final long applicationId) {
+        creditOrderService.confirmation(clientId, applicationId);
     }
 }
