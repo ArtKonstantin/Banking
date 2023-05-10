@@ -14,12 +14,12 @@ public interface CreditProductMapper {
 
     @Mapping(target = "name", source = "productName")
     @Mapping(target = "details", source = "productDetails")
-    CreditActiveProductResponseDto toDto(CreditProductEntity creditProduct);
+    CreditActiveProductResponseDto toActiveDto(CreditProductEntity creditProduct);
 
-    List<CreditActiveProductResponseDto> toDtoList(List<CreditProductEntity> creditProducts);
+    List<CreditActiveProductResponseDto> toActiveDtoList(List<CreditProductEntity> creditProducts);
 
     @Mapping(target = "name", source = "productName")
     @Mapping(target = "details", source = "productDetails")
     @Mapping(target = "active", source = "productIsActive")
-    CreditProductResponseDto toDtoById(CreditProductEntity creditProduct);
+    CreditProductResponseDto toDto(CreditProductEntity creditProduct);
 }

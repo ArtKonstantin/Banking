@@ -28,7 +28,7 @@ public class CreditProductController {
             description = "Получение информации о действующих продуктах Банка")
     public List<CreditActiveProductResponseDto> getAllActive() {
         List<CreditProductEntity> products = creditProductService.getAllActive();
-        return creditProductMapper.toDtoList(products);
+        return creditProductMapper.toActiveDtoList(products);
     }
 
     @GetMapping("/{creditProductId}")
@@ -36,6 +36,6 @@ public class CreditProductController {
             description = "Получение подробной информации о кредитном продукте Банка")
     public CreditProductResponseDto getById(@PathVariable final long creditProductId) {
         CreditProductEntity product = creditProductService.getById(creditProductId);
-        return creditProductMapper.toDtoById(product);
+        return creditProductMapper.toDto(product);
     }
 }
