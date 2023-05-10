@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.Constants;
 import org.aston.credit.dto.requests.CreditOrderRequestDto;
+import org.aston.credit.dto.responses.CreditApplicationsResponseDto;
 import org.aston.credit.dto.responses.CreditOrderResponseDto;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.mapper.CreditOrderMapper;
@@ -49,14 +50,12 @@ public class CreditOrderController {
     @GetMapping
     @Operation(summary = "04 - Маппинг Получения данных о кредитных заявках",
             description = "Приложение посылает запрос серверу, чтобы отобразить пользователю его кредитные заявки и информацию о них")
-    public Map<String, List<CreditOrderResponseDto>> getOrdersByClientId(
+    public CreditApplicationsResponseDto getOrdersByClientId(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId) {
         final List<CreditOrderEntity> creditOrders = creditOrderService.getCreditOrdersByClientId(clientId);
         final List<CreditOrderResponseDto> creditOrderResponse = creditOrderMapper.toDtoList(creditOrders);
-        final HashMap<String, List<CreditOrderResponseDto>> map = new HashMap<>();
-        map.put("creditApplications", creditOrderResponse);
-        return map;
+        return new CreditApplicationsResponseDto(creditOrderResponse);
     }
 
     @PatchMapping("{applicationId}/recall")
