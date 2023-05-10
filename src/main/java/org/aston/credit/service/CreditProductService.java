@@ -2,6 +2,7 @@ package org.aston.credit.service;
 
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.entity.CreditProductEntity;
+import org.aston.credit.exception.CreditProductNotFoundException;
 import org.aston.credit.repository.CreditProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ public class CreditProductService {
     }
 
     public CreditProductEntity getById(long id) {
-        return creditProductRepository.getReferenceById(id);
+        final CreditProductEntity creditProduct = creditProductRepository.getReferenceById(id);
+        if (!creditProduct.isProductIsActive()) throw new CreditProductNotFoundException();
+        return creditProduct;
     }
 }

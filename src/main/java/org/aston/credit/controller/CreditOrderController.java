@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -47,11 +49,14 @@ public class CreditOrderController {
     @GetMapping
     @Operation(summary = "04 - Маппинг Получения данных о кредитных заявках",
             description = "Приложение посылает запрос серверу, чтобы отобразить пользователю его кредитные заявки и информацию о них")
-    public List<CreditOrderResponseDto> getOrdersByClientId(
+    public Map<String, List<CreditOrderResponseDto>> getOrdersByClientId(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId) {
         final List<CreditOrderEntity> creditOrders = creditOrderService.getCreditOrdersByClientId(clientId);
-        return creditOrderMapper.toDtoList(creditOrders);
+        final List<CreditOrderResponseDto> creditOrderResponse = creditOrderMapper.toDtoList(creditOrders);
+        final HashMap<String, List<CreditOrderResponseDto>> map = new HashMap<>();
+        map.put("creditApplications", creditOrderResponse);
+        return map;
     }
 
     @PatchMapping("/recall")

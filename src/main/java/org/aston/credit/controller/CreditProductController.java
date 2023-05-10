@@ -3,6 +3,7 @@ package org.aston.credit.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.aston.credit.dto.responses.CreditProductByIdResponseDto;
 import org.aston.credit.dto.responses.CreditProductResponseDto;
 import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.mapper.CreditProductMapper;
@@ -33,8 +34,8 @@ public class CreditProductController {
     @GetMapping("/{creditProductId}")
     @Operation(summary = "02 - Просмотр активного кредитного продукта",
             description = "Получение подробной информации о кредитном продукте Банка")
-    public CreditProductResponseDto getById(@PathVariable final long creditProductId) {
+    public CreditProductByIdResponseDto getById(@PathVariable final long creditProductId) {
         CreditProductEntity product = creditProductService.getById(creditProductId);
-        return creditProductMapper.toDto(product);
+        return creditProductMapper.toDtoById(product);
     }
 }
