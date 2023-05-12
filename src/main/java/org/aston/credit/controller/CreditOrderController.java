@@ -3,6 +3,7 @@ package org.aston.credit.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.aston.credit.Constants;
 import org.aston.credit.dto.requests.CreditOrderRequestDto;
@@ -21,9 +22,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -42,7 +41,7 @@ public class CreditOrderController {
     public void create(
             @RequestHeader(name = "clientId")
             @Parameter(description = Constants.UUID, required = true) final UUID clientId,
-            @RequestBody CreditOrderRequestDto creditOrderRequestDto) {
+            @Valid @RequestBody CreditOrderRequestDto creditOrderRequestDto) {
         final CreditOrderEntity orderEntity = creditOrderMapper.toEntity(creditOrderRequestDto);
         creditOrderService.create(clientId, orderEntity);
     }

@@ -33,11 +33,13 @@ public class CreditOrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "number", nullable = false, unique = true)
+    private String number;
+
     @Column(name = "client_id", nullable = false)
     private UUID clientId;
 
     @OneToOne(fetch = FetchType.LAZY)
-//    @MapsId
     @JoinColumn(name = "id")
     private CreditEntity credit;
 

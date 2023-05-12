@@ -38,17 +38,18 @@ create table if not exists credit_application
 (
     id                             bigserial
         primary key,
-    client_id                      UUID           not null,
-    product_id                     bigint         not null
+    number                         varchar(20) unique not null,
+    client_id                      UUID               not null,
+    product_id                     bigint             not null
         constraint credit_product_product_id_fk
             references credit_product,
-    status                         varchar(30)    not null,
-    amount                         numeric(14, 2) not null,
-    period_months                  integer        not null,
-    average_monthly_expenditure    numeric(14, 2) not null,
-    creation_date                  date           not null,
-    average_monthly_income         numeric(14, 2) not null,
-    employer_identification_number varchar(12)    not null
+    status                         varchar(30)        not null,
+    amount                         numeric(14, 2)     not null,
+    period_months                  integer            not null,
+    average_monthly_expenditure    numeric(14, 2)     not null,
+    creation_date                  date               not null,
+    average_monthly_income         numeric(14, 2)     not null,
+    employer_identification_number varchar(12)        not null
 
 );
 
