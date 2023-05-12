@@ -39,3 +39,13 @@ cleanup:
   when: always
   only:
     - develop
+
+update kubernetes microservices:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "develop"
+    - if: $CI_COMMIT_REF_SLUG == "develop"
+  tags:
+    - shell-k8s
+  script:
+    - kubectl patch deployment credit-service  -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"Commit\":\"${CI_COMMIT_SHORT_SHA}\"}}}}}" --record
