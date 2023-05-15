@@ -13,11 +13,11 @@ import org.aston.credit.Constants;
 public class ChangePinCardRequestDto {
     @Schema(description = "Номер кредитной карты", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = Constants.CREDIT_CARD_BLANK)
-    @Pattern(regexp = "\\d{16}", message = Constants.CREDIT_CARD_INVALID)
+    @Pattern(regexp = Constants.CARD_NUMBER_PATTERN, message = Constants.CREDIT_CARD_INVALID)
     String cardNumber;
 
     @Schema(description = "Новый PIN-код карты")
     @NotBlank(message = "PIN-код не может быть пустым")
-    @Pattern(regexp = "\\d{4}", message = "PIN-код карты должен быть четырехзначным числом")
+    @Pattern(regexp = Constants.PIN_CODE_PATTERN, message = "PIN-код карты должен быть четырехзначным числом")
     String newPin;
 }

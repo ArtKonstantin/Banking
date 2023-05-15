@@ -15,7 +15,7 @@ public class ChangeCardStatusRequestDto {
 
     @Schema(description = "Номер кредитной карты", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = Constants.CREDIT_CARD_BLANK)
-    @Pattern(regexp = "\\d{16}", message = Constants.CREDIT_CARD_INVALID)
+    @Pattern(regexp = Constants.CARD_NUMBER_PATTERN, message = Constants.CREDIT_CARD_INVALID)
     String cardNumber;
 
     @Schema(description = "Статус кредитной карты")

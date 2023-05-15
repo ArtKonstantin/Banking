@@ -25,4 +25,16 @@ public class Constants {
     public static final String CREDIT_CARD_BLANK = "номер кредитной карты не может быть пустым";
 
     public static final String EMPLOYER_IDENTIFICATION_NUMBER_PATTERN = "^[0-9]{12}$";
+
+    public static final String CARD_NUMBER_PATTERN = "^[0-9]{16}$";
+
+    public static final String PIN_CODE_PATTERN = "^[0-9]{4}$";
+
+    public static final String FIELD_MUST_NOT_BE_BLANK = "поле не должно быть пустым";
+
+    public static final String FIELD_MUST_BE_POSITIVE = "поле должно быть положительным";
+
+    public static final String FIELD_MUST_NOT_BE_NEGATIVE = "поле не должно быть отрицательным";
+
+    public static final String FIELD_NOT_EQUALS_PATTERN = "поле не соответствует паттерну";
 }
