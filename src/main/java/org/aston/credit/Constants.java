@@ -23,4 +23,6 @@ public class Constants {
     public static final String CREDIT_CARD_INVALID = "номер кредитной карты не соответствует паттерну";
 
     public static final String CREDIT_CARD_BLANK = "номер кредитной карты не может быть пустым";
+
+    public static final String EMPLOYER_IDENTIFICATION_NUMBER_PATTERN = "^[0-9]{12}$";
 }
