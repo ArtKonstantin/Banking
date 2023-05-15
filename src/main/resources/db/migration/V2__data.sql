@@ -12,7 +12,8 @@ VALUES ('10000000000000000001', 980000.00, 39010.00, true, '10.01.2022', '10.01.
 INSERT INTO credit_application(client_id, number, product_id, status, amount, period_months,
                                creation_date, average_monthly_income, average_monthly_expenditure,
                                employer_identification_number)
-VALUES ('0799f8b8-729d-4818-b1ba-5e64f88f6d03', '1234567', 1, 'APPROVED_BY_BANK', 900000.00, 6, '01.01.2022', 100000.00, 50000.00,
+VALUES ('0799f8b8-729d-4818-b1ba-5e64f88f6d03', '1234567', 1, 'APPROVED_BY_BANK', 900000.00, 6, '01.01.2022', 100000.00,
+        50000.00,
         '123456789012');
 
 INSERT INTO card(id, card_number, account_number, holder_name, expiration_date, payment_system, card_balance,
