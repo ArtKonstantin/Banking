@@ -2,8 +2,11 @@ package org.aston.credit.dto.requests;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.Builder;
 import lombok.Value;
+import org.aston.credit.Constants;
 
 import java.math.BigDecimal;
 
@@ -16,11 +19,11 @@ public class CreditOrderRequestDto {
     Long productId;
 
     @Schema(description = "сумма кредита", requiredMode = Schema.RequiredMode.REQUIRED)
-    @Min(value = 0)
+    @Positive
     BigDecimal amountRequested;
 
     @Schema(description = "срок кредита в месяцах", requiredMode = Schema.RequiredMode.REQUIRED)
-    @Min(value = 0)
+    @Positive
     Integer periodMonths;
 
     @Schema(description = "месячный доход клиента", requiredMode = Schema.RequiredMode.REQUIRED)
@@ -32,5 +35,6 @@ public class CreditOrderRequestDto {
     BigDecimal monthlyExpenditure;
 
     @Schema(description = "ИНН клиента", requiredMode = Schema.RequiredMode.REQUIRED)
+    @Pattern(regexp = Constants.EMPLOYER_IDENTIFICATION_NUMBER_PATTERN)
     String employerIdentificationNumber;
 }
