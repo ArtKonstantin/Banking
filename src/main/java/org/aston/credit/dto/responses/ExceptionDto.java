@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class ExceptionDto {
-    private String message;
+    private ExceptionDtoForResponse error;
 }
 

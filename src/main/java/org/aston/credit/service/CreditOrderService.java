@@ -1,21 +1,26 @@
 package org.aston.credit.service;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang.RandomStringUtils;
 import org.aston.credit.entity.CreditOrderEntity;
 import org.aston.credit.entity.CreditProductEntity;
 import org.aston.credit.entity.enums.OrderStatusEnum;
-import org.aston.credit.exception.BadRequestException;
+import org.aston.credit.exception.CreditServiceBadRequestException;
+import org.aston.credit.exception.CreditServiceNotFoundException;
+import org.aston.credit.exception.EnumCodeAndCommentException;
 import org.aston.credit.exception.ForbiddenException;
 import org.aston.credit.repository.CreditOrderRepository;
 import org.aston.credit.repository.CreditProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.aston.credit.entity.enums.OrderStatusEnum.APPROVED_BY_CLIENT;
-import static org.aston.credit.entity.enums.OrderStatusEnum.REJECT_BY_CLIENT;
+import static org.aston.credit.entity.enums.OrderStatusEnum.REJECTED_BY_CLIENT;
 
 @Service
 @RequiredArgsConstructor
@@ -26,25 +31,39 @@ public class CreditOrderService {
     public void create(UUID clientId, CreditOrderEntity creditOrder) {
         final BigDecimal amount = creditOrder.getAmount();
         final int periodMonths = creditOrder.getPeriodMonths();
-        final CreditProductEntity creditProduct = creditProductRepository.
-                getReferenceById(creditOrder.getCreditProduct().getId());
+        final Optional<CreditProductEntity> creditProductOptional = creditProductRepository.
+                findById(creditOrder.getCreditProduct().getId());
+        String generatedOrderNumber;
+
+        if (creditProductOptional.isEmpty()) {
+            throw new CreditServiceNotFoundException(EnumCodeAndCommentException.CREDIT_PRODUCT_NOT_FOUND);
+        }
+
+        CreditProductEntity creditProduct = creditProductOptional.get();
 
         if (!creditProduct.isProductIsActive()) {
-            throw new BadRequestException();
+            throw new CreditServiceNotFoundException(EnumCodeAndCommentException.CREDIT_PRODUCT_NOT_ACTIVE);
         }
 
         if (amount.compareTo(creditProduct.getMinSum()) == -1
                 || amount.compareTo(creditProduct.getMaxSum()) == 1) {
-            throw new BadRequestException();
+            throw new CreditServiceBadRequestException(EnumCodeAndCommentException.AMOUNT_SHOULD_BE_WITHIN_MIN_AND_MAX);
         }
 
         if (periodMonths < creditProduct.getMinPeriodMonths()
                 || periodMonths > creditProduct.getMaxPeriodMonths()) {
-            throw new BadRequestException();
+            throw new CreditServiceBadRequestException(EnumCodeAndCommentException.PERIOD_SHOULD_BE_WITHIN_MIN_AND_MAX);
         }
 
+        do {
+            generatedOrderNumber = RandomStringUtils.randomNumeric(7);
+        }
+        while (creditOrderRepository.findByNumber(generatedOrderNumber) != null);
+
+        creditOrder.setNumber(generatedOrderNumber);
         creditOrder.setClientId(clientId);
         creditOrder.setStatus(OrderStatusEnum.PENDING);
+        creditOrder.setCreationDate(LocalDate.now());
         creditOrderRepository.save(creditOrder);
     }
 
@@ -61,7 +80,7 @@ public class CreditOrderService {
             throw new ForbiddenException();
         }
 
-        creditOrder.setStatus(REJECT_BY_CLIENT);
+        creditOrder.setStatus(REJECTED_BY_CLIENT);
         creditOrderRepository.save(creditOrder);
     }
 

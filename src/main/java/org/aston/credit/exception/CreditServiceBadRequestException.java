@@ -3,12 +3,12 @@ package org.aston.credit.exception;
 import lombok.Getter;
 
 @Getter
-public class CreditServiceNotFoundException extends RuntimeException {
+public class CreditServiceBadRequestException extends RuntimeException {
 
     private final String code;
     private final String description;
 
-    public CreditServiceNotFoundException(EnumCodeAndCommentException enumException) {
+    public CreditServiceBadRequestException(EnumCodeAndCommentException enumException) {
         this.code = enumException.getCode();
         this.description = enumException.getComment();
     }

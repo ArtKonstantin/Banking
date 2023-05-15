@@ -2,7 +2,7 @@
 GET http://localhost:8083/api/v1/credit/credit-products
 
 ### 02 - Маппинг Просмотра активного кредитного продукта
-GET http://localhost:8083/api/v1/credit/credit-products/1
+GET http://localhost:8083/api/v1/credit/credit-products/2
 
 ### 03 - Маппинг Создания заявки на кредит
 POST http://localhost:8083/api/v1/credit/loan-applications
@@ -11,12 +11,11 @@ clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 {
   "productId": 1,
-  "amountRequested": 100000.00,
+  "amountRequested": 1000000.00,
   "periodMonths": 12,
-  "creationDate": "2023-01-01",
-  "monthlyIncome": 5000.00,
-  "monthlyExpenditure": 3000.00,
-  "employerIdentificationNumber": "123-45-6789"
+  "monthlyIncome": 50000.00,
+  "monthlyExpenditure": 30000.00,
+  "employerIdentificationNumber": "123456789012"
 }
 
 ### 04 - Маппинг Получения данных о кредитных заявках
