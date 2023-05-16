@@ -51,7 +51,7 @@ public class CreditCardHelper {
 
         return ChangeCardLimitRequestDto.builder().
                 cardNumber("1234567891234567").
-                transactionLimit("10000").
+                transactionLimit(10000).
                 build();
     }
 
