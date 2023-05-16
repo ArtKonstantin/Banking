@@ -17,7 +17,6 @@ import java.math.BigDecimal;
 public class CreditOrderRequestDto {
 
     @Schema(description = "id кредитного продукта", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotBlank(message = Constants.FIELD_MUST_NOT_BE_BLANK)
     Long productId;
 
     @Schema(description = "сумма кредита", requiredMode = Schema.RequiredMode.REQUIRED)
