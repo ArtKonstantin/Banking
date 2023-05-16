@@ -28,7 +28,7 @@ public class CreditOrderHelper {
         creditOrder.setCreationDate(LocalDate.now());
         creditOrder.setAverageMonthlyIncome(BigDecimal.valueOf(10000.00));
         creditOrder.setAverageMonthlyExpenditure(BigDecimal.valueOf(5000.00));
-        creditOrder.setEmployerIdentificationNumber("123-45-6789");
+        creditOrder.setEmployerIdentificationNumber("123456789012");
         return creditOrder;
     }
 
@@ -39,7 +39,7 @@ public class CreditOrderHelper {
         creditOrder.setCreationDate(LocalDate.now());
         creditOrder.setAverageMonthlyIncome(BigDecimal.valueOf(10000.00));
         creditOrder.setAverageMonthlyExpenditure(BigDecimal.valueOf(5000.00));
-        creditOrder.setEmployerIdentificationNumber("123-45-6789");
+        creditOrder.setEmployerIdentificationNumber("123456789012");
         creditOrder.setCreditProduct(getCreditProduct());
         return creditOrder;
     }
@@ -72,6 +72,6 @@ public class CreditOrderHelper {
     public static CreditOrderRequestDto getCreateCreditOrderDto() {
         return CreditOrderRequestDto.builder().productId(1L).amountRequested(BigDecimal.valueOf(50000.00))
                 .periodMonths(12).creationDate(LocalDate.now()).monthlyIncome(BigDecimal.valueOf(10000.00))
-                .monthlyExpenditure(BigDecimal.valueOf(5000.00)).employerIdentificationNumber("123-45-6789").build();
+                .monthlyExpenditure(BigDecimal.valueOf(5000.00)).employerIdentificationNumber("123456789012").build();
     }
 }
