@@ -1,6 +1,7 @@
 package org.aston.credit.dto.requests;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
@@ -21,5 +22,6 @@ public class ChangeCardLimitRequestDto {
     @Schema(description = "Новый лимит на операции по карте ")
     @NotBlank(message = "Кредитный лимит не может быть пустым")
     @Positive(message = Constants.FIELD_MUST_BE_POSITIVE)
+    @Max(value = 500000, message = "лимит по операциям не может превышать 500000")
     Integer transactionLimit;
 }
