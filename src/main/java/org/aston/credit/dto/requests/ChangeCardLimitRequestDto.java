@@ -3,6 +3,7 @@ package org.aston.credit.dto.requests;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import lombok.Builder;
 import lombok.Value;
 import org.aston.credit.Constants;
@@ -19,6 +20,6 @@ public class ChangeCardLimitRequestDto {
 
     @Schema(description = "Новый лимит на операции по карте ")
     @NotBlank(message = "Кредитный лимит не может быть пустым")
-    @Pattern(regexp = "\\d", message = "Кредитный лимит должен быть числом")
-    String transactionLimit;
+    @Positive(message = Constants.FIELD_MUST_BE_POSITIVE)
+    Integer transactionLimit;
 }
