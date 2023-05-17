@@ -23,12 +23,12 @@ GET http://localhost:8083/api/v1/credit/loan-applications
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 ### 05 - Маппинг Отзыва кредитной заявки
-PATCH http://localhost:8083/api/v1/credit/loan-applications/1/recall
+PATCH http://localhost:8083/api/v1/credit/loan-applications/8/recall
 Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 
 ### 06 - Маппинг Подтверждения кредитной заявки
-PATCH http://localhost:8083/api/v1/credit/loan-applications/1/confirmation
+PATCH http://localhost:8083/api/v1/credit/loan-applications/8/confirmation
 Content-Type: application/json
 clientId: 0799f8b8-729d-4818-b1ba-5e64f88f6d03
 

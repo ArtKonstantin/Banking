@@ -7,6 +7,7 @@ import org.aston.credit.dto.responses.ExceptionDtoForResponse;
 import org.aston.credit.exception.BadCardStatusException;
 import org.aston.credit.exception.BadRequestException;
 import org.aston.credit.exception.CreditServiceBadRequestException;
+import org.aston.credit.exception.CreditServiceConflictException;
 import org.aston.credit.exception.CreditServiceNotFoundException;
 import org.aston.credit.exception.ForbiddenException;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,14 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(CreditServiceBadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ExceptionDto catchBadRequestException(CreditServiceBadRequestException e) {
+        e.printStackTrace();
+        return new ExceptionDto(new ExceptionDtoForResponse(e.getCode(), e.getDescription()));
+    }
+
+    @ResponseBody
+    @ExceptionHandler(CreditServiceConflictException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ExceptionDto catchConflictException(CreditServiceConflictException e) {
         e.printStackTrace();
         return new ExceptionDto(new ExceptionDtoForResponse(e.getCode(), e.getDescription()));
     }

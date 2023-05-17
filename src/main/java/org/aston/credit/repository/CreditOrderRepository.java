@@ -8,5 +8,6 @@ import java.util.UUID;
 
 public interface CreditOrderRepository extends JpaRepository<CreditOrderEntity, Long> {
     List<CreditOrderEntity> findAllByClientId(UUID clientId);
+
     CreditOrderEntity findByNumber(String number);
 }
